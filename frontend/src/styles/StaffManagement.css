@@ -1,0 +1,110 @@
+/*staffmanagement*/
+*{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.select_station {
+  width: 50%; 
+  border: solid;
+  
+  
+  background: #fff;
+
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 120px;
+  border-radius: 12px;
+  border-color: #b7e2e7;
+  opacity: 0.8;
+  margin : 120px 20px 30px  ;
+
+}
+.selectoption {
+  /* width: 100px; */
+  height: 35px;
+  border: solid;
+  /* background-color: #fff; */
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+.form {
+  justify-content: space-evenly;
+}
+.tasks {
+  border: solid;
+  width: 50%;
+  position: relative;
+  background: #fff;
+  opacity: 0.8;
+  margin :20px 30px  ;
+  border-color: #b7e2e7;
+  padding-left: 24px;
+  border-radius: 10px;
+  /* padding : 10px ; */
+}
+.details {
+  display: flex;
+  gap: 40px;
+  
+}
+.name{
+  width: 40% ;
+  gap: 10px ;
+}
+.detail{
+  width: 40% ;
+  gap: 10px ;
+}
+.input_class {
+  width : 70% ;
+  height: 25px;
+  padding : 4px ;
+  margin-left: 10px;
+}
+.buttons {
+  width: 40%;
+  display: flex;
+  gap: 15px;
+  /* margin: 20px; */
+}
+.button {
+  background-color: #009adc;
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin: 20px 10px 20px 10px;
+  font-weight: bold;
+  
+}
+@media (max-width: 500px) {
+  
+}
+
+@media (min-width: 500px) {
+  
+}
+
+@media (min-width: 600px) {
+  
+}
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 992px) {
+  
+}
+
+@media (min-width: 1190px) {
+  
+}
+
+@media (min-width: 1400px) {
+  
+}
