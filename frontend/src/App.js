@@ -11,6 +11,7 @@ import StaffMembers from './components/StaffMembers.js';
 import Final from './components/Login/login.js';
 import DutyTask from './components/DutyTask.js';
 import LoginScreen from './components/Login/LoginScreen.js';
+import ProfileScreen from './components/profileScreen.js'; // Correct casing
 import Profiles from './components/P.js'; // Correct casing
 
 function App() {
