@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import usePasswordToggle from '../../hooks/usepasswordtoggle'; // Adjust the path as per your project structure
+import usePasswordToggle from '../../hooks/usepasswordtoggle';
 import logo from '../../assets/Logo.png';
-import policeLogo from '../../assets/policeLogo.png'
+import policeLogo from '../../assets/policeLogo.png';
 import './login.css';
+import axios from 'axios';
 
-function Login() { // Changed to capital "L" as React components should be capitalized
-    const [passwordInputType, toggleIcon] = usePasswordToggle(); // Using custom hook
-    const [phoneNumber, setPhoneNumber] = useState('');
+function Login() {
+    const [passwordInputType, toggleIcon] = usePasswordToggle();
+    const [mobileNumber, setmobileNumber] = useState('');
     const [password, setPassword] = useState('');
   
-    const handlePhoneNumberChange = (e) => {
+    const handlemobileNumberChange = (e) => {
       const value = e.target.value;
-      const regex = /^[0-9\b]+$/; // Regex for only numbers
+      const regex = /^[0-9\b]+$/;
   
       if (value === '' || (regex.test(value) && value.length <= 10)) {
-        setPhoneNumber(value);
+        setmobileNumber(value);
       } else {
         if (!regex.test(value)) {
           toast.error("Please enter only numeric characters!");
@@ -30,11 +31,27 @@ function Login() { // Changed to capital "L" as React components should be capit
       setPassword(e.target.value);
     };
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // Handle form submission logic here
-      console.log('Form submitted:', phoneNumber, password);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Submitting with:', mobileNumber, password); // Check values before making request
+        try {
+            const response = await axios.post('http://localhost:4000/api/login', {
+                mobileNumber, // Correct field name
+                password
+            });
+            console.log('Response:', response.data); // Log response for debugging
+            const { token } = response.data;
+            localStorage.setItem('token', token);
+            // Redirect to the protected page
+            window.location.href = '/protected';
+            toast.success("welcome");
+        } catch (error) {
+            console.error('Login error:', error);
+            toast.error("Invalid mobile number or password!");
+        }
     };
+    
+      
   
     return (
       <>
@@ -50,8 +67,8 @@ function Login() { // Changed to capital "L" as React components should be capit
                 type="text" 
                 placeholder="Enter the Mobile Number" 
                 className="input-field"
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange} 
+                value={mobileNumber}
+                onChange={handlemobileNumberChange} 
               />
               <input 
                 type={passwordInputType}
@@ -66,7 +83,7 @@ function Login() { // Changed to capital "L" as React components should be capit
         </div>
         <ToastContainer />
       </>
-    )
+    );
 }
 
 export default Login;

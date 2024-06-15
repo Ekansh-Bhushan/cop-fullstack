@@ -1,21 +1,60 @@
-
 const dotenv = require('dotenv');
 dotenv.config(); // Load environment variables first
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs'); // Import bcryptjs
+const jwt = require('jsonwebtoken');
 const connectDB = require('./config/db');
 const User = require('./models/User');
 const StaffMember = require('./models/StaffMember');
 
-
 const app = express();
+const cors = require('cors');
+
+// Use CORS middleware
+app.use(cors());
 
 // Connect to the database
 connectDB();
 
 // Middleware
 app.use(bodyParser.json());
+
+app.post('/api/login', async (req, res) => {
+    const { mobileNumber, password } = req.body;
+
+    try {
+        // Log the request body for debugging
+        console.log('Login request body:', req.body);
+        
+        // Find the user by mobile number
+        const user = await User.findOne({ mobileNumber });
+
+        if (!user) {
+            console.log('User not found');
+            return res.status(400).json({ message: 'Invalid mobile number or password' });
+        }
+
+        // Check if password matches
+        const passwordIsValid = bcrypt.compareSync(password, user.password);
+        if (!passwordIsValid) {
+            console.log('Password mismatch');
+            return res.status(400).json({ message: 'Invalid mobile number or password' });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'secret', {
+            expiresIn: 86400 // 24 hours
+        });
+
+        res.status(200).json({ token });
+    } catch (err) {
+        console.error('Server error:', err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 
 
 // GET route to fetch users by area
@@ -41,21 +80,19 @@ app.get('/api/users', async (req, res) => {
 });
 
 // POST route to add a new user
+// const bcrypt = require('bcryptjs');
+
+// Example user creation route
 app.post('/api/users', async (req, res) => {
     const { name, mobileNumber, password, role, areas } = req.body;
 
-    console.log('Request body:', req.body); // Log request body for debugging
-
     if (!name || !mobileNumber || !password || !role || !areas) {
-        return res.status(400).json({ msg: 'Please provide name, mobile number, password, role, and areas' });
+        return res.status(400).json({ msg: 'Please provide all required fields' });
     }
 
     try {
-        const existingUser = await User.findOne({ mobileNumber });
-
-        if (existingUser) {
-            return res.status(400).json({ msg: 'User already exists with the specified mobile number' });
-        }
+        // Hash password before saving to database
+        // const hashedPassword = bcrypt.hashSync(password, 10); // Adjust salt rounds as needed
 
         const newUser = new User({
             name,
@@ -66,12 +103,13 @@ app.post('/api/users', async (req, res) => {
         });
 
         await newUser.save();
-        res.json({ msg: 'User added successfully', user: newUser });
+        res.json({ msg: 'User created successfully', user: newUser });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
 });
+
 
 // DELETE route to remove a user by phone number and area
 app.delete('/api/users', async (req, res) => {
@@ -95,32 +133,28 @@ app.delete('/api/users', async (req, res) => {
     }
 });
 
-
 app.get('/api/staff', async (req, res) => {
     const { station } = req.query;
   
     try {
-      let staffMembers;
-      if (station) {
-        staffMembers = await StaffMember.find({ station }, 'name phoneNumber');
-      } else {
-        staffMembers = await StaffMember.find({}, 'name phoneNumber');
-      }
+        let staffMembers;
+        if (station) {
+            staffMembers = await StaffMember.find({ station }, 'name phoneNumber');
+        } else {
+            staffMembers = await StaffMember.find({}, 'name phoneNumber');
+        }
   
-      if (!staffMembers.length) {
-        return res.status(404).json({ msg: 'No staff members found' });
-      }
+        if (!staffMembers.length) {
+            return res.status(404).json({ msg: 'No staff members found' });
+        }
   
-      res.json(staffMembers);
+        res.json(staffMembers);
     } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ msg: 'Server Error' });
+        console.error(err.message);
+        res.status(500).json({ msg: 'Server Error' });
     }
-  });
-  
-  
+});
 
-// Check data route
 app.get('/checkData', async (req, res) => {
     try {
         const data = await User.find(); // Replace User with your actual model
