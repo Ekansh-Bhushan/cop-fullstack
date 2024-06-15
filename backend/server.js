@@ -112,7 +112,7 @@ app.delete('/api/users', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
