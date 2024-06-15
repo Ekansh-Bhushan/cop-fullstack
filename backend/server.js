@@ -16,6 +16,7 @@ connectDB();
 // Middleware
 app.use(bodyParser.json());
 
+
 // GET route to fetch users by area
 app.get('/api/users', async (req, res) => {
     const { area } = req.query;
