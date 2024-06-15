@@ -11,7 +11,6 @@ import StaffMembers from './components/StaffMembers.js';
 import Final from './components/Login/login.js';
 import DutyTask from './components/DutyTask.js';
 import LoginScreen from './components/Login/LoginScreen.js';
-import ProfileScreen from './components/ProfileScreen.js'; // Correct casing
 import Profiles from './components/P.js'; // Correct casing
 
 function App() {
@@ -33,7 +32,6 @@ function App() {
         <Route path="/StaffMembers" element={<StaffMembers />} />
         <Route path="/DutyTask" element={<DutyTask />} />
         <Route path="/LoginScreen" element={<LoginScreen />} />
-        <Route path="/ProfileScreen" element={<ProfileScreen />} />
         <Route path="/Profile" element={<Profiles police={police} />} /> {/* Pass police as a prop */}
       </Routes>
     </Router>
