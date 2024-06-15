@@ -1,7 +1,7 @@
 import React from 'react';
 import './global.css';
 import './profile-screen.css';
-import logo from '../assets/Logo.png'
+import logo from '../assets/policeLogo.png'
 import user from '../assets/user.png'
 
 
