@@ -1,0 +1,68 @@
+.nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 80px;
+    font-family: 'Montserrat';
+    font-size: small;
+    font: small-caption;
+    justify-content: center;
+    padding: 15px;
+}
+.h1{
+    font-size: 30px;
+}
+
+.leftbox{
+    Width
+    :850px;
+    Height
+    :620px;
+    Top
+    :143px;
+    Left
+    :44px;
+    border-Radius
+    :20px;
+    Border
+    :3px;
+    border: solid;
+    background:white;
+   border-color: #B7E2E7;
+    margin-left: 50px;
+}
+.rightbox{
+    position: absolute;
+    Width:
+360px;
+Height:
+263px;
+Top:
+250px;
+Left:
+1000px;
+}
+.images{
+    width: 320px;
+    height: 255px;
+}
+.profile{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+    line-height: 43px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.user{
+    width: 108px;
+    height: 108px;
+    position: relative;
+    left: 380px;
+}
+.profilerole{
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+    line-height: 43px;
+    padding-left: 20px;
+}
