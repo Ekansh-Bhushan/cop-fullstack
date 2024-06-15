@@ -1,0 +1,455 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: url(../../assets/MAP.png) no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.police-logo {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  height: 100px;
+}
+
+.header {
+  width: 600px;
+  height: 400px;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.logo {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
+  padding: -10px;
+  top: 100px;
+  left: 140px;
+  position: relative;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.right-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background-color: white;
+  padding: 13px;
+  border-radius: 34px;
+  width: 400px;
+  height: 207px;
+  text-align: center;
+}
+
+.signin-title {
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: #333;
+  position: relative;
+  top: -60px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  top: -20px;
+}
+
+.signin-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  top: -10px;
+}
+
+.signin-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .login-container {
+    flex-direction: row;
+    padding: 15px;
+  }
+
+  .logo {
+    width: 200px;
+    height: 200px;
+    top: 80px;
+    left: 100px;
+  }
+
+  .login-box {
+    width: 350px;
+    padding: 10px;
+  }
+
+  .signin-title {
+    font-size: 35px;
+    top: -50px;
+  }
+
+  .input-field {
+    padding: 15px;
+  }
+
+  .signin-button {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 992px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .logo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .login-box {
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  .signin-title {
+    font-size: 30px;
+    top: -40px;
+  }
+
+  .input-field {
+    padding: 15px;
+  }
+
+  .signin-button {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 770px) {
+  .police-logo {
+    height: 80px;
+  }
+
+  .login-container {
+    flex-direction: column;
+    padding: 10px;
+    left:10px;
+  }
+
+  .logo {
+    width: 150px;
+    height: 150px;
+    top: 60px;
+    left: 218px;
+  }
+
+  .login-box {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .signin-title {
+    font-size: 25px;
+    top: -30px;
+  }
+
+  .input-field {
+    padding: 12px;
+  }
+
+  .signin-button {
+    padding: 7px;
+  }
+}
+
+@media (max-width: 576px) {
+  .police-logo {
+    height: 60px;
+  }
+
+  .login-container {
+    flex-direction: column;
+    padding: 8px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    top: 50px;
+    left: 60px;
+  }
+
+  .login-box {
+    width: 100%;
+    padding: 6px;
+  }
+
+  .signin-title {
+    font-size: 20px;
+    top: -20px;
+  }
+
+  .input-field {
+    padding: 10px;
+  }
+
+  .signin-button {
+    padding: 6px;
+  }
+}
+@media (max-width: 440px) {
+    body {
+        font-family: 'Arial', sans-serif;
+        background: url(../../assets/MAP.png) no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 0px;
+        width: 0px;
+      }
+  .police-logo {
+    height: 120px !important;
+  }
+
+  .login-container {
+    flex-direction: column;
+    padding: 8px;
+    width: 365px;
+    position: absolute;
+    top: 200px;
+    height: 424px;
+    left: 30px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    top: 50px;
+    left: 237px;
+  }
+
+  .login-box {
+    width: 100%;
+    padding: 62px;
+    height: auto;
+  }
+
+  .signin-title {
+    font-size: 20px;
+    top: -20px;
+  }
+
+  .input-field {
+    padding: 10px;
+  }
+
+  .signin-button {
+    padding: 6px;
+  }
+}
+@media (max-width: 430px) {
+    body {
+        font-family: 'Arial', sans-serif;
+        background: url(../../assets/MAP.png) no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 0px;
+        width: -10px;
+      }
+  .police-logo {
+    height: 120px !important;
+  }
+
+  .login-container {
+    flex-direction: column;
+    padding: 8px;
+    width: 365px;
+    position: absolute;
+    top: 200px;
+    height: 424px;
+    left: 66px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    top: 50px;
+    left: 237px;
+  }
+
+  .login-box {
+    width: 100%;
+    padding: 62px;
+    height: auto;
+  }
+
+  .signin-title {
+    font-size: 20px;
+    top: -20px;
+  }
+
+  .input-field {
+    padding: 10px;
+  }
+
+  .signin-button {
+    padding: 6px;
+  }
+}
+@media (max-width: 400px) {
+    body {
+        font-family: 'Arial', sans-serif;
+        background: url(../../assets/MAP.png) no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 0px;
+        width: -10px;
+      }
+  .police-logo {
+    height: 150px !important;
+    left: 82px;
+  }
+
+  .login-container {
+    flex-direction: column;
+    padding: 8px;
+    width: 365px;
+    position: absolute;
+    top: 249px;
+    height: 424px;
+    left: 115px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    top: 50px;
+    left: 237px;
+  }
+
+  .login-box {
+    width: 100%;
+    padding: 62px;
+    height: auto;
+  }
+
+  .signin-title {
+    font-size: 20px;
+    top: -20px;
+  }
+
+  .input-field {
+    padding: 10px;
+  }
+
+  .signin-button {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+    body {
+        font-family: 'Arial', sans-serif;
+        background: url(../../assets/MAP.png) no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 0px;
+        width: -10px;
+      }
+  .police-logo {
+    height: 150px !important;
+    left: 50px;
+  }
+
+  .login-container {
+    flex-direction: column;
+    padding: 8px;
+    width: 365px;
+    position: absolute;
+    top: 249px;
+    height: 424px;
+    left: 65px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    top: 50px;
+    left: 237px;
+  }
+
+  .login-box {
+    width: 100%;
+    padding: 62px;
+    height: auto;
+  }
+
+  .signin-title {
+    font-size: 20px;
+    top: -20px;
+  }
+
+  .input-field {
+    padding: 10px;
+  }
+
+  .signin-button {
+    padding: 6px;
+  }
+
+}

@@ -35,6 +35,7 @@ cop-fullstack/
 ├── .gitignore
 ├── docker-compose.yml
 └── README.md
+```
 # Project Title
 
 ## Features

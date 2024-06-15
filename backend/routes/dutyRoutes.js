@@ -1,8 +1,10 @@
+dutyRoutes.js
 const express = require('express');
-const { dutyAssign } = require('../controllers/dutyController'); // Adjust the path as necessary
-
 const router = express.Router();
+const { dutyAssign } = require('../controllers/dutyController');
+const { getUsersByStation } = require('../controllers/userController');
 
-router.post('/duty', dutyAssign);
+router.get('/users/:area', getUsersByStation);
+router.post('/assign', dutyAssign);
 
 module.exports = router;

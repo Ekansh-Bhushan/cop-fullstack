@@ -125,11 +125,11 @@ const StaffManagement = () => {
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
       <div
-        style={{
-          backgroundImage: `url(${mapImage})`,
-          backgroundRepeat: 'no-repeat',
-          fontFamily: 'Montserrat',
-        }}
+        // style={{
+        //   backgroundImage: `url(${mapImage})`,
+        //   backgroundRepeat: 'no-repeat',
+        //   fontFamily: 'Montserrat',
+        // }}
       >
         
         <div className="select_station">

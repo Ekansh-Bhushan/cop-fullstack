@@ -1,7 +1,9 @@
 /*staffmanagement*/
+
 *{
   overflow-y: hidden;
   overflow-x: hidden;
+  
 }
 .select_station {
   width: 50%; 
@@ -82,29 +84,131 @@
   
 }
 @media (max-width: 500px) {
+  .select_station {
+    /* width: 110%; */
+       
+  }
+  .selectoption {
+    /* width: 100px; */
+    height: 35px;
+    border: solid;
+    /* background-color: #fff; */
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
   
+  h3 {
+    font-size: medium;
+  }
+   
+  .tasks {
+    
+    /* width: 100%; */
+    
+    /* padding : 10px ; */
+  }
+  .input_class {
+    width : 60% ;
+    height: 20px;
+    
+  }
 }
 
 @media (min-width: 500px) {
+  .select_station {
+    width: 90%;
+       
+  }
   
+  h3 {
+    font-size: small;
+  }
+  
+  .tasks {
+    
+    width: 87%;
+    
+    /* padding : 10px ; */
+  }
+  .input_class {
+    width : 55% ;
+    height: 20px;
+    
+  }
 }
 
 @media (min-width: 600px) {
-  
+  .select_station {
+    width: 95%;
+       
+  }
+  h3 {
+    font-size: medium;
+  }
+   
+  .tasks {
+    
+    width: 95%;
+    
+    /* padding : 10px ; */
+  }
+  .input_class {
+    width : 62% ;
+    height: 20px;
+    
+  }
 }
 
 @media (min-width: 768px) {
-  
+  .select_station {
+    width: 80%;
+       
+  }
+  .tasks {
+    
+    width: 75%;
+    
+    /* padding : 10px ; */
+  }
+  .input_class {
+    width : 62% ;
+    height: 20px;
+    
+  }
 }
 
 @media (min-width: 992px) {
-  
+  .select_station {
+    width: 65%;   
+  }
+  .tasks {
+    
+    width: 60%;
+    
+    /* padding : 10px ; */
+  }
+  .input_class {
+    width : 60% ;
+    height: 20px;
+    
+  }
 }
 
 @media (min-width: 1190px) {
-  
+  .select_station {
+    width: 60%;   
+  }
+  .input_class {
+    width : 60% ;
+    height: 20px;
+    
+  }
 }
 
 @media (min-width: 1400px) {
+  .select_station {
+    width: 50%;   
+  }
   
 }

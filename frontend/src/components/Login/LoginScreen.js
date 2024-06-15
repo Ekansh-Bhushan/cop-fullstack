@@ -41,9 +41,29 @@ const LoginScreen = () => {
   return (
     <div className="login-screen">
       <section className="map"></section>
-      <div className="login-screen-child"></div>
+      <div className="delhi-police-parent">
+        <b className="delhi-police">DELHI POLICE</b>
+        <div className="shanti-sewa-nyaya-wrapper">
+          <div className="shanti-sewa-nyaya">SHANTI SEWA NYAYA</div>
+        </div>
+      </div>
+      <main>
+        <img className="group-icon" loading="lazy" alt="" src={logo} />
+        <img className="image-2-icon" loading="lazy" alt="" src={onlyLogo} />
+      </main>
+      <div className="user-authentication-wrapper">
+        <div className="user-authentication">
+          <div className="constable-title">
+            
+          </div>
+      
+    <div className="credentials-form">
+    <div className="credentials-form-child"></div>
+    <h1 className="sign-in">Sign In</h1>
+    <form className="input-fields">
+      <div className="input-container">
       <input 
-        className="login-screen-item" 
+        className="input-container-child" 
         placeholder='Enter the Phone Number'
         type="text"
         value={phoneNumber}
@@ -51,7 +71,7 @@ const LoginScreen = () => {
       />
       
       <input 
-        className="login-screen-inner" 
+        className="input-container-item" 
         placeholder='Enter the Password'
         type={passwordInputType}
         value={password}
@@ -60,25 +80,18 @@ const LoginScreen = () => {
 
       <span className='password-toggle-icon'>{toggleIcon}</span>
 
-      <button className="rectangle-button" onClick={handleSubmit}>Sign In</button>
-      <div className="mobile-number">Mobile Number</div>
-      <div className="password">Password</div>
-      <div className="sign-in">Sign in</div>
-      <h1 className="sign-in1">Sign In</h1>
-      <div className="group-parent">
-        <img className="group-icon" alt="" src={logo} />
-
-        {/* <h1 className="constableonpatrol">ConstableOnPatrol</h1> */}
-      </div>
-      <div className="image-2-parent">
-        <img className="image-2-icon" alt="" src={onlyLogo} />
-
-        <h3 className="delhi-police">DELHI POLICE</h3>
-        <div className="shanti-sewa-nyaya">SHANTI SEWA NYAYA</div>
-      </div>
-      <ToastContainer />
-    </div>
-  );
+       <button type="submit" className="submit-button">
+       <div className="submit-button-child"></div>
+       <div className="sign-in1">Sign In</div>
+     </button>
+   </div>
+ </form>
+ <ToastContainer />
+</div>
+</div>
+</div>
+</div>
+);
 }
 
 export default LoginScreen;
