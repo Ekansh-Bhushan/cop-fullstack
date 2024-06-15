@@ -47,10 +47,10 @@ Left:
     height: 255px;
 }
 .profile{
-    font-size: 30px;
-    font-weight: bold;
-    padding: 20px;
-    line-height: 43px;
+
+    position: absolute;
+    padding-left: 20px;
+
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .user{
@@ -58,11 +58,18 @@ Left:
     height: 108px;
     position: relative;
     left: 380px;
+    top: 100px;
 }
 .profilerole{
     font-size: 30px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bolder;
     line-height: 43px;
-    padding-left: 20px;
+    position: relative;
+    top:135px;
+    padding-left: 20px; 
+}
+.userclass{
+    position: relative;
+    top: 100px;
 }
