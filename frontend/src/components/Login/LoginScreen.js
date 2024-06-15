@@ -6,7 +6,7 @@ import '../global.css';
 import '../index.css';
 import usePasswordToggle from '../../hooks/usepasswordtoggle'; // Adjust the path as per your project structure
 import logo from '../../assets/Logo.png'
-import onlyLogo from '../../assets/OnlyLogo.png'
+import onlyLogo from '../../assets/policeLogo.png'
 
 const LoginScreen = () => {
   const [passwordInputType, toggleIcon] = usePasswordToggle(); // Using custom hook
