@@ -5,7 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/header';
 import mapImage from '../assets/MAP.png';
-import '../styles/dutychart2.css';
+import '../styles/StaffManagement.css';
+
 
 const StaffManagement = () => {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -15,7 +16,7 @@ const StaffManagement = () => {
   const [selectedArea, setSelectedArea] = useState('');
   const [users, setUsers] = useState([]);
 
-  const areaNames = ["Bawana", "shahbad dairy", "Narela", "Narela Industrial Area", "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"];
+  const areaNames = ["Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area", "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"];
 
   const handleNameChange = (e) => {
     const value = e.target.value;
@@ -44,17 +45,20 @@ const StaffManagement = () => {
       toast.error('Please select an area.');
     } else {
       try {
-        await axios.post('http://localhost:4000/api/users', {
+        console.log('Adding staff:', { name, phoneNumber, selectedArea });
+        await axios.post('/api/users', {
           name,
           mobileNumber: phoneNumber,
           areas: [selectedArea]
         });
+      
         toast.success('STAFF MEMBER HAS BEEN ADDED SUCCESSFULLY!');
         setName('');
         setPhoneNumber('');
         setIsValidPhoneNumber(true);
         await handleSubmit();
       } catch (error) {
+        console.error('Error adding staff:', error);
         const errorMsg = error.response && error.response.data ? error.response.data.msg : 'Failed to add staff member.';
         toast.error(errorMsg);
       }
@@ -68,6 +72,7 @@ const StaffManagement = () => {
       toast.error('Please select an area.');
     } else {
       try {
+        console.log('Removing staff:', { name, phoneNumber, selectedArea });
         await axios.delete('http://localhost:4000/api/users', {
           data: { name, mobileNumber: phoneNumber, areas: [selectedArea] }
         });
@@ -77,6 +82,7 @@ const StaffManagement = () => {
         setIsValidPhoneNumber(true);
         await handleSubmit();
       } catch (error) {
+        console.error('Error removing staff:', error);
         const errorMsg = error.response && error.response.data ? error.response.data.msg : 'Failed to remove staff member.';
         toast.error(errorMsg);
       }
@@ -94,6 +100,7 @@ const StaffManagement = () => {
     }
 
     try {
+      console.log('Fetching users for area:', selectedArea);
       const response = await axios.get('http://localhost:4000/api/users', {
         params: { area: selectedArea }
       });
@@ -104,6 +111,7 @@ const StaffManagement = () => {
       navigate(`/StaffManagement?area=${encodeURIComponent(selectedArea)}`);
       
     } catch (error) {
+      console.error('Error fetching users:', error);
       if (error.response && error.response.status === 404) {
         toast.error('No users found in that area.');
       } else {
@@ -117,83 +125,86 @@ const StaffManagement = () => {
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
       <div
-        style={{
-          backgroundImage: `url(${mapImage})`,
-          backgroundRepeat: 'no-repeat',
-          fontFamily: 'Montserrat',
-        }}
+        // style={{
+        //   backgroundImage: `url(${mapImage})`,
+        //   backgroundRepeat: 'no-repeat',
+        //   fontFamily: 'Montserrat',
+        // }}
       >
-        <br />
-        <br />
-        <br />
-        <div className="selectstation">
-          <h2>SELECT POLICE STATION</h2>
+        
+        <div className="select_station">
+          <h3>SELECT POLICE STATION</h3>
           <form onSubmit={handleSubmit}>
             <select
-              className="select"
+              className="selectoption"
               style={{
                 backgroundColor: '#EBEBEB',
                 width: '150px',
                 border: 'none',
+                
               }}
               value={selectedArea}
               onChange={handleAreaChange}
             >
-              <option value="" disabled>Select area</option>
+              <option value="" disabled>Select Area</option>
               {areaNames.map((area, index) => (
                 <option key={index} value={area}>{area}</option>
               ))}
             </select>
             <input
               type="submit"
-              value="SUBMIT"
+              value="SELECT"
               className="select"
               style={{
                 backgroundColor: '#009ADC',
                 color: '#fff',
                 textAlign: 'center',
-                margin: '20px',
+                margin : '20px',
                 width: '150px',
                 border: 'none',
+                fontWeight : 'bold' ,
               }}
             />
           </form>
         </div>
-        <br />
-        <br />
-        <div className="task">
-          <h2>ADD/REMOVE STAFF</h2>
-          <div className="names">
-            <label>NAME</label>
-            <input
-              type="text"
-              className="inputclass"
-              placeholder="Enter the Name"
-              value={name}
-              onChange={handleNameChange}
-              style={{ borderRadius: '30px', borderColor: '#b7e2e7' }}
-            />
-            <label>PH. NO.</label>
-            <input
-              type="text"
-              className="inputclass"
-              placeholder="Enter the Phone Number"
-              value={phoneNumber}
-              onChange={handlePhoneNumberChange}
-              style={{
-                borderRadius: '30px',
-                borderColor: isValidPhoneNumber ? '#b7e2e7' : 'red',
-              }}
-            />
+        
+        <div className="tasks">
+          <h2>ADD / REMOVE STAFF</h2>
+          <div className="details">
+            <div className='name'>
+
+              <label>NAME</label>
+              <input
+                type="text"
+                className="input_class"
+                placeholder="Enter the Name"
+                value={name}
+                onChange={handleNameChange}
+                style={{ borderRadius: '30px', borderColor: '#b7e2e7'  }}
+                />
+            </div>
+            <div className='detail'>
+
+              <label>PH. NO.</label>
+              <input
+                type="text"
+                className="input_class"
+                placeholder="Enter the Phone Number"
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
+                style={{
+                  borderRadius: '30px',
+                  borderColor: isValidPhoneNumber ? '#b7e2e7' : 'red',
+                }}
+                />
+              </div>
             {!isValidPhoneNumber && (
               <p style={{ color: 'red', fontSize: '12px', marginTop: '5px' }}>
                 Please enter a valid 10-digit phone number.
               </p>
             )}
           </div>
-          <br />
-          <br />
-          <br />
+          
           <div className="buttons">
             <button className="button" onClick={handleAddStaff} disabled={name.trim() === '' || phoneNumber.trim() === '' || !selectedArea}>
               ADD

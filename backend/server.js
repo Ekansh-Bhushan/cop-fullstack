@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config(); // Load environment variables first
 
 const express = require('express');
+
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs'); // Import bcryptjs
 const jwt = require('jsonwebtoken');
@@ -16,9 +17,11 @@ const cors = require('cors');
 app.use(cors());
 
 // Connect to the database
+
 connectDB();
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/api/login', async (req, res) => {
@@ -60,7 +63,7 @@ app.post('/api/login', async (req, res) => {
 // GET route to fetch users by area
 app.get('/api/users', async (req, res) => {
     const { area } = req.query;
-
+    console.log('Fetching users for area:', area);
     if (!area) {
         return res.status(400).json({ msg: 'Area is required' });
     }
@@ -84,26 +87,29 @@ app.get('/api/users', async (req, res) => {
 
 // Example user creation route
 app.post('/api/users', async (req, res) => {
-    const { name, mobileNumber, password, role, areas } = req.body;
+    const { name, mobileNumber, area } = req.body;
 
-    if (!name || !mobileNumber || !password || !role || !areas) {
-        return res.status(400).json({ msg: 'Please provide all required fields' });
+    if (!name || !mobileNumber || !area) {
+        return res.status(400).json({ msg: 'Please provide name, mobile number, and area' });
     }
 
     try {
-        // Hash password before saving to database
-        // const hashedPassword = bcrypt.hashSync(password, 10); // Adjust salt rounds as needed
+        const existingUser = await User.findOne({ mobileNumber, areas: area });
+        console.log(name , mobileNumber ,area) ;
+        if (existingUser) {
+            return res.status(400).json({ msg: 'User already exists in the specified area' });
+        }
 
         const newUser = new User({
             name,
             mobileNumber,
-            password,
-            role,
-            areas,
+            password: 'defaultPassword', // Set a default password, or prompt the user for one
+            role: 'user',
+            areas: [area],
         });
 
         await newUser.save();
-        res.json({ msg: 'User created successfully', user: newUser });
+        res.json({ msg: 'User added successfully' });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
@@ -113,8 +119,28 @@ app.post('/api/users', async (req, res) => {
 
 // DELETE route to remove a user by phone number and area
 app.delete('/api/users', async (req, res) => {
-    const { name, mobileNumber, area } = req.body;
+    const { name, mobileNumber, areas } = req.body;
+    console.log('Removing user:', { name, mobileNumber, areas });
+    if (!name || !mobileNumber || !areas) {
+        return res.status(400).json({ msg: 'Please provide name, mobile number, and area' });
+    }
 
+    try {
+        const user = await User.findOneAndDelete({ mobileNumber, areas: areas, name });
+
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found in the specified area' });
+        }
+
+        res.status(200).json({ msg: 'User removed successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+app.delete('/api/users', async (req, res) => {
+    const { name, mobileNumber, area } = req.body;
+    console.log('Removing user:', { name, mobileNumber, area });
     if (!name || !mobileNumber || !area) {
         return res.status(400).json({ msg: 'Please provide name, mobile number, and area' });
     }
@@ -126,76 +152,10 @@ app.delete('/api/users', async (req, res) => {
             return res.status(404).json({ msg: 'User not found in the specified area' });
         }
 
-        res.json({ msg: 'User removed successfully' });
+        res.status(200).json({ msg: 'User removed successfully' });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
-    }
-});
-
-app.get('/api/staff', async (req, res) => {
-    const { station } = req.query;
-  
-    try {
-        let staffMembers;
-        if (station) {
-            staffMembers = await StaffMember.find({ station }, 'name phoneNumber');
-        } else {
-            staffMembers = await StaffMember.find({}, 'name phoneNumber');
-        }
-  
-        if (!staffMembers.length) {
-            return res.status(404).json({ msg: 'No staff members found' });
-        }
-  
-        res.json(staffMembers);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).json({ msg: 'Server Error' });
-    }
-});
-
-app.get('/checkData', async (req, res) => {
-    try {
-        const data = await User.find(); // Replace User with your actual model
-        res.json(data);
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }
-});
-
-// Duty assignment route
-app.post('/api/duty/assign', async (req, res) => {
-    const tasks = req.body;
-
-    try {
-        const dutyPromises = tasks.map(async (task) => {
-            const user = await User.findOne({ mobileNumber: task.mobileNumber });
-
-            if (!user) {
-                throw new Error(`Invalid mobile number: ${task.mobileNumber}`);
-            }
-
-            if (!user.areas.includes(task.selectedArea)) {
-                throw new Error(`User is not assigned to the selected area: ${task.selectedArea}`);
-            }
-
-            const duty = new Duty({
-                checkbox: task.checkbox,
-                startTime: task.startTime,
-                endTime: task.endTime,
-                assignedArea: task.selectedArea,
-                assignedTo: user._id,
-            });
-
-            await duty.save();
-        });
-
-        await Promise.all(dutyPromises);
-
-        res.status(200).json({ message: 'Assigned Successfully' });
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
     }
 });
 
