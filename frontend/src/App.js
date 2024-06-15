@@ -32,7 +32,7 @@ function App() {
         <Route path="/StaffMembers" element={<StaffMembers />} />
         <Route path="/DutyTask" element={<DutyTask />} />
         <Route path="/LoginScreen" element={<LoginScreen />} />
-        <Route path="/Profile" element={<Profiles police={police} />} /> {/* Pass police as a prop */}
+        <Route path="/Profiles" element={<Profiles/>} /> {/* Pass police as a prop */}
       </Routes>
     </Router>
   );
