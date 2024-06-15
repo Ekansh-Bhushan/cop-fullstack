@@ -94,30 +94,7 @@ app.delete('/api/users', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-const sampleData = [
-    { name: 'John Doe', phoneNumber: '9876543210', station: 'Bawana' },
-    { name: 'Jane Smith', phoneNumber: '1234567890', station: 'Shahbad Dairy' },
-    { name: 'Mike Johnson', phoneNumber: '5556667777', station: 'Narela' },
-    // Add more sample data as needed
-  ];
-  
-  // Function to insert sample data into MongoDB
-  async function insertSampleData() {
-    try {
-      await StaffMember.deleteMany(); // Clear existing data
-      
-      // Insert sample data into MongoDB
-      await StaffMember.insertMany(sampleData);
-      console.log('Sample data inserted successfully');
-    } catch (err) {
-      console.error('Error inserting sample data:', err);
-    } finally {
-      mongoose.disconnect(); // Disconnect from MongoDB
-    }
-  }
-  
-  // Call the function to insert sample data
-  insertSampleData();
+
 
 app.get('/api/staff', async (req, res) => {
     const { station } = req.query;
