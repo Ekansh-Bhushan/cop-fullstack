@@ -8,6 +8,8 @@ import Final from './components/Login/login.js'
 import DutyTask from './components/DutyTask.js';
 import LoginScreen from './components/Login/LoginScreen.js';
 import ProfileScreen from './components/profileScreen.js';
+import Profile from './Profile.js';
+
 
 function App() {
   return (
@@ -19,7 +21,10 @@ function App() {
         <Route path="/DutyTask" element={<DutyTask />} />
         <Route path="/LoginScreen" element={<LoginScreen />} />
         <Route path="/profileScreen" element={<ProfileScreen />} />
+        <Route path="/Profile" element={<Profile/>}/>
+
       </Routes>
+
     </Router>
   );
 }
