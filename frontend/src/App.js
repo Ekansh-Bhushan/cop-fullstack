@@ -8,9 +8,7 @@ import Final from './components/Login/login.js'
 import DutyTask from './components/DutyTask.js';
 import LoginScreen from './components/Login/LoginScreen.js';
 import ProfileScreen from './components/profileScreen.js';
-import Profile from './Profile.js';
-
-
+import Profile from './components/Profile.js';
 function App() {
   return (
     <Router>
