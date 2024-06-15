@@ -1,0 +1,102 @@
+.nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 80px;
+    font-family: 'Montserrat';
+    font-size: small;
+    font: small-caption;
+    justify-content: center;
+    padding: 15px;
+}
+.box1{
+    border: solid;
+    Width:
+631px;
+Height:
+112px;
+Top:
+129px;
+Left:
+44px;
+border-Radius:
+20px;
+border-color: #B7E2E7;
+background: #ffff;
+}
+.box2{
+    Width:
+631px;
+Height:
+250px;
+Top:
+295px;
+Left:
+44px;
+
+border: solid;
+border-color: #B7E2E7;
+border-Radius:
+20px;
+background: #ffff;
+margin-top:14px;
+}
+.box3{
+    Width:
+    631px;
+    Height:
+    90px;
+    Top:
+    600px;
+    Left:
+    44px;
+    
+    border: solid;
+    border-color: #B7E2E7;
+    border-Radius:
+    20px;
+    background: #ffff;
+    margin-top:14px;
+}
+.box4{
+    Width:
+    631px;
+    Height:
+    140px;
+    Top:
+    750px;
+    Left:
+    44px;
+    
+    border: solid;
+    border-color: #B7E2E7;
+    border-Radius:
+    20px;
+    background: #ffff;
+    margin-top:14px;
+}
+.r1{
+    Width:
+758px;
+Height:
+305px;
+Top:
+129px;
+Left:
+705px;
+border: solid;
+    border-color: #B7E2E7;
+    background: #ffff;
+border-radius:
+20px;
+}
+.container{
+    display: flex;
+   
+}
+.rwalabox{
+    display: grid;
+    gap: 5px;
+    position: relative;
+    left: 20px;
+}
