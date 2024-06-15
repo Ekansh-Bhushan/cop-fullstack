@@ -139,4 +139,37 @@ body {
     --br-3xs: 10px;
     --br-10xs: 3px;
   }
-  
+  @media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav img {
+    margin-bottom: 10px;
+  }
+
+  .nav h1 {
+    font-size: 12px;
+    margin: 5px 0;
+  }
+}
+
+/* Media query for mobile screens */
+@media (max-width: 480px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .nav img {
+    margin-bottom: 10px;
+    width: 25px; /* Adjust logo size for mobile */
+  }
+
+  .nav h1 {
+    font-size: 12px;
+    margin: 5px 0;
+  }
+}
