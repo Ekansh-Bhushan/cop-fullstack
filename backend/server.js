@@ -105,27 +105,29 @@ app.get('/api/users', async (req, res) => {
 // POST route to add a new user
 // const bcrypt = require('bcryptjs');
 
-// Example user creation route
 app.post('/api/users', async (req, res) => {
-    const { name, mobileNumber, area } = req.body;
+    const { name, mobileNumber, password, role, areas } = req.body;
 
-    if (!name || !mobileNumber || !area) {
-        return res.status(400).json({ msg: 'Please provide name, mobile number, and area' });
+    if (!name || !mobileNumber || !areas || !Array.isArray(areas) || areas.length === 0) {
+        return res.status(400).json({ msg: 'Please provide name, mobile number, and at least one area' });
     }
 
     try {
-        const existingUser = await User.findOne({ mobileNumber, areas: area });
-        console.log(name , mobileNumber ,area) ;
+        // Check for existing user in any of the specified areas
+        const existingUser = await User.findOne({ mobileNumber, areas: { $in: areas } });
         if (existingUser) {
-            return res.status(400).json({ msg: 'User already exists in the specified area' });
+            return res.status(400).json({ msg: 'User already exists in the specified areas' });
         }
+
+        // Create a new user with hashed password
+        const hashedPassword = bcrypt.hashSync(password, 8);
 
         const newUser = new User({
             name,
             mobileNumber,
-            password: 'defaultPassword', // Set a default password, or prompt the user for one
-            role: 'user',
-            areas: [area],
+            password: hashedPassword, // Hash the provided password
+            role,
+            areas,
         });
 
         await newUser.save();

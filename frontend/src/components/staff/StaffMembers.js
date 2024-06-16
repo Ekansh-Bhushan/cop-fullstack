@@ -106,7 +106,7 @@ const StaffManagement = () => {
       toast.success('Users fetched successfully!');
       
       // Navigate to new URL with selected area as query parameter and state
-      navigate(`/StaffMember`, { state: { users: response.data } });
+      navigate(`/staffMember`, { state: { users: response.data } });
       
     } catch (error) {
       console.error('Error fetching users:', error);

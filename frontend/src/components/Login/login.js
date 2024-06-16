@@ -43,7 +43,7 @@ function Login() {
             const { token } = response.data;
             localStorage.setItem('token', token);
             // Redirect to the protected page
-            window.location.href = '/DutyTask';
+            window.location.href = '/homepage';
             toast.success("welcome");
         } catch (error) {
             console.error('Login error:', error);

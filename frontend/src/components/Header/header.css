@@ -13,7 +13,51 @@
     z-index: 1000;
    
 }
-
+.nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .h1 {
+    margin: 0 15px;
+    position: relative;
+  }
+  
+  .h1.selected::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    height: 5px; /* Adjust as needed */
+    background-image: url('../../assets/line.png'); /* Use the imported line image */
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .h1 {
+    margin: 0 15px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .h1.selected::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    height: 5px; /* Adjust as needed */
+    background-image: url('../../assets/line.png'); /* Use the imported line image */
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  
 .h1 {
     font-size: 25px;
     margin: 0 10px;
@@ -104,4 +148,25 @@ Left:
 .userclass{
     position: relative;
     top: 100px;
+}
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.h1 {
+  margin: 0 15px;
+  position: relative;
+}
+
+.h1.selected::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Adjust as needed */
+  left: 0;
+  right: 0;
+  height: 5px; /* Adjust as needed */
+  background-image: url('../../assets/line.png'); /* Use the imported line image */
+  background-size: cover;
+  background-repeat: no-repeat;
 }

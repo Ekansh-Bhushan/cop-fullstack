@@ -12,6 +12,7 @@ import Final from './components/Login/login.js';
 import DutyTask from './components/dutychart/DutyTask.js';
 // import LoginScreen from './components/Login/LoginScreen.js';
 import ProfileScreen from './components/P.js'; // Correct casing
+import Dashboard from './components/Dashboard.js';
 // import Profiles from './components/P.js'; // Correct casing
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/DutyTask" element={<DutyTask />} />
         {/* <Route path="/LoginScreen" element={<LoginScreen />} /> */}
         <Route path="/Profile" element={<ProfileScreen/>} /> {/* Pass police as a prop */}
+        <Route path="/homepage" element={<Dashboard/>} /> {/* Pass police as a prop */}
       </Routes>
     </Router>
   );

@@ -122,7 +122,7 @@ const StaffManagement = () => {
   return (
     <>
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
-      <Header />
+      <Header selected="ADD/REMOVE STAFF"/>
       <div
         // style={{
         //   backgroundImage: `url(${mapImage})`,
