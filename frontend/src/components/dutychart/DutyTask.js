@@ -127,41 +127,25 @@ const DutyTask = () => {
   return (
     <>
       <Header />
-      <div className='background' style={{ 
-        backgroundImage: `url(${mapImage})`, 
-        backgroundRepeat:'no-repeat',
-        fontFamily: 'Montserrat',
-      }}>
+   
         <br /><br /><br />
-        <div className="selectstation">
-          <h2>SELECT POLICE STATION</h2>
-          <select className="select" value={selectedStation} onChange={handleStationChange} style={{ backgroundColor: '#EBEBEB', width: '150px', border: 'none' }}>
-            <option value="">AREA</option>
-            {areaNames.map((area, index) => (
-              <option key={index} value={area}>{area}</option>
-            ))}
-          </select>
-          <input
-            type="submit"
-            value="SUBMIT"
-            className="select"
-            style={{ backgroundColor: '#009ADC', color: '#fff', textAlign: 'center', margin: '20px', width: '150px', border: 'none' }}
-          />
-        </div>
-        <br /><br />
-        {selectedStation && (
-          <div className="task">
-            <h2>STAFF DUTY TASK</h2>
-            {tasks.length > 0 ? (
-              renderTasks()
-            ) : (
-              <p>No tasks found for selected station.</p>
-            )}
-            <br />
-            <button className="submit-button" onClick={handleSubmit}>Submit</button>
-          </div>
-        )}
-      </div>
+    <div className='selectstations'>
+    <h2>SELECT POLICE STATION</h2>
+    <form action="/action_page.PH.p">
+    <select className="select" >
+
+    <option value="volvo">AREA</option>
+                 <option value="saab">AREA</option>
+                 <option value="opel">AREA</option>
+                 <option value="audi">AREA</option>
+               
+    </select>
+    <input type="submit" value="SUBMIT" className="select" />
+
+    </form>
+
+
+    </div>
     </>
   );
 };
