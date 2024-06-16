@@ -4,8 +4,8 @@ import "./dashboard.css";
 import SelectedCrimeBarChart from "./SelectedCrimeChart";
 import Headers from "../Header/header";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const areaNames = [
   "Bawana",
@@ -24,15 +24,15 @@ function Dashboard(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [totalUsers, setTotalUsers] = useState(0);
   const [activeUsers, setActiveUsers] = useState(0);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     // Check for the authentication token
-    const token = localStorage.getItem('token');
-    const storedUserName = localStorage.getItem('userName');
+    const token = localStorage.getItem("token");
+    const storedUserName = localStorage.getItem("userName");
     if (!token) {
       toast.error("Please login first!");
-      navigate('/'); // Redirect to login if token is not present
+      navigate("/"); // Redirect to login if token is not present
       return;
     }
     setUserName(storedUserName);
@@ -61,7 +61,9 @@ function Dashboard(props) {
       <ToastContainer />
       <div className="dashboard">
         <div className="dashboard-left">
-            <h2>Hi {userName},<br/> Welcome to COP</h2> 
+          <h2>
+            Hi {userName},<br /> Welcome to COP
+          </h2>
           <div className="dashboard-left-userinfo">
             <h2>Number of users: {totalUsers}</h2>
             <h2>Active: {activeUsers}</h2>
@@ -85,7 +87,10 @@ function Dashboard(props) {
             <h2>DUTY CHART</h2>
             <h4>Add Duty Timing for Constable</h4>
           </div>
-          <div className="dashboard-left-crime-upload" onClick={() => navigate("/crimeEntry")}>
+          <div
+            className="dashboard-left-crime-upload"
+            onClick={() => navigate("/crimeEntry")}
+          >
             <h2>Crime Data</h2>
             <h4>Click here to enter the crime data in the database</h4>
             {/* <input
