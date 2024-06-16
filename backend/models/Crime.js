@@ -26,6 +26,10 @@ const CrimeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  year: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Crime", CrimeSchema);

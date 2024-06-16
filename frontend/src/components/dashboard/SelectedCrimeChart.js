@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -21,6 +22,34 @@ ChartJS.register(
 );
 
 const SelectedCrimeBarChart = () => {
+  const [selectedArea, setSelectedArea] = useState("BAWANA");
+  const [selectedCrime, setSelectedCrime] = useState("Burglary");
+  const [crimeData, setCrimeData] = useState([]);
+
+  const handleAreaChange = (event) => {
+    setSelectedArea(event.target.value);
+  };
+
+  const handleCrimeChange = (event) => {
+    setSelectedCrime(event.target.value);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/crime-data/by/${selectedArea}/${selectedCrime}`
+        );
+        const data = await response.json();
+        setCrimeData(data);
+      } catch (error) {
+        console.error("Error fetching crime data:", error);
+      }
+    };
+
+    fetchData();
+  }, [selectedCrime, selectedArea]);
+
   const data = {
     labels: [
       "JAN",
@@ -42,7 +71,7 @@ const SelectedCrimeBarChart = () => {
         backgroundColor: "rgba(75, 192, 192, 0.8)",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
-        data: [1150, 800, 700, 500, 800, 600, 400, 500, 300, 1000, 400, 600],
+        data: crimeData,
       },
     ],
   };
@@ -61,21 +90,27 @@ const SelectedCrimeBarChart = () => {
       <div className="crimechart-right">
         <label>
           <h3>Select Area</h3>
-          <select>
-            <option value="Bawana">Bawana</option>
-            <option value="Shahbad">Shahbad Dairy</option>
-            <option value="Jahangirpuri">Jahangirpuri</option>
-            <option value="Rohini 17">Rohini 17</option>
-            <option value="DTU">DTU</option>
+          <select value={selectedArea} onChange={handleAreaChange}>
+            <option value="SAMAYPUR BADLI">SAMAYPUR BADLI</option>
+            <option value="NARELA">NARELA</option>
+            <option value="BAWANA">BAWANA</option>
+            <option value="SHAHBAD DAIRY">SHAHBAD DAIRY</option>
+            <option value="BHALSWA DAIRY">BHALSWA DAIRY</option>
+            <option value="NARELA INDUSTRIAL AREA">
+              NARELA INDUSTRIAL AREA
+            </option>
+            <option value="SWARUP NAGAR">SWARUP NAGAR</option>
+            <option value="SWARUP NAGAR">ALIPUR</option>
           </select>
         </label>
         <label>
           <h3>Select Crime</h3>
-          <select>
-            <option value="theft">Theft</option>
-            <option value="theft">Theft</option>
-            <option value="theft">Theft</option>
-            <option value="theft">Theft</option>
+          <select value={selectedCrime} onChange={handleCrimeChange}>
+            <option value="Burglary">Burglary</option>
+            <option value="House Theft">House Theft</option>
+            <option value="M V Theft">MV Theft</option>
+            <option value="Snatching">Snatching</option>
+            <option value="Robbery">Robbery</option>
             <option value="All">ALL Crime</option>
           </select>
         </label>

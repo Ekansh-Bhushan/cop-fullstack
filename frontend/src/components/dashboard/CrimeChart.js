@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -22,6 +22,29 @@ ChartJS.register(
 );
 
 const BarChart = () => {
+  const [crimeData, setCrimeData] = useState([]);
+  const [selectedYear, setSelectedYear] = useState("2023");
+
+  const handleYearChange = (event) => {
+    setSelectedYear(event.target.value);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/crime-data/by-year/${selectedYear}`
+        );
+        const data = await response.json();
+        setCrimeData(data);
+      } catch (error) {
+        console.error("Error fetching crime data:", error);
+      }
+    };
+
+    fetchData();
+  }, [selectedYear, handleYearChange]);
+
   const data = {
     labels: [
       "JAN",
@@ -43,7 +66,7 @@ const BarChart = () => {
         backgroundColor: "rgba(75, 192, 192, 0.8)",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
-        data: [1500, 800, 400, 900, 1240, 1480, 1100, 500, 300, 1000, 400, 600],
+        data: crimeData,
       },
     ],
   };
@@ -56,12 +79,6 @@ const BarChart = () => {
     },
   };
 
-  const [selectedYear, setSelectedYear] = useState("2021");
-
-  const handleYearChange = (event) => {
-    setSelectedYear(event.target.value);
-  };
-
   return (
     <div className="crimechart">
       <Bar data={data} options={options} />
@@ -71,7 +88,9 @@ const BarChart = () => {
           <select value={selectedYear} onChange={handleYearChange}>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
-            <option value="2023">2023</option>
+            <option value="2023" selected>
+              2023
+            </option>
             <option value="2024">2024</option>
           </select>
         </label>
