@@ -5,6 +5,7 @@ import userimage from './user.svg'; // Import the image
 import groupimage2 from './group2.png'; // Import the image
 
 
+
 export default function P(police) {
   return (
     <>
@@ -14,10 +15,10 @@ export default function P(police) {
       <h1 className='h1'>DUTY CHART</h1>
       <h1 className='h1'>ADD/REMOVE STAFF</h1>
       <h1 className='h1'>STAFF MEMBERS</h1>
-      <img src={userimage} alt="User icon" />
+      <img src={userimage} alt="User icon" className='user-icon' />
     </div>
 
-{/*left profile  */}
+    <div className='profile-body'>
     <div className='leftbox'>
       <div className='profileName'><h1 className='profile'>PROFILE </h1></div>
       <img src={userimage} alt="/" className='user'/>
@@ -34,6 +35,7 @@ export default function P(police) {
     </div>
     <div className='rightbox'>
         <img src={groupimage2} alt="/" className='images'/>
+    </div>
     </div>
     </>
   );

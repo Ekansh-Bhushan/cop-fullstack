@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,10 +17,25 @@ const StaffManagement = () => {
 
   const areaNames = ["Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area", "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"];
 
+  useEffect(() => {
+    // Check for the authentication token
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error("Please login first!");
+      navigate('/'); // Redirect to login if token is not present
+      return;
+    }
+  }, [navigate]);
+
   const handleNameChange = (e) => {
     const value = e.target.value;
     setName(value);
   };
+
+  function generateRandomPassword(length = 12) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~';
+    return Array.from({length}, () => characters.charAt(Math.floor(Math.random() * characters.length))).join('');
+  }
 
   const handlePhoneNumberChange = (e) => {
     const value = e.target.value;
@@ -37,32 +52,40 @@ const StaffManagement = () => {
 
   const handleAddStaff = async () => {
     if (name.trim() === '' || phoneNumber.trim() === '') {
-      toast.error('Please fill out both Name and Phone Number.');
+        toast.error('Please fill out both Name and Phone Number.');
     } else if (!isValidPhoneNumber) {
-      toast.error('Please enter a valid 10-digit Phone Number.');
+        toast.error('Please enter a valid 10-digit Phone Number.');
     } else if (!selectedArea) {
-      toast.error('Please select an area.');
+        toast.error('Please select an area.');
     } else {
-      try {
-        console.log('Adding staff:', { name, phoneNumber, selectedArea });
-        await axios.post('/api/users', {
-          name,
-          mobileNumber: phoneNumber,
-          areas: [selectedArea]
-        });
-      
-        toast.success('STAFF MEMBER HAS BEEN ADDED SUCCESSFULLY!');
-        setName('');
-        setPhoneNumber('');
-        setIsValidPhoneNumber(true);
-        await handleSubmit();
-      } catch (error) {
-        console.error('Error adding staff:', error);
-        const errorMsg = error.response && error.response.data ? error.response.data.msg : 'Failed to add staff member.';
-        toast.error(errorMsg);
-      }
+        try {
+            const password = generateRandomPassword();
+            const userPayload = {
+                name: name,
+                mobileNumber: phoneNumber,
+                password: password,
+                role: "user",
+                areas: [selectedArea]
+            };
+
+            // Debugging: Log the payload being sent to the server
+            console.log('Adding staff:', userPayload);
+
+            await axios.post('http://localhost:4000/api/users', userPayload);
+            
+            toast.success('STAFF MEMBER HAS BEEN ADDED SUCCESSFULLY!');
+            setName('');
+            setPhoneNumber('');
+            setIsValidPhoneNumber(true);
+            await handleSubmit();
+        } catch (error) {
+            console.error('Error adding staff:', error);
+            const errorMsg = error.response && error.response.data ? error.response.data.msg : 'Failed to add staff member.';
+            toast.error(errorMsg);
+        }
     }
-  };
+};
+
 
   const handleRemoveStaff = async () => {
     if (name.trim() === '' || phoneNumber.trim() === '') {
@@ -123,7 +146,7 @@ const StaffManagement = () => {
     <>
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
-      <div
+      <div className="staff"
         // style={{
         //   backgroundImage: `url(${mapImage})`,
         //   backgroundRepeat: 'no-repeat',
@@ -138,7 +161,7 @@ const StaffManagement = () => {
               className="selectoption"
               style={{
                 backgroundColor: '#EBEBEB',
-                width: '150px',
+                width: '120px',
                 border: 'none',
                 
               }}
@@ -159,7 +182,7 @@ const StaffManagement = () => {
                 color: '#fff',
                 textAlign: 'center',
                 margin : '20px',
-                width: '150px',
+                width: '120px',
                 border: 'none',
                 fontWeight : 'bold' ,
               }}
@@ -208,21 +231,21 @@ const StaffManagement = () => {
             <button className="button" onClick={handleAddStaff} disabled={name.trim() === '' || phoneNumber.trim() === '' || !selectedArea}>
               ADD
             </button>
+            
             <button className="button" onClick={handleRemoveStaff} disabled={name.trim() === '' || phoneNumber.trim() === '' || !selectedArea}>
               REMOVE
             </button>
           </div>
         </div>
-        <br />
-        <br />
-        <div className="userlist">
+        
+        {/* <div className="userlist">
           <h2>USERS IN SELECTED AREA</h2>
           <ul>
             {users.map((user, index) => (
               <li key={index}>{user.name} - {user.mobileNumber}</li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     </>
   );

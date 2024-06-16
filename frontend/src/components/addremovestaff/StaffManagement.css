@@ -1,12 +1,12 @@
 /*staffmanagement*/
 
-*{
+.staff{
   overflow-y: hidden;
   overflow-x: hidden;
   
 }
 .select_station {
-  width: 50%; 
+  width: 95%; 
   border: solid;
   
   
@@ -15,15 +15,15 @@
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  margin-top: 120px;
+  /* margin-top: 120px; */
   border-radius: 12px;
   border-color: #b7e2e7;
   opacity: 0.8;
-  margin : 120px 20px 30px  ;
+  margin : 120px 0px 30px  ;
 
 }
 .selectoption {
-  /* width: 100px; */
+  width: 10px;
   height: 35px;
   border: solid;
   /* background-color: #fff; */
@@ -40,7 +40,7 @@
   position: relative;
   background: #fff;
   opacity: 0.8;
-  margin :20px 30px  ;
+  margin :20px 20px  ;
   border-color: #b7e2e7;
   padding-left: 24px;
   border-radius: 10px;
@@ -48,15 +48,19 @@
 }
 .details {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   
 }
 .name{
-  width: 40% ;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 45% ;
   gap: 10px ;
 }
 .detail{
-  width: 40% ;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 50% ;
   gap: 10px ;
 }
 .input_class {
@@ -66,14 +70,14 @@
   margin-left: 10px;
 }
 .buttons {
-  width: 40%;
+  width: 50%;
   display: flex;
   gap: 15px;
   /* margin: 20px; */
 }
 .button {
   background-color: #009adc;
-  width: 150px;
+  width: 180px;
   height: 50px;
   border: none;
   border-radius: 10px;
@@ -83,9 +87,10 @@
   font-weight: bold;
   
 }
-@media (max-width: 500px) {
+@media screen and (max-width: 500px){
   .select_station {
-    /* width: 110%; */
+    width: 95%;
+    height : 90px
        
   }
   .selectoption {
@@ -99,14 +104,18 @@
   }
   
   h3 {
-    font-size: medium;
+    font-size: small;
   }
-   
+  .details {
+    display: flex;
+    gap: 10px;
+    
+  } 
   .tasks {
     
-    /* width: 100%; */
+    width: 90%;
     
-    /* padding : 10px ; */
+    padding : 10px ;
   }
   .input_class {
     width : 60% ;
@@ -118,6 +127,8 @@
 @media (min-width: 500px) {
   .select_station {
     width: 90%;
+    margin-left: auto;
+    margin-right: auto;
        
   }
   
@@ -127,9 +138,9 @@
   
   .tasks {
     
-    width: 87%;
+    width: 90%;
     
-    /* padding : 10px ; */
+    padding : 10px ;
   }
   .input_class {
     width : 55% ;
@@ -151,7 +162,7 @@
     
     width: 95%;
     
-    /* padding : 10px ; */
+    padding : 10px ;
   }
   .input_class {
     width : 62% ;
@@ -162,12 +173,12 @@
 
 @media (min-width: 768px) {
   .select_station {
-    width: 80%;
+    width: 90%;
        
   }
   .tasks {
     
-    width: 75%;
+    width: 90%;
     
     /* padding : 10px ; */
   }
@@ -180,35 +191,42 @@
 
 @media (min-width: 992px) {
   .select_station {
-    width: 65%;   
+    width: 90%;   
   }
   .tasks {
     
-    width: 60%;
+    width: 90%;
     
-    /* padding : 10px ; */
+    padding : 10px ;
   }
   .input_class {
-    width : 60% ;
-    height: 20px;
+    width : 65% ;
+    height: 25px;
     
   }
 }
 
 @media (min-width: 1190px) {
   .select_station {
-    width: 60%;   
+    width: 95%;   
   }
   .input_class {
-    width : 60% ;
-    height: 20px;
+    width : 65% ;
+    height: 25px;
+    padding : 4px ;
     
+  }
+  .tasks {
+    
+    width: 95%;
+    
+    padding : 10px ;
   }
 }
 
 @media (min-width: 1400px) {
   .select_station {
-    width: 50%;   
+    width: 100%;   
   }
   
 }

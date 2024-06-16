@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const connectDB = require('./config/db');
 const User = require('./models/User');
 const StaffMember = require('./models/StaffMember');
-
+const Crime = require('./models/Crime');
 const app = express();
 const cors = require('cors');
 
@@ -80,6 +80,19 @@ app.get('/api/users', async (req, res) => {
     }
 });
 
+// GET all the users
+app.get('/api/total-users', async (req, res) => {
+    try {
+        const totalUsers = await User.countDocuments();
+        const activeUsers = await User.countDocuments({ active: true }); // Assuming you have an 'active' field
+
+        res.json({ total: totalUsers, active: activeUsers });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 // GET route to fetch users by area
 app.get('/api/users', async (req, res) => {
     const { area } = req.query;
@@ -105,37 +118,70 @@ app.get('/api/users', async (req, res) => {
 // POST route to add a new user
 // const bcrypt = require('bcryptjs');
 
-// Example user creation route
 app.post('/api/users', async (req, res) => {
-    const { name, mobileNumber, area } = req.body;
+    const { name, mobileNumber, password, areas } = req.body;
 
-    if (!name || !mobileNumber || !area) {
+    // Debugging: Log the received request body
+    console.log('Received request body:', req.body);
+
+    if (!name || !mobileNumber || !areas || areas.length === 0) {
         return res.status(400).json({ msg: 'Please provide name, mobile number, and area' });
     }
 
     try {
+        const area = areas[0];
         const existingUser = await User.findOne({ mobileNumber, areas: area });
-        console.log(name , mobileNumber ,area) ;
+
+        // Debugging: Log the existing user check
+        console.log('Checking if user exists:', { mobileNumber, area });
+
         if (existingUser) {
-            return res.status(400).json({ msg: 'User already exists in the specified area' });
+            return res.status(400).json({ msg: 'User already exists in the specified areas' });
         }
+
+        // Create a new user with hashed password
+        const hashedPassword = bcrypt.hashSync(password, 8);
 
         const newUser = new User({
             name,
             mobileNumber,
-            password: 'defaultPassword', // Set a default password, or prompt the user for one
+            password, // Use the provided password
             role: 'user',
-            areas: [area],
+            areas,
         });
+
+        // Debugging: Log the new user object before saving
+        console.log('Creating new user:', newUser);
 
         await newUser.save();
         res.json({ msg: 'User added successfully' });
+    } catch (err) {
+        console.error('Server Error:', err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// POST the crime to the dataset
+app.post('/api/crimes', async (req, res) => {
+    const { latitude, longitude, typeOfCrime, date, month } = req.body;
+
+    try {
+        const newCrime = new Crime({
+            latitude,
+            longitude,
+            typeOfCrime,
+            beat,
+            date,
+            month
+        });
+
+        await newCrime.save();
+        res.status(201).json({ msg: 'Crime details added successfully' });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
 });
-
 
 // DELETE route to remove a user by phone number and area
 app.delete('/api/users', async (req, res) => {

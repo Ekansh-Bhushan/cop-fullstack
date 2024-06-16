@@ -11,17 +11,90 @@
     top: 0;
     left: 0;
     z-index: 1000;
-   
-}
+    box-sizing: border-box; 
+    padding: 0 5% !important;
+    backdrop-filter: blur(2px);
 
+}
+.user-icon {
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  .dropdown-menu button {
+    background-color: #f8f9fa;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu button:hover {
+    background-color: #e9ecef;
+  }
+  
+.nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .h1 {
+    margin: 0 15px;
+    position: relative;
+  }
+  
+  .h1.selected::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    height: 5px; /* Adjust as needed */
+    background-image: url('../../assets/line.png'); /* Use the imported line image */
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .h1 {
+    margin: 0 15px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .h1.selected::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    height: 5px; /* Adjust as needed */
+    background-image: url('../../assets/line.png'); /* Use the imported line image */
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  
 .h1 {
-    font-size: 25px;
+    font-size:20 px;
     margin: 0 10px;
     font-weight: bold;
 }
 
 .nav img {
-    width: 80px; /* Adjust width as needed */
+    width: 100px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
 }
 
@@ -32,11 +105,14 @@
         justify-content: center; /* Center items horizontally */
         gap: 10px; /* Add spacing between items */
         padding: 10px; /* Adjust padding for spacing */
+        width: 100%;
+       
     }
 
     .h1 {
-        font-size: 50px; /* Adjust font size for smaller screens */
+        font-size: 20px; /* Adjust font size for smaller screens */
         margin: 5px; /* Adjust margin for spacing between items */
+        font-weight: bold;
     }
 
     .nav img {
@@ -104,4 +180,25 @@ Left:
 .userclass{
     position: relative;
     top: 100px;
+}
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.h1 {
+  margin: 0 15px;
+  position: relative;
+}
+
+.h1.selected::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Adjust as needed */
+  left: 0;
+  right: 0;
+  height: 5px; /* Adjust as needed */
+  background-image: url('../../assets/line.png'); /* Use the imported line image */
+  background-size: cover;
+  background-repeat: no-repeat;
 }

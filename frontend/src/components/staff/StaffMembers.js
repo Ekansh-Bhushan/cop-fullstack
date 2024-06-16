@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../Header/header';
-import '../addremovestaff/StaffManagement.css'
+import '../addremovestaff/StaffManagement.css';
 
 const StaffManagement = () => {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -15,6 +15,16 @@ const StaffManagement = () => {
   const [users, setUsers] = useState([]);
 
   const areaNames = ["Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area", "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"];
+
+  useEffect(() => {
+    // Check for the authentication token
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error("Please login first!");
+      navigate('/'); // Redirect to login if token is not present
+      return;
+    }
+  }, [navigate]);
 
   const handleNameChange = (e) => {
     const value = e.target.value;
@@ -106,7 +116,7 @@ const StaffManagement = () => {
       toast.success('Users fetched successfully!');
       
       // Navigate to new URL with selected area as query parameter and state
-      navigate(`/StaffMember`, { state: { users: response.data } });
+      navigate(`/staffMember`, { state: { users: response.data } });
       
     } catch (error) {
       console.error('Error fetching users:', error);
