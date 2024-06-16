@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -55,13 +56,19 @@ const BarChart = () => {
     },
   };
 
+  const [selectedYear, setSelectedYear] = useState("2021");
+
+  const handleYearChange = (event) => {
+    setSelectedYear(event.target.value);
+  };
+
   return (
     <div className="crimechart">
       <Bar data={data} options={options} />
       <div className="crimechart-right">
         <label>
           <h3>Select Year</h3>
-          <select>
+          <select value={selectedYear} onChange={handleYearChange}>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
             <option value="2023">2023</option>

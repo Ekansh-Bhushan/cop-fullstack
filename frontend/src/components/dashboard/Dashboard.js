@@ -13,7 +13,7 @@ const areaNames = [
   "Alipur",
   "Samaypur Badli",
   "Swaroop Nagar",
-  "Bhalswa Dairy"
+  "Bhalswa Dairy",
 ];
 
 function Dashboard(props) {
@@ -25,13 +25,13 @@ function Dashboard(props) {
 
   useEffect(() => {
     // Fetch total number of users from the backend
-    fetch('http://localhost:4000/api/total-users')
-      .then(response => response.json())
-      .then(data => {
+    fetch("http://localhost:4000/api/total-users")
+      .then((response) => response.json())
+      .then((data) => {
         setTotalUsers(data.total);
         setActiveUsers(data.active);
       })
-      .catch(error => console.error('Error fetching total users:', error));
+      .catch((error) => console.error("Error fetching total users:", error));
   }, []);
 
   const handleStationChange = (event) => {
@@ -63,13 +63,20 @@ function Dashboard(props) {
             </select>
             <button>Select</button>
           </div>
-          <div className="dash-board-dutychart" onClick={()=>navigate("/DutyTask")}>
+          <div
+            className="dash-board-dutychart"
+            onClick={() => navigate("/DutyTask")}
+          >
             <h2>DUTY CHART</h2>
             <h4>Add Duty Timing fro Constable</h4>
           </div>
           <div className="dashboard-left-crime-upload">
             <h2>Crime Data</h2>
-            <input type="file" accept=".xlsx, .xls" onChange={handleFileChange} />
+            <input
+              type="file"
+              accept=".xlsx, .xls"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
         <div className="dashboard-right">
