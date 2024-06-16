@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import arrow from '../../assets/leftArrow.png';
 import './crime.css';
 
 function Crime() {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [typeOfCrime, setTypeOfCrime] = useState('');
+  const [beat, setBeat] = useState('');
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
+
+  const navigate = useNavigate(); // Correctly place useNavigate here
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -30,6 +35,7 @@ function Crime() {
       latitude,
       longitude,
       typeOfCrime,
+      beat,
       date,
       month
     };
@@ -48,6 +54,7 @@ function Crime() {
         setLatitude('');
         setLongitude('');
         setTypeOfCrime('');
+        setBeat('');
         setDate('');
         setMonth('');
       } else {
@@ -60,59 +67,77 @@ function Crime() {
   };
 
   return (
-    <form className="crime-form" onSubmit={handleSubmit}>
-      <h2>Enter Crime Details</h2>
-      <div>
-        <label>Latitude:</label>
-        <input
-          type="number"
-          step="0.000001"
-          value={latitude}
-          onChange={(e) => setLatitude(e.target.value)}
-          required
-        />
+    <>
+      <div className='back' onClick={() => navigate('/homepage')}>
+        <div className='blockForImageArrow'>
+          <img src={arrow} alt="back arrow" />
+        </div>
+        <div className="textHere">
+          Go Back to Dashboard
+        </div>
       </div>
-      <div>
-        <label>Longitude:</label>
-        <input
-          type="number"
-          step="0.000001"
-          value={longitude}
-          onChange={(e) => setLongitude(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Type of Crime:</label>
-        <input
-          type="text"
-          value={typeOfCrime}
-          onChange={(e) => setTypeOfCrime(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Date:</label>
-        <input
-          type="date"
-          value={date}
-          onChange={handleDateChange}
-          required
-          max={new Date().toISOString().split("T")[0]} // Sets max date to today
-        />
-      </div>
-      <div>
-        <label>Month:</label>
-        <input
-          type="text"
-          value={month}
-          onChange={(e) => setMonth(e.target.value)}
-          readOnly
-          required
-        />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+      <form className="crime-form" onSubmit={handleSubmit}>
+        <h2>Enter Crime Details</h2>
+        <div>
+          <label>Latitude:</label>
+          <input
+            type="number"
+            step="0.000001"
+            value={latitude}
+            onChange={(e) => setLatitude(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Longitude:</label>
+          <input
+            type="number"
+            step="0.000001"
+            value={longitude}
+            onChange={(e) => setLongitude(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Type of Crime:</label>
+          <input
+            type="text"
+            value={typeOfCrime}
+            onChange={(e) => setTypeOfCrime(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Police Station Area:</label>
+          <input
+            type="text"
+            value={beat}
+            onChange={(e) => setBeat(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Date:</label>
+          <input
+            type="date"
+            value={date}
+            onChange={handleDateChange}
+            required
+            max={new Date().toISOString().split("T")[0]} // Sets max date to today
+          />
+        </div>
+        <div>
+          <label>Month:</label>
+          <input
+            type="text"
+            value={month}
+            readOnly
+            required
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </>
   );
 }
 

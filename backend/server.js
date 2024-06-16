@@ -170,6 +170,7 @@ app.post('/api/crimes', async (req, res) => {
             latitude,
             longitude,
             typeOfCrime,
+            beat,
             date,
             month
         });
