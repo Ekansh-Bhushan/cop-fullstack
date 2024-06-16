@@ -4,14 +4,15 @@ import arrow from '../../assets/leftArrow.png';
 import './crime.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./crime.css";
 
 function Crime() {
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-  const [typeOfCrime, setTypeOfCrime] = useState('');
-  const [beat, setBeat] = useState('');
-  const [date, setDate] = useState('');
-  const [month, setMonth] = useState('');
+  const [lat, setLatitude] = useState("");
+  const [long, setLongitude] = useState("");
+  const [crime, setTypeOfCrime] = useState("");
+  const [beat, setBeat] = useState("");
+  const [date, setDate] = useState("");
+  const [month, setMonth] = useState("");
 
   const navigate = useNavigate();
 
@@ -29,14 +30,14 @@ function Crime() {
     const selectedDate = e.target.value;
     const today = new Date();
     const selected = new Date(selectedDate);
-    
+
     // Check if selected date is valid (not future date)
     if (selected <= today) {
       setDate(selectedDate);
-      const monthName = selected.toLocaleString('default', { month: 'long' });
+      const monthName = selected.toLocaleString("default", { month: "long" });
       setMonth(monthName);
     } else {
-      alert('Please select a date from today or earlier.');
+      alert("Please select a date from today or earlier.");
     }
   };
 
@@ -44,49 +45,47 @@ function Crime() {
     event.preventDefault();
 
     const crimeDetails = {
-      latitude,
-      longitude,
-      typeOfCrime,
+      lat,
+      long,
+      crime,
       beat,
       date,
-      month
+      month,
     };
 
     try {
-      const response = await fetch('http://localhost:4000/api/crimes', {
-        method: 'POST',
+      const response = await fetch("http://localhost:4000/api/crimes", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(crimeDetails)
+        body: JSON.stringify(crimeDetails),
       });
 
       if (response.ok) {
-        alert('Crime details added successfully');
-        setLatitude('');
-        setLongitude('');
-        setTypeOfCrime('');
-        setBeat('');
-        setDate('');
-        setMonth('');
+        alert("Crime details added successfully");
+        setLatitude("");
+        setLongitude("");
+        setTypeOfCrime("");
+        setBeat("");
+        setDate("");
+        setMonth("");
       } else {
-        alert('Error adding crime details');
+        alert("Error adding crime details");
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error adding crime details');
+      console.error("Error:", error);
+      alert("Error adding crime details");
     }
   };
 
   return (
     <>
-      <div className='back' onClick={() => navigate('/homepage')}>
-        <div className='blockForImageArrow'>
+      <div className="back" onClick={() => navigate("/homepage")}>
+        <div className="blockForImageArrow">
           <img src={arrow} alt="back arrow" />
         </div>
-        <div className="textHere">
-          Go Back to Dashboard
-        </div>
+        <div className="textHere">Go Back to Dashboard</div>
       </div>
       <ToastContainer />
       <form className="crime-form" onSubmit={handleSubmit}>
@@ -96,7 +95,7 @@ function Crime() {
           <input
             type="number"
             step="0.000001"
-            value={latitude}
+            value={lat}
             onChange={(e) => setLatitude(e.target.value)}
             required
           />
@@ -106,7 +105,7 @@ function Crime() {
           <input
             type="number"
             step="0.000001"
-            value={longitude}
+            value={long}
             onChange={(e) => setLongitude(e.target.value)}
             required
           />
@@ -115,7 +114,7 @@ function Crime() {
           <label>Type of Crime:</label>
           <input
             type="text"
-            value={typeOfCrime}
+            value={crime}
             onChange={(e) => setTypeOfCrime(e.target.value)}
             required
           />
@@ -141,12 +140,7 @@ function Crime() {
         </div>
         <div>
           <label>Month:</label>
-          <input
-            type="text"
-            value={month}
-            readOnly
-            required
-          />
+          <input type="text" value={month} readOnly required />
         </div>
         <button type="submit">Submit</button>
       </form>
