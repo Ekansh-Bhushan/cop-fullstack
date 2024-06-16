@@ -32,9 +32,12 @@ function App() {
         <Route path="/StaffMembers" element={<StaffMembers />} />
         <Route path="/DutyTask" element={<DutyTask />} />
         <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Profile" element={<ProfileScreen/>} /> {/* Pass police as a prop */}
-        <Route path="/homepage" element={<Dashboard/>} /> {/* Pass police as a prop */}
-        <Route path="/crimeEntry" element={<Crime/>} /> {/* Pass police as a prop */}
+        <Route path="/Profile" element={<ProfileScreen />} />{" "}
+        {/* Pass police as a prop */}
+        <Route path="/homepage" element={<Dashboard />} />{" "}
+        {/* Pass police as a prop */}
+        <Route path="/crimeEntry" element={<Crime />} />{" "}
+        {/* Pass police as a prop */}
       </Routes>
     </Router>
   );

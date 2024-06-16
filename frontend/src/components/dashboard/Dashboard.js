@@ -61,7 +61,7 @@ function Dashboard(props) {
                 </option>
               ))}
             </select>
-            <button>Select</button>
+            <button onClick={() => navigate("/StaffManagement")}>Select</button>
           </div>
           <div
             className="dash-board-dutychart"
