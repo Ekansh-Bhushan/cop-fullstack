@@ -1,9 +1,4 @@
 /* Reset some default browser styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
   font-family: 'Arial', sans-serif;
@@ -69,8 +64,7 @@ body {
   background-color: white;
   padding: 13px;
   border-radius: 34px;
-  width: 400px;
-  height: 207px;
+
   text-align: center;
 }
 
@@ -79,18 +73,18 @@ body {
   font-size: 40px;
   color: #333;
   position: relative;
-  top: -60px;
+ 
 }
 
 .input-field {
-  width: 100%;
-  padding: 20px;
+  width: 90%;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   position: relative;
-  top: -20px;
+  height: 38px;
+  text-align: center;
 }
 
 .signin-button {
@@ -121,18 +115,13 @@ body {
   .logo {
     width: 200px;
     height: 200px;
-    top: 80px;
+    top: 140px;
     left: 100px;
   }
 
-  .login-box {
-    width: 350px;
-    padding: 10px;
-  }
 
   .signin-title {
     font-size: 35px;
-    top: -50px;
   }
 
   .input-field {
@@ -413,7 +402,7 @@ body {
       }
   .police-logo {
     height: 150px !important;
-    left: 50px;
+    left: 146px;
   }
 
   .login-container {
@@ -434,8 +423,8 @@ body {
   }
 
   .login-box {
-    width: 100%;
-    padding: 62px;
+  
+
     height: auto;
   }
 
