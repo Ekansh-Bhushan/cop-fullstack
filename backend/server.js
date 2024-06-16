@@ -10,6 +10,7 @@ const connectDB = require("./config/db");
 const User = require("./models/User");
 const StaffMember = require("./models/StaffMember");
 const Crime = require("./models/Crime");
+const Task = require("./models/duty")
 const app = express();
 const cors = require("cors");
 
@@ -256,7 +257,41 @@ app.delete("/api/users", async (req, res) => {
 });
 
 // Add duty to users 
-// app.post()
+app.get('/api/tasks', async (req, res) => {
+    const { station } = req.query;
+  
+    if (!station) {
+      return res.status(400).json({ msg: 'Station is required' });
+    }
+  
+    try {
+      const tasks = await Task.find({ station });
+  
+      if (tasks.length === 0) {
+        return res.status(404).json({ msg: `No tasks found for station '${station}'` });
+      }
+  
+      res.json(tasks);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  });
+  
+  app.post('/api/tasks', async (req, res) => {
+    const tasks = req.body;
+  
+    try {
+      for (const task of tasks) {
+        await Task.findByIdAndUpdate(task._id, task, { new: true });
+      }
+      res.status(200).json({ msg: 'Tasks updated successfully' });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  });
+  
 
 const PORT = process.env.PORT || 4000;
 

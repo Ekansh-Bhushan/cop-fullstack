@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import mapImage from '../../assets/MAP.png';
 import Header from '../Header/header';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../dutychart/dutychart.css';
 
 const DutyTask = () => {
   const navigate = useNavigate();
   const [selectedStation, setSelectedStation] = useState('');
-  const [tasks, setTasks] = useState([
-    { id: 1, name: "John Doe", phoneNumber: "9876543210", startTime: "", endTime: "", isChecked: false },
-    { id: 2, name: "Jane Smith", phoneNumber: "1234567890", startTime: "", endTime: "", isChecked: false }
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   const areaNames = [
     "Bawana",
@@ -23,14 +23,34 @@ const DutyTask = () => {
     "Bhalswa Dairy"
   ];
 
+  useEffect(() => {
+    // Check for the authentication token
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error("Please login first!");
+      navigate('/'); // Redirect to login if token is not present
+      return;
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    if (selectedStation) {
+      fetchTasks(selectedStation);
+    }
+  }, [selectedStation]);
+
+  const fetchTasks = async (station) => {
+    try {
+      const response = await axios.get(`http://localhost:4000/api/tasks?station=${station}`);
+      setTasks(response.data);
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+      toast.error('Error fetching tasks');
+    }
+  };
+
   const handleStationChange = (e) => {
     setSelectedStation(e.target.value);
-    // Example: Fetch tasks for selectedStation from API or local data
-    // For demonstration, here we are setting some dummy tasks
-    setTasks([
-      { id: 1, name: "John Doe", phoneNumber: "9876543210", startTime: "", endTime: "", isChecked: false },
-      { id: 2, name: "Jane Smith", phoneNumber: "1234567890", startTime: "", endTime: "", isChecked: false }
-    ]);
   };
 
   const handleCheckboxChange = (taskId) => {
@@ -55,27 +75,18 @@ const DutyTask = () => {
     const tasksToSubmit = tasks.filter(task => task.isChecked && task.startTime && task.endTime);
 
     if (tasksToSubmit.length > 0) {
-      // Here you can send `tasksToSubmit` data to your backend API
       console.log("Tasks to submit:", tasksToSubmit);
       // Send data to backend using fetch or axios
-      // fetch('your-backend-endpoint', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(tasksToSubmit),
-      // })
-      // .then(response => response.json())
-      // .then(data => {
-      //   console.log('Success:', data);
-      //   // Optionally navigate to a success page or show a success message
-      // })
-      // .catch((error) => {
-      //   console.error('Error:', error);
-      //   // Handle error scenario, show toast or message
-      // });
+      axios.post('http://localhost:4000/api/tasks', tasksToSubmit)
+        .then(response => {
+          console.log('Success:', response.data);
+          toast.success('Tasks submitted successfully');
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          toast.error('Error submitting tasks');
+        });
     } else {
-      // Display a message or toast indicating that at least one task is missing start/end time
       alert("Please fill start and end times for necessary tasks.");
     }
   };
@@ -127,6 +138,7 @@ const DutyTask = () => {
   return (
     <>
       <Header />
+      <ToastContainer />
       <div className='background' style={{ 
         backgroundImage: `url(${mapImage})`, 
         backgroundRepeat:'no-repeat',
