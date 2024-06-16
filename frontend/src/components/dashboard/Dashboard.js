@@ -24,15 +24,18 @@ function Dashboard(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [totalUsers, setTotalUsers] = useState(0);
   const [activeUsers, setActiveUsers] = useState(0);
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     // Check for the authentication token
     const token = localStorage.getItem('token');
+    const storedUserName = localStorage.getItem('userName');
     if (!token) {
       toast.error("Please login first!");
       navigate('/'); // Redirect to login if token is not present
       return;
     }
+    setUserName(storedUserName);
 
     // Fetch total number of users from the backend
     fetch("http://localhost:4000/api/total-users")
@@ -58,6 +61,7 @@ function Dashboard(props) {
       <ToastContainer />
       <div className="dashboard">
         <div className="dashboard-left">
+            <h2>Hi {userName}, Welcome to COP</h2> 
           <div className="dashboard-left-userinfo">
             <h2>Number of users: {totalUsers}</h2>
             <h2>Active: {activeUsers}</h2>
