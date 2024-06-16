@@ -80,6 +80,19 @@ app.get('/api/users', async (req, res) => {
     }
 });
 
+// Add this endpoint in your backend file
+app.get('/api/total-users', async (req, res) => {
+    try {
+        const totalUsers = await User.countDocuments();
+        const activeUsers = await User.countDocuments({ active: true }); // Assuming you have an 'active' field
+
+        res.json({ total: totalUsers, active: activeUsers });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 // GET route to fetch users by area
 app.get('/api/users', async (req, res) => {
     const { area } = req.query;

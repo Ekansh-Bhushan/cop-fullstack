@@ -66,6 +66,7 @@
 }
 .dash-board-dutychart{
     margin-bottom: 20px;
+    cursor: pointer;
 }
 .dashboard-left-crime-upload {
     margin-bottom: 0px !important;
