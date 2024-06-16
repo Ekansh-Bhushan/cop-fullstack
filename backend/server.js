@@ -47,11 +47,12 @@ app.post('/api/login', async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'secret', {
-            expiresIn: 86400 // 24 hours
-        });
+        // Modify backend /api/login endpoint response to include user information
+const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'secret', {
+    expiresIn: 86400 // 24 hours
+});
+res.status(200).json({ token, user: { name: user.name } }); // Adjust as per your User schema
 
-        res.status(200).json({ token });
     } catch (err) {
         console.error('Server error:', err.message);
         res.status(500).send('Server Error');

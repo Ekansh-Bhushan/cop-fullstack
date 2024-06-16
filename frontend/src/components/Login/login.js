@@ -39,11 +39,18 @@ function Login() {
         mobileNumber,
         password
       });
+
       console.log('Response:', response.data);
-      const { token } = response.data;
-      localStorage.setItem('token', token);
-      window.location.href = '/homepage';
-      toast.success("Welcome");
+      const { token, user } = response.data; // Assuming the response includes the user's name
+
+      if (token && user) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('userName', user.name); // Store the user's name
+        window.location.href = '/homepage';
+        toast.success("Welcome");
+      } else {
+        toast.error("Invalid response from server");
+      }
     } catch (error) {
       console.error('Login error:', error);
       toast.error("Invalid mobile number or password!");
