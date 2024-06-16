@@ -55,6 +55,7 @@ function Login() {
   
     return (
       <>
+      
         <img src={policeLogo} alt='LOGO' className='police-logo'/>
         <div className="login-container">
           <div className="header">

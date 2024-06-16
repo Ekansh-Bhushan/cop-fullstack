@@ -1,12 +1,12 @@
-import React, { useState ,useEffect } from 'react';
-import mapImage from '../../assets/MAP.png';
-import Header from '../Header/header'; // Adjust import path based on your project structure
-import '../staff/dutytask.css';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import axios from 'axios'; // Ensure axios is imported
-import { toast } from 'react-toastify'; // Assuming toast is being used for notifications
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Header from '../Header/header';
+import '../addremovestaff/StaffManagement.css'
 
-const StaffMembers = () => {
+const StaffManagement = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -15,24 +15,99 @@ const StaffMembers = () => {
   const [users, setUsers] = useState([]);
 
   const areaNames = ["Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area", "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"];
-  const handleSubmit = async () => {
+
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    setName(value);
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    if (/^\d{0,10}$/.test(value)) {
+      setPhoneNumber(value);
+      setIsValidPhoneNumber(value.length === 10);
+    }
+  };
+
+  const handleAreaChange = (e) => {
+    const value = e.target.value;
+    setSelectedArea(value);
+  };
+
+  const handleAddStaff = async () => {
+    if (name.trim() === '' || phoneNumber.trim() === '') {
+      toast.error('Please fill out both Name and Phone Number.');
+    } else if (!isValidPhoneNumber) {
+      toast.error('Please enter a valid 10-digit Phone Number.');
+    } else if (!selectedArea) {
+      toast.error('Please select an area.');
+    } else {
+      try {
+        console.log('Adding staff:', { name, phoneNumber, selectedArea });
+        await axios.post('/api/users', {
+          name,
+          mobileNumber: phoneNumber,
+          areas: [selectedArea]
+        });
+      
+        toast.success('STAFF MEMBER HAS BEEN ADDED SUCCESSFULLY!');
+        setName('');
+        setPhoneNumber('');
+        setIsValidPhoneNumber(true);
+        await handleSubmit();
+      } catch (error) {
+        console.error('Error adding staff:', error);
+        const errorMsg = error.response && error.response.data ? error.response.data.msg : 'Failed to add staff member.';
+        toast.error(errorMsg);
+      }
+    }
+  };
+
+  const handleRemoveStaff = async () => {
+    if (name.trim() === '' || phoneNumber.trim() === '') {
+      toast.error('Please fill out both Name and Phone Number.');
+    } else if (!selectedArea) {
+      toast.error('Please select an area.');
+    } else {
+      try {
+        console.log('Removing staff:', { name, phoneNumber, selectedArea });
+        await axios.delete('http://localhost:4000/api/users', {
+          data: { name, mobileNumber: phoneNumber, areas: [selectedArea] }
+        });
+        toast.success('STAFF MEMBER HAS BEEN REMOVED SUCCESSFULLY!');
+        setName('');
+        setPhoneNumber('');
+        setIsValidPhoneNumber(true);
+        await handleSubmit();
+      } catch (error) {
+        console.error('Error removing staff:', error);
+        const errorMsg = error.response && error.response.data ? error.response.data.msg : 'Failed to remove staff member.';
+        toast.error(errorMsg);
+      }
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+    
     if (!selectedArea) {
       toast.error('Please select an area.');
       return;
     }
-  
+
     try {
       console.log('Fetching users for area:', selectedArea);
       const response = await axios.get('http://localhost:4000/api/users', {
         params: { area: selectedArea }
       });
       setUsers(response.data);
-  
       toast.success('Users fetched successfully!');
-  
-      // Navigate to new URL with selected area as query parameter
-      navigate(`/StaffMember?area=${encodeURIComponent(selectedArea)}`);
-  
+      
+      // Navigate to new URL with selected area as query parameter and state
+      navigate(`/StaffMember`, { state: { users: response.data } });
+      
     } catch (error) {
       console.error('Error fetching users:', error);
       if (error.response && error.response.status === 404) {
@@ -42,67 +117,60 @@ const StaffMembers = () => {
       }
     }
   };
-  useEffect(() => {
-    console.log('Selected Area:', selectedArea);
-  }, [selectedArea]);
-  
-  
+
   return (
     <>
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
-      <div
-        className="background"
-        style={{
-          backgroundImage: `url(${mapImage})`,
-          backgroundRepeat: 'no-repeat',
-          fontFamily: 'Montserrat',
-        }}
-      >
-        <br />
-        <br />
-        <br />
-        <div className="selectstation">
-          <h2>SELECT POLICE STATION</h2>
-          <select
-            className="select"
-            value={selectedArea}
-            onChange={handleSubmit}
-            style={{
-              backgroundColor: '#EBEBEB',
-              width: '150px',
-              border: 'none',
-            }}
-          >
-            <option value="">Select the area</option>
-            {areaNames.map((area, index) => (
-              <option key={index} value={area}>
-                {area}
-              </option>
-            ))}
-          </select>
+      <div>
+        <div className="select_station">
+          <h3>SELECT POLICE STATION</h3>
+          <form onSubmit={handleSubmit}>
+            <select
+              className="selectoption"
+              style={{
+                backgroundColor: '#EBEBEB',
+                width: '150px',
+                border: 'none',
+              }}
+              value={selectedArea}
+              onChange={handleAreaChange}
+            >
+              <option value="" disabled>Select Area</option>
+              {areaNames.map((area, index) => (
+                <option key={index} value={area}>{area}</option>
+              ))}
+            </select>
+            <input
+              type="submit"
+              value="SELECT"
+              className="select"
+              style={{
+                backgroundColor: '#009ADC',
+                color: '#fff',
+                textAlign: 'center',
+                margin: '20px',
+                width: '150px',
+                border: 'none',
+                fontWeight: 'bold',
+              }}
+            />
+          </form>
         </div>
+        
         <br />
         <br />
-        {selectedArea && (
-          <div className="task">
-            <h2>Staff Members Under {selectedArea} Police Station</h2>
-            {users.length > 0 ? (
-              users.map((user, index) => (
-                <div key={index}>
-                  <p><strong>Name:</strong> {user.name}</p>
-                  <p><strong>Phone Number:</strong> {user.mobileNumber}</p>
-                  <hr />
-                </div>
-              ))
-            ) : (
-              <p>No Staff Members found under this police station.</p>
-            )}
-            <br />
-          </div>
-        )}
+        <div className="userlist">
+          <h2>USERS IN SELECTED AREA</h2>
+          <ul>
+            {users.map((user, index) => (
+              <li key={index}>{user.name} - {user.mobileNumber}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
 };
 
-export default StaffMembers;
+export default StaffManagement;
