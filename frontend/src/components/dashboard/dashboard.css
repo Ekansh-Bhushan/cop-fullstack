@@ -1,0 +1,110 @@
+.dashboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    width: 100%;
+    width: 90vw;
+    box-sizing: border-box;    
+    backdrop-filter: blur(2px); /* Add this line to make the background blur */
+}
+.dashboard-left {
+    display: flex;
+    flex-direction: column;
+    width: 38%;
+    padding: 10px;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.dashboard-left>div {
+    background-color: white;
+    border:1px solid rgba(75, 192, 192, 1);
+    border-radius: 10px;
+    padding: 15px 10px 35px 10px;
+    margin-bottom: 30px;
+}
+.dashboard-left-userinfo {
+    margin-bottom: 20px;
+    
+}
+
+.dashboard-left-filter {
+    margin-bottom: 20px;
+}
+
+.dashboard-left-filter select {
+        margin-right: 10px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: white;
+        color: #333;
+        min-width: 100px;
+}
+.dashboard-left-filter>button{
+    margin-right: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: skyblue;
+    color: white;
+    min-width: 100px;
+    cursor: pointer;
+    background: #009ADC;
+
+}
+
+.dashboard-left-filter>button:hover {
+    background-color: white;
+    color: #009ADC;
+    border: 1px solid ;
+}
+.dash-board-dutychart{
+    margin-bottom: 20px;
+}
+.dashboard-left-crime-upload {
+    margin-bottom: 0px !important;
+}
+
+.dashboard-right {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    max-width: 60%;
+}
+.dashboard-right>div {
+    background-color: white;
+    border:1px solid rgba(75, 192, 192, 1);
+    border-radius: 10px;
+    padding: 10px;
+
+}
+.dashboard-right-top {
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+
+.crimechart{
+    display: flex
+}
+.crimechart-right>label{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+}
+.crimechart-right>*>select{
+    padding:10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    color: #333;
+    min-width: 100px;
+    outline: none;
+}

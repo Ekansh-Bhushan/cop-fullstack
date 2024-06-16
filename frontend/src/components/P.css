@@ -13,95 +13,176 @@
     z-index: 1000;
    
 }
-
-.h1 {
-    font-size: 25px;
+.h1.active {
+    text-decoration: underline;
+    color: rgb(4, 4, 128); /* Active link text color (adjust as needed) */
+    font-weight: bolder;
+  }
+  
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .menu-items {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .menu-items .h1 {
+    font-size: 20px;
     margin: 0 10px;
-    font-weight: bold;
+    font-weight: bolder;
+  }
+  
+.h1 {
+    font-size: 20px;
+    margin: 0 10px;
+    font-weight: bolder;
+    color: black;
 }
 
 .nav img {
     width: 80px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
 }
+.user-icon{
+    height: 5px;
+}
+.profile-body{
+    overflow-x: hidden;
+}
 
 @media screen and (max-width: 768px) {
-    .nav {
-        flex-direction: row; /* Ensure items stay in a row */
-         /* Allow items to wrap on smaller screens */
-        justify-content: center; /* Center items horizontally */
-        gap: 10px; /* Add spacing between items */
-        padding: 10px; /* Adjust padding for spacing */
+    .nav{
+    
+    display: flex; /* Make sure flexbox is used */
+    flex-direction: row; /* Ensure items stay in a row */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: center; /* Center items horizontally */
+    gap: 10px; /* Add spacing between items */
+    padding: 10px; /* Adjust padding for spacing */
+    position: absolute; /* Position it absolutely to the left */
+    left: 0; /* Align it to the left */
+    width: 100%; /* Make it span the full width */
+    margin-left: 0;
     }
 
     .h1 {
-        font-size: 50px; /* Adjust font size for smaller screens */
+        font-size: 10px; /* Adjust font size for smaller screens */
         margin: 5px; /* Adjust margin for spacing between items */
     }
 
     .nav img {
-        width: 50px; /* Adjust image size for smaller screens */
-        margin-bottom: 5px; /* Add spacing between image and text */
+        width: 30px; /* Adjust image size for smaller screens */
+        margin-bottom: 5px; 
+    /* Add spacing between image and text */
+    }
+}
+@media screen and (max-width: 1010px) {
+    .h1{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width:842px) {
+    .h1{
+        font-size: 13px;
+    }
+}
+ @media screen and (max-width:587px) {
+    .nav{
+        position: absolute;
+        left:0;
+    }
+    .h1{
+        font-size: 10px;
+    }
+    .nav img{
+        margin-left: 0;
+        height:40px;
+        width:40px;
+    }
+} 
+@media screen and (max-width:506px) {
+    .h1{
+        visibility: hidden;
+    }
+    .nav img{
+        height: 70px;
+        width:70px;
+    }
+    .user-icon{
+        display: none;
+    }
+}
+@media (min-width: 563px) and (max-width: 768px){
+    .nav img{
+        height:40px;
+        width:50px
     }
 }
 
-.leftbox{
-    Width
-    :850px;
-    Height
-    :620px;
-    Top
-    :143px;
-    Left
-    :44px;
-    border-Radius
-    :20px;
-    Border
-    :3px;
-    border: solid;
-    background:white;
-   border-color: #B7E2E7;
+/* Styles for .leftbox */
+.leftbox {
+    width: 850px;
+    max-height: calc(100vh - 200px); /* Adjust as needed */
+    position: absolute;
+    top: 143px;
+    left: 44px;
+    border-radius: 20px;
+    border: 3px solid #B7E2E7;
+    background-color: white;
     margin-left: 50px;
-}
-.rightbox{
+    margin-bottom : 100px;
+    margin-top: 20px;
+  }
+  
+  /* Styles for .rightbox */
+  .rightbox {
     position: absolute;
-    Width:
-360px;
-Height:
-263px;
-Top:
-250px;
-Left:
-1000px;
-}
-.images{
-    width: 320px;
-    height: 255px;
-}
-.profile{
-
-    position: absolute;
+    width: 250x;
+    height: 263px;
+    top: 250px;
+    left: 1000px;
+    overflow-x: hidden;
+  }
+  
+  /* Styles for .images within .rightbox */
+  .rightbox .images {
+    width: 50%; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  /* General profile text styles */
+  .profile {
     padding-left: 20px;
-
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-.user{
+    font-size: 30px;
+  }
+  
+  /* Styles for .user image */
+  .user {
     width: 108px;
     height: 108px;
-    position: relative;
-    left: 380px;
-    top: 100px;
-}
-.profilerole{
-    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 54px); /* Center horizontally */
+  }
+  
+  /* Styles for .profilerole */
+  .profilerole {
+    font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bolder;
+    font-weight: bold;
     line-height: 43px;
+    padding-left: 20px;
     position: relative;
-    top:135px;
-    padding-left: 20px; 
-}
-.userclass{
+    top: 50px;
+  }
+  
+  /* Styles for .userclass */
+  .userclass {
     position: relative;
     top: 100px;
-}
+  }
+  
