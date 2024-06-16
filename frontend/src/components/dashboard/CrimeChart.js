@@ -23,7 +23,7 @@ ChartJS.register(
 
 const BarChart = () => {
   const [crimeData, setCrimeData] = useState([]);
-  const [selectedYear, setSelectedYear] = useState("2023");
+  const [selectedYear, setSelectedYear] = useState("2024");
 
   const handleYearChange = (event) => {
     setSelectedYear(event.target.value);
@@ -88,10 +88,10 @@ const BarChart = () => {
           <select value={selectedYear} onChange={handleYearChange}>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
-            <option value="2023" selected>
+            <option value="2023" >
               2023
             </option>
-            <option value="2024">2024</option>
+            <option value="2024" selected>2024</option>
           </select>
         </label>
       </div>
