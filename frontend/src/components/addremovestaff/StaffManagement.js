@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Header from '../components/header';
-import mapImage from '../assets/MAP.png';
-import '../styles/StaffManagement.css';
-
+import Header from '../Header/header';
+import mapImage from '../../assets/MAP.png';
+import '../addremovestaff/StaffManagement.css'
 
 const StaffManagement = () => {
   const navigate = useNavigate(); // Initialize useNavigate

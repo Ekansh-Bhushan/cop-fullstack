@@ -1,0 +1,107 @@
+.nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 20px; /* Adjust the gap as needed */
+    font-family: 'Montserrat', sans-serif;
+    font-size: small;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+   
+}
+
+.h1 {
+    font-size: 25px;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.nav img {
+    width: 80px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+@media screen and (max-width: 768px) {
+    .nav {
+        flex-direction: row; /* Ensure items stay in a row */
+         /* Allow items to wrap on smaller screens */
+        justify-content: center; /* Center items horizontally */
+        gap: 10px; /* Add spacing between items */
+        padding: 10px; /* Adjust padding for spacing */
+    }
+
+    .h1 {
+        font-size: 50px; /* Adjust font size for smaller screens */
+        margin: 5px; /* Adjust margin for spacing between items */
+    }
+
+    .nav img {
+        width: 50px; /* Adjust image size for smaller screens */
+        margin-bottom: 5px; /* Add spacing between image and text */
+    }
+}
+
+.leftbox{
+    Width
+    :850px;
+    Height
+    :620px;
+    Top
+    :143px;
+    Left
+    :44px;
+    border-Radius
+    :20px;
+    Border
+    :3px;
+    border: solid;
+    background:white;
+   border-color: #B7E2E7;
+    margin-left: 50px;
+}
+.rightbox{
+    position: absolute;
+    Width:
+360px;
+Height:
+263px;
+Top:
+250px;
+Left:
+1000px;
+}
+.images{
+    width: 320px;
+    height: 255px;
+}
+.profile{
+
+    position: absolute;
+    padding-left: 20px;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.user{
+    width: 108px;
+    height: 108px;
+    position: relative;
+    left: 380px;
+    top: 100px;
+}
+.profilerole{
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+    line-height: 43px;
+    position: relative;
+    top:135px;
+    padding-left: 20px; 
+}
+.userclass{
+    position: relative;
+    top: 100px;
+}

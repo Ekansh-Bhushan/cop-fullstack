@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import mapImage from '../assets/MAP.png';
-import Header from './header'; // Adjust import path based on your project structure
-import '../styles/dutytask.css';
+import React, { useState ,useEffect } from 'react';
+import mapImage from '../../assets/MAP.png';
+import Header from '../Header/header'; // Adjust import path based on your project structure
+import '../staff/dutytask.css';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios'; // Ensure axios is imported
 import { toast } from 'react-toastify'; // Assuming toast is being used for notifications
@@ -15,46 +15,24 @@ const StaffMembers = () => {
   const [users, setUsers] = useState([]);
 
   const areaNames = ["Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area", "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"];
-
-  const handleNameChange = (e) => {
-    const value = e.target.value;
-    setName(value);
-  };
-
-  const handlePhoneNumberChange = (e) => {
-    const value = e.target.value;
-    if (/^\d{0,10}$/.test(value)) {
-      setPhoneNumber(value);
-      setIsValidPhoneNumber(value.length === 10);
-    }
-  };
-
-  const handleAreaChange = (e) => {
-    const value = e.target.value;
-    setSelectedArea(value);
-  };
-
-  const handleSubmit = async (e) => {
-    if (e) {
-      e.preventDefault();
-    }
-
+  const handleSubmit = async () => {
     if (!selectedArea) {
       toast.error('Please select an area.');
       return;
     }
-
+  
     try {
       console.log('Fetching users for area:', selectedArea);
       const response = await axios.get('http://localhost:4000/api/users', {
         params: { area: selectedArea }
       });
       setUsers(response.data);
+  
       toast.success('Users fetched successfully!');
-
+  
       // Navigate to new URL with selected area as query parameter
-      navigate(`/StaffManagement?area=${encodeURIComponent(selectedArea)}`);
-
+      navigate(`/StaffMember?area=${encodeURIComponent(selectedArea)}`);
+  
     } catch (error) {
       console.error('Error fetching users:', error);
       if (error.response && error.response.status === 404) {
@@ -64,7 +42,11 @@ const StaffMembers = () => {
       }
     }
   };
-
+  useEffect(() => {
+    console.log('Selected Area:', selectedArea);
+  }, [selectedArea]);
+  
+  
   return (
     <>
       <Header />
@@ -84,14 +66,14 @@ const StaffMembers = () => {
           <select
             className="select"
             value={selectedArea}
-            onChange={handleAreaChange}
+            onChange={handleSubmit}
             style={{
               backgroundColor: '#EBEBEB',
               width: '150px',
               border: 'none',
             }}
           >
-            <option value="">AREA</option>
+            <option value="">Select the area</option>
             {areaNames.map((area, index) => (
               <option key={index} value={area}>
                 {area}

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import mapImage from '../assets/MAP.png';
-import Header from './header.js';
-import '../styles/dutytask.css';
+import mapImage from '../../assets/MAP.png';
+import Header from '../Header/header';
+import '../dutychart/dutychart.css';
 
 const DutyTask = () => {
   const navigate = useNavigate();

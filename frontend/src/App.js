@@ -6,13 +6,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.css';
 
-import StaffManagement from './components/StaffManagement.js';
-import StaffMembers from './components/StaffMembers.js';
+import StaffManagement from './components/addremovestaff/StaffManagement.js'
+import StaffMembers from './components/staff/StaffMembers.js';
 import Final from './components/Login/login.js';
-import DutyTask from './components/DutyTask.js';
-import LoginScreen from './components/Login/LoginScreen.js';
-import ProfileScreen from './components/profileScreen.js'; // Correct casing
-import Profiles from './components/P.js'; // Correct casing
+import DutyTask from './components/dutychart/DutyTask.js';
+// import LoginScreen from './components/Login/LoginScreen.js';
+import ProfileScreen from './components/P.js'; // Correct casing
+// import Profiles from './components/P.js'; // Correct casing
 
 function App() {
   
@@ -32,8 +32,8 @@ function App() {
         <Route path="/StaffManagement" element={<StaffManagement />} />
         <Route path="/StaffMembers" element={<StaffMembers />} />
         <Route path="/DutyTask" element={<DutyTask />} />
-        <Route path="/LoginScreen" element={<LoginScreen />} />
-        <Route path="/Profiles" element={<Profiles/>} /> {/* Pass police as a prop */}
+        {/* <Route path="/LoginScreen" element={<LoginScreen />} /> */}
+        <Route path="/Profile" element={<ProfileScreen/>} /> {/* Pass police as a prop */}
       </Routes>
     </Router>
   );

@@ -59,6 +59,26 @@ app.post('/api/login', async (req, res) => {
 });
 
 
+app.get('/api/users', async (req, res) => {
+    const { area } = req.query;
+    
+    if (!area) {
+        return res.status(400).json({ msg: 'Area is required' });
+    }
+    
+    try {
+        const users = await User.find({ areas: area });
+
+        if (users.length === 0) {
+            return res.status(404).json({ msg: `No users found in area '${area}'` });
+        }
+
+        res.json(users);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 
 // GET route to fetch users by area
 app.get('/api/users', async (req, res) => {
