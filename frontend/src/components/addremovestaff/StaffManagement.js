@@ -138,7 +138,7 @@ const StaffManagement = () => {
               className="selectoption"
               style={{
                 backgroundColor: '#EBEBEB',
-                width: '150px',
+                width: '120px',
                 border: 'none',
                 
               }}
@@ -159,7 +159,7 @@ const StaffManagement = () => {
                 color: '#fff',
                 textAlign: 'center',
                 margin : '20px',
-                width: '150px',
+                width: '120px',
                 border: 'none',
                 fontWeight : 'bold' ,
               }}
