@@ -1,6 +1,6 @@
 /*staffmanagement*/
 
-*{
+.staff{
   overflow-y: hidden;
   overflow-x: hidden;
   
@@ -19,7 +19,7 @@
   border-radius: 12px;
   border-color: #b7e2e7;
   opacity: 0.8;
-  margin : 120px 20px 30px  ;
+  margin : 120px 0px 30px  ;
 
 }
 .selectoption {

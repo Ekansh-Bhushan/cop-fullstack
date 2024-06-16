@@ -136,7 +136,7 @@ const StaffManagement = () => {
     <>
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
-      <div
+      <div classname="staff"
         // style={{
         //   backgroundImage: `url(${mapImage})`,
         //   backgroundRepeat: 'no-repeat',
@@ -226,16 +226,15 @@ const StaffManagement = () => {
             </button>
           </div>
         </div>
-        <br />
-        <br />
-        <div className="userlist">
+        
+        {/* <div className="userlist">
           <h2>USERS IN SELECTED AREA</h2>
           <ul>
             {users.map((user, index) => (
               <li key={index}>{user.name} - {user.mobileNumber}</li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     </>
   );
