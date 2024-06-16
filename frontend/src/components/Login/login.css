@@ -34,6 +34,7 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 12%;
 }
 
 .left-section {
@@ -72,6 +73,7 @@ body {
   width: 400px;
   height: 207px;
   text-align: center;
+  overflow: visible;
 }
 
 .signin-title {
@@ -79,18 +81,18 @@ body {
   font-size: 40px;
   color: #333;
   position: relative;
-  top: -60px;
+  top: -70px;
 }
 
 .input-field {
   width: 100%;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 15px;
+  margin-bottom: 30px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   position: relative;
-  top: -20px;
+
 }
 
 .signin-button {
@@ -105,6 +107,8 @@ body {
   transition: background-color 0.3s;
   position: relative;
   top: -10px;
+  
+
 }
 
 .signin-button:hover {
@@ -176,39 +180,60 @@ body {
 @media (max-width: 770px) {
   .police-logo {
     height: 80px;
+    display: block;
+    margin: 0 auto; /* Center the logo horizontally */
   }
 
   .login-container {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 10px;
-    left:10px;
   }
 
   .logo {
-    width: 150px;
-    height: 150px;
-    top: 60px;
-    left: 218px;
+    width: 100px; /* Adjust size for smaller screens */
+    height: 100px;
+    margin: 20px 0; /* Center the logo vertically with margin */
   }
 
   .login-box {
     width: 100%;
-    padding: 8px;
+    max-width: 400px; /* Limit the width for better appearance on small screens */
+    padding: 15px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
   }
 
   .signin-title {
     font-size: 25px;
-    top: -30px;
+    margin-bottom: 20px; /* Add space below the title */
+    text-align: center; /* Center the title text */
   }
 
   .input-field {
+    width: 100%;
     padding: 12px;
+    margin-bottom: 15px; /* Add space below each input field */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
   }
 
   .signin-button {
-    padding: 7px;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center; /* Center the button text */
+  }
+
+  .signin-button:hover {
+    background-color: #0056b3;
   }
 }
+
 
 @media (max-width: 576px) {
   .police-logo {
@@ -245,7 +270,7 @@ body {
     padding: 6px;
   }
 }
-@media (max-width: 440px) {
+ @media (max-width: 440px) {
     body {
         font-family: 'Arial', sans-serif;
         background: url(../../assets/MAP.png) no-repeat center center fixed;
@@ -452,4 +477,4 @@ body {
     padding: 6px;
   }
 
-}
+} 
