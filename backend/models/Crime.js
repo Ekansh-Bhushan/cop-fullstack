@@ -2,15 +2,15 @@
 const mongoose = require("mongoose");
 
 const CrimeSchema = new mongoose.Schema({
-  latitude: {
-    type: Number,
+  lat: {
+    type: String,
     required: true,
   },
-  longitude: {
-    type: Number,
+  long: {
+    type: String,
     required: true,
   },
-  typeOfCrime: {
+  crime: {
     type: String,
     required: true,
   },
