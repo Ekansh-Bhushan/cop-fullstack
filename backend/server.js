@@ -13,6 +13,7 @@ const Crime = require("./models/Crime");
 const app = express();
 const cors = require("cors");
 
+const crimeDataRoutes = require("./routes/crimeDataRoutes");
 // Use CORS middleware
 app.use(cors());
 
@@ -23,6 +24,7 @@ connectDB();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/crime-data", crimeDataRoutes);
 
 app.post("/api/login", async (req, res) => {
   const { mobileNumber, password } = req.body;
@@ -174,7 +176,7 @@ app.post("/api/users", async (req, res) => {
 
 // POST the crime to the dataset
 app.post("/api/crimes", async (req, res) => {
-  const { lat, long, crime, beat,date, month } = req.body;
+  const { lat, long, crime,beat, date, month,year } = req.body;
 
   try {
     const newCrime = new Crime({
@@ -184,6 +186,7 @@ app.post("/api/crimes", async (req, res) => {
       beat,
       date,
       month,
+      year
     });
 
     await newCrime.save();
@@ -248,7 +251,6 @@ app.delete("/api/users", async (req, res) => {
     res.status(200).json({ msg: "User removed successfully" });
   } catch (err) {
     console.error(err.message);
-
     res.status(500).send("Server Error");
   }
 });

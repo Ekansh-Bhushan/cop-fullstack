@@ -5,14 +5,13 @@
     flex-direction: row;
     /* flex-wrap: wrap; */
     width: 100%;
-    width: 90vw;
     box-sizing: border-box;    
-    backdrop-filter: blur(2px); /* Add this line to make the background blur */
+    backdrop-filter: blur(2px);
 }
 .dashboard-left {
     display: flex;
     flex-direction: column;
-    width: 38%;
+    width: 35%;
     padding: 10px;
     justify-content: center;
     margin-right: 20px;
@@ -70,7 +69,6 @@
 }
 .dashboard-left-crime-upload {
     margin-bottom: 0px !important;
-    cursor: pointer;
 }
 
 .dashboard-right {
@@ -78,6 +76,7 @@
     flex-direction: column;
     padding: 10px;
     margin-top: 120px;
+    box-sizing: border-box;
 }
 .dashboard-right>div {
     background-color: white;
@@ -93,7 +92,8 @@
 
 
 .crimechart{
-    display: flex
+    display: flex;
+    /* max-width: 55vw; */
 }
 .crimechart-right>label{
     display: flex;
@@ -109,4 +109,25 @@
     color: #333;
     min-width: 100px;
     outline: none;
+    max-width: 120px;
 }
+
+@media (max-width: 1000px) {
+    .dashboard{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .dashboard-left {
+        width: 100%;
+        padding: 10px;
+        margin-right: 4px;
+        margin-top: 80px;
+    } 
+    .dashboard-right>div {
+        padding: 10px;
+    }
+    .crimechart{
+        flex-wrap:wrap;
+    }
+
+}   

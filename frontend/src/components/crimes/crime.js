@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import arrow from '../../assets/leftArrow.png';
-import './crime.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import arrow from "../../assets/leftArrow.png";
+import "./crime.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./crime.css";
 
 function Crime() {
@@ -13,15 +13,16 @@ function Crime() {
   const [beat, setBeat] = useState("");
   const [date, setDate] = useState("");
   const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     // Check for the authentication token
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       toast.error("Please login first!");
-      navigate('/'); // Redirect to login if token is not present
+      navigate("/"); // Redirect to login if token is not present
       return;
     }
   }, [navigate]);
@@ -35,6 +36,8 @@ function Crime() {
     if (selected <= today) {
       setDate(selectedDate);
       const monthName = selected.toLocaleString("default", { month: "long" });
+      const year = selected.getFullYear();
+      setYear(year);
       setMonth(monthName);
     } else {
       alert("Please select a date from today or earlier.");
@@ -51,6 +54,7 @@ function Crime() {
       beat,
       date,
       month,
+      year,
     };
 
     try {
@@ -141,6 +145,10 @@ function Crime() {
         <div>
           <label>Month:</label>
           <input type="text" value={month} readOnly required />
+        </div>
+        <div>
+          <label>Year:</label>
+          <input type="text" value={year} readOnly required />
         </div>
         <button type="submit">Submit</button>
       </form>
