@@ -107,15 +107,22 @@ app.get('/api/users', async (req, res) => {
 
 // Example user creation route
 app.post('/api/users', async (req, res) => {
-    const { name, mobileNumber, area } = req.body;
+    const { name, mobileNumber, password, areas } = req.body;
 
-    if (!name || !mobileNumber || !area) {
+    // Debugging: Log the received request body
+    console.log('Received request body:', req.body);
+
+    if (!name || !mobileNumber || !areas || areas.length === 0) {
         return res.status(400).json({ msg: 'Please provide name, mobile number, and area' });
     }
 
     try {
+        const area = areas[0];
         const existingUser = await User.findOne({ mobileNumber, areas: area });
-        console.log(name , mobileNumber ,area) ;
+
+        // Debugging: Log the existing user check
+        console.log('Checking if user exists:', { mobileNumber, area });
+
         if (existingUser) {
             return res.status(400).json({ msg: 'User already exists in the specified area' });
         }
@@ -123,15 +130,18 @@ app.post('/api/users', async (req, res) => {
         const newUser = new User({
             name,
             mobileNumber,
-            password: 'defaultPassword', // Set a default password, or prompt the user for one
+            password, // Use the provided password
             role: 'user',
-            areas: [area],
+            areas,
         });
+
+        // Debugging: Log the new user object before saving
+        console.log('Creating new user:', newUser);
 
         await newUser.save();
         res.json({ msg: 'User added successfully' });
     } catch (err) {
-        console.error(err.message);
+        console.error('Server Error:', err.message);
         res.status(500).send('Server Error');
     }
 });
