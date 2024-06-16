@@ -2,15 +2,47 @@
     display: flex;
     width: 100%;
     align-items: center;
-    gap: 80px;
-    font-family: 'Montserrat';
+    gap: 20px; /* Adjust the gap as needed */
+    font-family: 'Montserrat', sans-serif;
     font-size: small;
-    font: small-caption;
-    justify-content: center;
-    padding: 15px;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+   
 }
-.h1{
-    font-size: 30px;
+
+.h1 {
+    font-size: 25px;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.nav img {
+    width: 80px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+@media screen and (max-width: 768px) {
+    .nav {
+        flex-direction: row; /* Ensure items stay in a row */
+         /* Allow items to wrap on smaller screens */
+        justify-content: center; /* Center items horizontally */
+        gap: 10px; /* Add spacing between items */
+        padding: 10px; /* Adjust padding for spacing */
+    }
+
+    .h1 {
+        font-size: 50px; /* Adjust font size for smaller screens */
+        margin: 5px; /* Adjust margin for spacing between items */
+    }
+
+    .nav img {
+        width: 50px; /* Adjust image size for smaller screens */
+        margin-bottom: 5px; /* Add spacing between image and text */
+    }
 }
 
 .leftbox{
