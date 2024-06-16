@@ -110,6 +110,7 @@ body {
   .login-container {
     flex-direction: row;
     padding: 15px;
+    height: 499px;
   }
 
   .logo {
