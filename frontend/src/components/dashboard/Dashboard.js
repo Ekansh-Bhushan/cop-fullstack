@@ -61,7 +61,7 @@ function Dashboard(props) {
       <ToastContainer />
       <div className="dashboard">
         <div className="dashboard-left">
-            <h2>Hi {userName}, Welcome to COP</h2> 
+            <h2>Hi {userName},<br/> Welcome to COP</h2> 
           <div className="dashboard-left-userinfo">
             <h2>Number of users: {totalUsers}</h2>
             <h2>Active: {activeUsers}</h2>
