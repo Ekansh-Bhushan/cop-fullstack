@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const connectDB = require('./config/db');
 const User = require('./models/User');
 const StaffMember = require('./models/StaffMember');
-
+const Crime = require('./models/Crime');
 const app = express();
 const cors = require('cors');
 
@@ -80,7 +80,7 @@ app.get('/api/users', async (req, res) => {
     }
 });
 
-// Add this endpoint in your backend file
+// GET all the users
 app.get('/api/total-users', async (req, res) => {
     try {
         const totalUsers = await User.countDocuments();
@@ -161,6 +161,26 @@ app.post('/api/users', async (req, res) => {
     }
 });
 
+// POST the crime to the dataset
+app.post('/api/crimes', async (req, res) => {
+    const { latitude, longitude, typeOfCrime, date, month } = req.body;
+
+    try {
+        const newCrime = new Crime({
+            latitude,
+            longitude,
+            typeOfCrime,
+            date,
+            month
+        });
+
+        await newCrime.save();
+        res.status(201).json({ msg: 'Crime details added successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 
 // DELETE route to remove a user by phone number and area
 app.delete('/api/users', async (req, res) => {

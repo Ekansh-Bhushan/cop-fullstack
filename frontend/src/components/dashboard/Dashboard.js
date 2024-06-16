@@ -70,13 +70,14 @@ function Dashboard(props) {
             <h2>DUTY CHART</h2>
             <h4>Add Duty Timing fro Constable</h4>
           </div>
-          <div className="dashboard-left-crime-upload">
+          <div className="dashboard-left-crime-upload" onClick={()=>navigate("/crimeEntry")}>
             <h2>Crime Data</h2>
-            <input
+            <h4>Click here to enter the crime data in the database</h4>
+            {/* <input
               type="file"
               accept=".xlsx, .xls"
               onChange={handleFileChange}
-            />
+            /> */}
           </div>
         </div>
         <div className="dashboard-right">
