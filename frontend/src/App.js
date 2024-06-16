@@ -12,6 +12,7 @@ import ProfileScreen from "./components/P.js"; // Correct casing
 import Dashboard from "./components/dashboard/Dashboard.js";
 import Header from "./components/Header/header.js";
 import Crime from "./components/crimes/crime.js";
+import NotFound from "./components/NotFound/notFound.js";
 // import Profiles from './components/P.js'; // Correct casing
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         {/* Pass police as a prop */}
         <Route path="/crimeEntry" element={<Crime />} />{" "}
         {/* Pass police as a prop */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
