@@ -1,5 +1,28 @@
 /* src/components/CrimeForm.css */
+.back {
+    position: relative;
+    left: -580px;
+    top: 92px;
+    background-color: white;
+    width: 403px;
+    height: 74px;
+    border-radius: 18px;
+    border: 2px solid #2c2323; /* Adjust the border color and width as needed */
+    box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.1); /* Adjust the shadow properties as needed */
+    cursor: pointer;
+}
 
+.blockForImageArrow{
+    position: relative;
+    margin-left: 45px;
+    top: 23px;
+}
+.textHere{
+    position: relative;
+    margin-left: 95px;
+    top: -4px;
+    font-family: sans-serif;
+}
 .crime-form {
     background-color: #f9f9f9;
     padding: 20px;
