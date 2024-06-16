@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,6 +16,16 @@ const StaffManagement = () => {
   const [users, setUsers] = useState([]);
 
   const areaNames = ["Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area", "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"];
+
+  useEffect(() => {
+    // Check for the authentication token
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error("Please login first!");
+      navigate('/'); // Redirect to login if token is not present
+      return;
+    }
+  }, [navigate]);
 
   const handleNameChange = (e) => {
     const value = e.target.value;
@@ -136,7 +146,7 @@ const StaffManagement = () => {
     <>
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
-      <div classname="staff"
+      <div className="staff"
         // style={{
         //   backgroundImage: `url(${mapImage})`,
         //   backgroundRepeat: 'no-repeat',

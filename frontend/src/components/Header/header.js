@@ -1,12 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
-// import './global.css';
-// import './profile-screen.css';
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import groupImage from '../../assets/Logo.png';
 import userimage from '../../assets/user.png';
-import { NavLink, Navigate, useNavigate } from 'react-router-dom';
-
-import './header.css'
+import './header.css';
 
 function Header() {
   const navigate = useNavigate();
@@ -15,12 +11,17 @@ function Header() {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-  
-  return (
-    <>
 
-<div className="nav">
-      <img src={groupImage} alt="Group logo" onClick={()=>navigate("/homepage")} />
+  const handleLogout = () => {
+    // Clear any authentication tokens or session data
+    localStorage.removeItem('token'); // Remove token from localStorage
+    // Redirect to the login page
+    navigate('/');
+  };
+
+  return (
+    <div className="nav">
+      <img src={groupImage} alt="Group logo" onClick={() => navigate("/homepage")} />
       <NavLink exact to="/homepage" className='h1' activeClassName="active">
         DASHBOARD
       </NavLink>
@@ -33,11 +34,15 @@ function Header() {
       <NavLink exact to="/StaffMembers" className='h1' activeClassName="active">
         STAFF MEMBERS
       </NavLink>
-      <img src={userimage} alt="User icon" className="user-icon" />
-    </div>
+      <img src={userimage} alt="User icon" className="user-icon" onClick={toggleMenu} />
 
-      </>
-  )
+      {showMenu && (
+        <div className="dropdown-menu">
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Header;

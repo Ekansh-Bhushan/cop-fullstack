@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import arrow from '../../assets/leftArrow.png';
 import './crime.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Crime() {
   const [latitude, setLatitude] = useState('');
@@ -11,7 +13,17 @@ function Crime() {
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
 
-  const navigate = useNavigate(); // Correctly place useNavigate here
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check for the authentication token
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error("Please login first!");
+      navigate('/'); // Redirect to login if token is not present
+      return;
+    }
+  }, [navigate]);
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -76,6 +88,7 @@ function Crime() {
           Go Back to Dashboard
         </div>
       </div>
+      <ToastContainer />
       <form className="crime-form" onSubmit={handleSubmit}>
         <h2>Enter Crime Details</h2>
         <div>

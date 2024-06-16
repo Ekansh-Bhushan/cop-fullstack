@@ -4,6 +4,8 @@ import "./dashboard.css";
 import SelectedCrimeBarChart from "./SelectedCrimeChart";
 import Headers from "../Header/header";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const areaNames = [
   "Bawana",
@@ -24,6 +26,14 @@ function Dashboard(props) {
   const [activeUsers, setActiveUsers] = useState(0);
 
   useEffect(() => {
+    // Check for the authentication token
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error("Please login first!");
+      navigate('/'); // Redirect to login if token is not present
+      return;
+    }
+
     // Fetch total number of users from the backend
     fetch("http://localhost:4000/api/total-users")
       .then((response) => response.json())
@@ -32,7 +42,7 @@ function Dashboard(props) {
         setActiveUsers(data.active);
       })
       .catch((error) => console.error("Error fetching total users:", error));
-  }, []);
+  }, [navigate]);
 
   const handleStationChange = (event) => {
     setSelectedStation(event.target.value);
@@ -45,6 +55,7 @@ function Dashboard(props) {
   return (
     <>
       <Headers />
+      <ToastContainer />
       <div className="dashboard">
         <div className="dashboard-left">
           <div className="dashboard-left-userinfo">
@@ -68,9 +79,9 @@ function Dashboard(props) {
             onClick={() => navigate("/DutyTask")}
           >
             <h2>DUTY CHART</h2>
-            <h4>Add Duty Timing fro Constable</h4>
+            <h4>Add Duty Timing for Constable</h4>
           </div>
-          <div className="dashboard-left-crime-upload" onClick={()=>navigate("/crimeEntry")}>
+          <div className="dashboard-left-crime-upload" onClick={() => navigate("/crimeEntry")}>
             <h2>Crime Data</h2>
             <h4>Click here to enter the crime data in the database</h4>
             {/* <input
