@@ -38,8 +38,8 @@ const SelectedCrimeBarChart = () => {
     ],
     datasets: [
       {
-        label: "Selected Crime Data",
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        label: "SELECTED CRIME DATA",
+        backgroundColor: "rgba(75, 192, 192, 0.8)",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
         data: [1150, 800, 700, 500, 800, 600, 400, 500, 300, 1000, 400, 600],

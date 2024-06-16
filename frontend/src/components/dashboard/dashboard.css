@@ -73,9 +73,7 @@
 .dashboard-right {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    justify-content: center;
-    max-width: 60%;
+    padding: 10px; 
 }
 .dashboard-right>div {
     background-color: white;
