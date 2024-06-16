@@ -16,6 +16,7 @@
     padding: 10px;
     justify-content: center;
     margin-right: 20px;
+    margin-top: 80px;
 }
 
 .dashboard-left>div {
@@ -73,7 +74,8 @@
 .dashboard-right {
     display: flex;
     flex-direction: column;
-    padding: 10px; 
+    padding: 10px;
+    margin-top: 120px;
 }
 .dashboard-right>div {
     background-color: white;

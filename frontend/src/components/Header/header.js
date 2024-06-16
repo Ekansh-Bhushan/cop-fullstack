@@ -4,11 +4,12 @@ import { useState } from 'react';
 // import './profile-screen.css';
 import groupImage from '../../assets/Logo.png';
 import userimage from '../../assets/user.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 
 import './header.css'
 
 function Header() {
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -19,8 +20,8 @@ function Header() {
     <>
 
 <div className="nav">
-      <img src={groupImage} alt="Group logo" />
-      <NavLink exact to="/Dashboard" className='h1' activeClassName="active">
+      <img src={groupImage} alt="Group logo" onClick={()=>navigate("/homepage")} />
+      <NavLink exact to="/homepage" className='h1' activeClassName="active">
         DASHBOARD
       </NavLink>
       <NavLink exact to="/DutyTask" className='h1' activeClassName="active">
