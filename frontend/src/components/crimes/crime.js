@@ -5,6 +5,8 @@ import "./crime.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./crime.css";
+import SearchCrime from "./SearchCrime";
+import Header from "../Header/header";
 
 function Crime() {
   const [lat, setLatitude] = useState("");
@@ -82,76 +84,83 @@ function Crime() {
       alert("Error adding crime details");
     }
   };
-
+  const areaNames = [
+    "BAWANA",
+    "SHAHBAD DAIRY",
+    "NARELA",
+    "NARELA INDUSTRIAL AREA",
+    "ALIPUR",
+    "SAMAYPUR BADLI",
+    "SWAROOP NAGAR",
+    "BHALSWA DAIRY",
+  ];
+  const handleAreaChange = (e) => {
+    const value = e.target.value;
+    setBeat(value);
+  };
   return (
     <>
-      <div className="back" onClick={() => navigate("/homepage")}>
-        <div className="blockForImageArrow">
-          <img src={arrow} alt="back arrow" />
-        </div>
-        <div className="textHere">Go Back to Dashboard</div>
-      </div>
+      <Header />
       <ToastContainer />
-      <form className="crime-form" onSubmit={handleSubmit}>
-        <h2>Enter Crime Details</h2>
-        <div>
-          <label>Latitude:</label>
-          <input
-            type="number"
-            step="0.000001"
-            value={lat}
-            onChange={(e) => setLatitude(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Longitude:</label>
-          <input
-            type="number"
-            step="0.000001"
-            value={long}
-            onChange={(e) => setLongitude(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Type of Crime:</label>
-          <input
-            type="text"
-            value={crime}
-            onChange={(e) => setTypeOfCrime(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Police Station Area:</label>
-          <input
-            type="text"
-            value={beat}
-            onChange={(e) => setBeat(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Date:</label>
-          <input
-            type="date"
-            value={date}
-            onChange={handleDateChange}
-            required
-            max={new Date().toISOString().split("T")[0]} // Sets max date to today
-          />
-        </div>
-        <div>
-          <label>Month:</label>
-          <input type="text" value={month} readOnly required />
-        </div>
-        <div>
-          <label>Year:</label>
-          <input type="text" value={year} readOnly required />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <div className="crime-add-filter-container">
+        <form className="crime-form" onSubmit={handleSubmit}>
+          <h2>Enter Crime Details</h2>
+          <div>
+            <label>Police Station Area:</label>
+            <select value={beat} onChange={handleAreaChange} required>
+              <option value="" disabled>
+                Select Area
+              </option>
+              {areaNames.map((area, index) => (
+                <option key={index} value={area}>
+                  {area}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>Latitude:</label>
+            <input
+              type="number"
+              step="0.000001"
+              value={lat}
+              onChange={(e) => setLatitude(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Longitude:</label>
+            <input
+              type="number"
+              step="0.000001"
+              value={long}
+              onChange={(e) => setLongitude(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Type of Crime:</label>
+            <input
+              type="text"
+              value={crime}
+              onChange={(e) => setTypeOfCrime(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Date:</label>
+            <input
+              type="date"
+              value={date}
+              onChange={handleDateChange}
+              required
+              max={new Date().toISOString().split("T")[0]} // Sets max date to today
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        <SearchCrime />
+      </div>
     </>
   );
 }

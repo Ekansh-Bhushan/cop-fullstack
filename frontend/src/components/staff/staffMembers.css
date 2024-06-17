@@ -1,0 +1,46 @@
+/* css for staffmembers */
+.fetched-user {
+    background-color: white;
+    width: 100%;
+    margin-right: -400px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fetched-user table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fetched-user th,
+.fetched-user td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.fetched-user th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+.fetched-user td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.fetched-user th {
+    background-color: #f2f2f2;
+}
+
+.fetched-user tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.fetched-user tbody tr:hover {
+    background-color: #ddd;
+}
+
