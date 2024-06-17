@@ -85,7 +85,7 @@ function Login() {
           </form>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar/>
     </>
   );
 }
