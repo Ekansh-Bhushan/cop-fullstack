@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import groupImage from '../../assets/Logo.png';
 import userimage from '../../assets/user.png';
+import dropmenu from '../../assets/threeLines.png'
 import './header.css';
 
 function Header() {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const [showNav, setShowNav] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
+  };
+  const toggleNav = () => {
+    setShowNav(!showNav);
   };
 
   const handleLogout = () => {
@@ -21,8 +27,8 @@ function Header() {
 
   return (
     <div className="nav">
-      <img src={groupImage} alt="Group logo" onClick={() => navigate("/homepage")} />
-      <NavLink exact to="/homepage" className='h1' activeClassName="active">
+      <img src={groupImage} alt="Group logo"  />
+      <NavLink exact to="/Dashboard" className='h1' activeClassName="active">
         DASHBOARD
       </NavLink>
       <NavLink exact to="/DutyTask" className='h1' activeClassName="active">
@@ -38,7 +44,25 @@ function Header() {
 
       {showMenu && (
         <div className="dropdown-menu">
+          <Link to="/Profile">Profile</Link>
           <button onClick={handleLogout}>Logout</button>
+        </div>
+      )}
+      <img src={dropmenu} alt="Menu icon" className="menu-icon" onClick={toggleNav} />
+      {showNav && (
+        <div className="nav-dropdown">
+          <NavLink exact to="/Dashboard" className='h1' activeClassName="active">
+            DASHBOARD
+          </NavLink>
+          <NavLink exact to="/DutyTask" className='h1' activeClassName="active">
+            DUTY CHART
+          </NavLink>
+          <NavLink exact to="/StaffManagement" className='h1' activeClassName="active">
+            ADD/REMOVE STAFF
+          </NavLink>
+          <NavLink exact to="/StaffMembers" className='h1' activeClassName="active">
+            STAFF MEMBERS
+          </NavLink>
         </div>
       )}
     </div>
