@@ -1,4 +1,6 @@
 # COP Fullstack Project
+# Final Try
+
 Welcome to the COP Fullstack Project repository! This project is a comprehensive full-stack application developed to demonstrate the capabilities of combining a front-end framework with a back-end server and a database.
 
 ## Table of Contents
