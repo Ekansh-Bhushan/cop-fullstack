@@ -257,40 +257,79 @@ app.delete("/api/users", async (req, res) => {
 });
 
 // Add duty to users 
-app.get('/api/tasks', async (req, res) => {
-    const { station } = req.query;
+// app.get('/api/tasks', async (req, res) => {
+//     const { station } = req.query;
   
-    if (!station) {
-      return res.status(400).json({ msg: 'Station is required' });
+//     if (!station) {
+//       return res.status(400).json({ msg: 'Station is required' });
+//     }
+  
+//     try {
+//       const tasks = await Task.find({ station });
+  
+//       if (tasks.length === 0) {
+//         return res.status(404).json({ msg: `No tasks found for station '${station}'` });
+//       }
+  
+//       res.json(tasks);
+//     } catch (err) {
+//       console.error(err.message);
+//       res.status(500).send('Server Error');
+//     }
+//   });
+
+// Dtuy Time
+
+app.get('/api/usersForTask', async (req, res) => {
+  const { area } = req.query;
+  console.log("Fetching users for area:", area);
+  if (!area) {
+    return res.status(400).json({ msg: "Area is required" });
+  }
+
+  try {
+    const users = await User.find({ areas: area });
+
+    if (users.length === 0) {
+      return res.status(404).json({ msg: "No users found in that area" });
     }
-  
-    try {
-      const tasks = await Task.find({ station });
-  
-      if (tasks.length === 0) {
-        return res.status(404).json({ msg: `No tasks found for station '${station}'` });
-      }
-  
-      res.json(tasks);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  });
-  
-app.post('/api/tasks', async (req, res) => {
-    const tasks = req.body;
-  
-    try {
-      for (const task of tasks) {
-        await Task.findByIdAndUpdate(task._id, task, { new: true });
-      }
-      res.status(200).json({ msg: 'Tasks updated successfully' });
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  });
+
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+   
+app.post('/api/assignDuty', async (req, res) => {
+  const { name, phoneNumber, isChecked, startTime, endTime } = req.body;
+
+  if (!name || !phoneNumber || typeof isChecked !== 'boolean') {
+    return res.status(400).json({ msg: "Name, phone number, and isChecked are required" });
+  }
+
+  if (isChecked && (!startTime || !endTime)) {
+    return res.status(400).json({ msg: "Start time and end time are required when isChecked is true" });
+  }
+
+  try {
+    const newUser = new User({
+      name,
+      phoneNumber,
+      isChecked,
+      startTime: isChecked ? startTime : null,
+      endTime: isChecked ? endTime : null,
+    });
+
+    await newUser.save();
+
+    res.json({ msg: "User created and duty assigned successfully", user: newUser });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
   
 
 const PORT = process.env.PORT || 4000;
