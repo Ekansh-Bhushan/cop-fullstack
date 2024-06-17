@@ -94,6 +94,13 @@ function Crime() {
     "SWAROOP NAGAR",
     "BHALSWA DAIRY",
   ];
+  const crimeTypes = [
+    "Burglary",
+    "House Theft",
+    "M V Theft",
+    "Snatching",
+    "Robbery",
+  ];
   const handleAreaChange = (e) => {
     const value = e.target.value;
     setBeat(value);
@@ -140,12 +147,20 @@ function Crime() {
           </div>
           <div>
             <label>Type of Crime:</label>
-            <input
-              type="text"
+            <select
               value={crime}
               onChange={(e) => setTypeOfCrime(e.target.value)}
               required
-            />
+            >
+              <option value="" disabled>
+                Select Crime
+              </option>
+              {crimeTypes.map((crime, index) => (
+                <option key={index} value={crime}>
+                  {crime}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label>Date:</label>
