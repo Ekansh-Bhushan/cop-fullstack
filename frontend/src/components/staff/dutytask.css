@@ -76,6 +76,51 @@
     height: 100%;
 }
 
+.fetched-user{
+    background-color: white;
+    width: 100px;
+    margin-right: -400px;
+}
+.userlist{
+    background-color: white;
+    height: 74px;
+    position: relative;
+    margin-left: -366px;
+    margin-right: -357px;
+    border: solid;
+    border-radius: 17px;
+}
+
+
+.select_station {
+        width: 181%;
+        margin-left: 54px;
+        position: relative;
+        left: -532px;
+    }
+
+    .staffmembers {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        position: relative;
+        left: 30px;
+      }
+      
+      .staffmembers h2 {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      
+      .nameareaofselectarea {
+        background-color: grey;
+        color: white;
+        padding: 0 5px;
+        border-radius: 4px;
+      }
+      
+
 /* Media query for smaller screens */
 @media only screen and (max-width: 768px) {
     .nav {

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../Header/header';
-import '../addremovestaff/StaffManagement.css';
+import './dutytask.css';
 
 const StaffManagement = () => {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -116,7 +116,7 @@ const StaffManagement = () => {
       toast.success('Users fetched successfully!');
       
       // Navigate to new URL with selected area as query parameter and state
-      navigate(`/staffMember`, { state: { users: response.data } });
+      navigate(`/StaffMembers`, { state: { users: response.data } });
       
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -171,12 +171,17 @@ const StaffManagement = () => {
         <br />
         <br />
         <div className="userlist">
-          <h2>USERS IN SELECTED AREA</h2>
-          <ul>
+          <div className='staffmembers'>
+          <h2>STAFF MEMBERS UNDER <span className='nameareaofselectarea'>{selectedArea}</span> POLICE STATION</h2>
+          </div>
+          <div className="fetched-user">
+
+          <ol>
             {users.map((user, index) => (
               <li key={index}>{user.name} - {user.mobileNumber}</li>
             ))}
-          </ul>
+          </ol>
+          </div>
         </div>
       </div>
     </>
