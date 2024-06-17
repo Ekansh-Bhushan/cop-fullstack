@@ -93,10 +93,10 @@
 
 
 .select_station {
-        width: 181%;
-        margin-left: 54px;
+        width: 200%;
+        /* margin-left: 54px; */
         position: relative;
-        left: -532px;
+        /* left: -532px; */
     }
 
     .staffmembers {
@@ -205,6 +205,8 @@ body {
     background-size: cover; /* Ensure background image covers the viewport */
     background-position: center; /* Center the background image */
 }
+
+
 
 @media only screen and (max-width: 560px) {
     
