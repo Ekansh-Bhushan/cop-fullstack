@@ -13,17 +13,16 @@ import Dashboard from "./components/dashboard/Dashboard.js";
 import Header from "./components/Header/header.js";
 import Crime from "./components/crimes/crime.js";
 import NotFound from "./components/NotFound/notFound.js";
+import useOnlineStatus from "./hooks/useOnlineStatus.js";
 // import Profiles from './components/P.js'; // Correct casing
 
 function App() {
-  // Sample police data to pass to the Profile component
-  const police = {
-    name: "John Doe",
-    role: "Sergeant",
-    post: "Downtown",
-    dob: "1980-01-01",
-    under: "Central Station",
-  };
+  // Sample police data to pass to the Profile compon  };
+  const isOnline = useOnlineStatus();
+
+  if (!isOnline) {
+    return <NoInternet />;
+  }
 
   return (
     <Router>
