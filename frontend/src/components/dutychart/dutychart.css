@@ -29,6 +29,9 @@
 
 .selectstation {
     border: solid;
+
+    margin: 0 auto; /* Center the element horizontally */
+
     width: 60%; /* Reduce the width */
     margin-left: 0; /* Attach to the left wall */
     background: #fff;
@@ -161,6 +164,34 @@ body {
     padding: 0; /* Reset padding */
     background-size: cover; /* Ensure background image covers the viewport */
     background-position: center; /* Center the background image */
+}
+.selectstations{
+    border: solid;
+   border-left: none;
+    width: 60%;
+background: #fff;
+display: flex;
+    align-items: center;
+    display: flex;
+   justify-content: space-evenly;
+   border-radius: 8px;
+   border-color:#B7E2E7;
+   opacity: 0.8;
+
+}
+.form{
+    justify-content: space-evenly;
+}
+.select{
+    
+    width: 100px;
+    height: 35px;
+    border: solid;
+    border-radius: 5px;
+    background-color: #EBEBEB; width: 150px; border: none;
+}
+.form{
+    justify-content: space-evenly;
 }
 
 @media only screen and (max-width: 560px) {
