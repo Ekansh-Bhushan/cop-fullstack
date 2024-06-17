@@ -1,0 +1,20 @@
+.no-internet-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .no-internet-container h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  
+  .no-internet-container p {
+    font-size: 1.5em;
+  }
+  

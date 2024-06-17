@@ -20,10 +20,11 @@
 
 .dashboard-left>div {
     background-color: white;
-    border:1px solid rgba(75, 192, 192, 1);
-    border-radius: 10px;
+    border:1px solid rgba(75, 192, 192, 0.5);
     padding: 15px 10px 35px 10px;
     margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .dashboard-left-userinfo {
     margin-bottom: 20px;
@@ -68,7 +69,6 @@
     cursor: pointer;
 }
 .dashboard-left-crime-upload {
-    margin-bottom: 0px !important;
 }
 
 .dashboard-right {
@@ -80,9 +80,10 @@
 }
 .dashboard-right>div {
     background-color: white;
-    border:1px solid rgba(75, 192, 192, 1);
-    border-radius: 10px;
+    border:1px solid rgba(75, 192, 192, 0.5);
     padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
 .dashboard-right-top {

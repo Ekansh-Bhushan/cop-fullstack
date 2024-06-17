@@ -1,27 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Header from '../Header/header';
-import './dutytask.css';
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Header from "../Header/header";
+import "./dutytask.css";
+import "./staffMembers.css";
 const StaffManagement = () => {
   const navigate = useNavigate(); // Initialize useNavigate
-  const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(true);
-  const [selectedArea, setSelectedArea] = useState('');
+  const [selectedArea, setSelectedArea] = useState("");
   const [users, setUsers] = useState([]);
 
-  const areaNames = ["Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area", "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"];
+  const areaNames = [
+    "Bawana",
+    "Shahbad Dairy",
+    "Narela",
+    "Narela Industrial Area",
+    "Alipur",
+    "Samaypur Badli",
+    "Swaroop Nagar",
+    "Bhalswa Dairy",
+  ];
 
   useEffect(() => {
     // Check for the authentication token
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       toast.error("Please login first!");
-      navigate('/'); // Redirect to login if token is not present
+      navigate("/"); // Redirect to login if token is not present
       return;
     }
   }, [navigate]);
@@ -45,53 +54,59 @@ const StaffManagement = () => {
   };
 
   const handleAddStaff = async () => {
-    if (name.trim() === '' || phoneNumber.trim() === '') {
-      toast.error('Please fill out both Name and Phone Number.');
+    if (name.trim() === "" || phoneNumber.trim() === "") {
+      toast.error("Please fill out both Name and Phone Number.");
     } else if (!isValidPhoneNumber) {
-      toast.error('Please enter a valid 10-digit Phone Number.');
+      toast.error("Please enter a valid 10-digit Phone Number.");
     } else if (!selectedArea) {
-      toast.error('Please select an area.');
+      toast.error("Please select an area.");
     } else {
       try {
-        console.log('Adding staff:', { name, phoneNumber, selectedArea });
-        await axios.post('/api/users', {
+        console.log("Adding staff:", { name, phoneNumber, selectedArea });
+        await axios.post("/api/users", {
           name,
           mobileNumber: phoneNumber,
-          areas: [selectedArea]
+          areas: [selectedArea],
         });
-      
-        toast.success('STAFF MEMBER HAS BEEN ADDED SUCCESSFULLY!');
-        setName('');
-        setPhoneNumber('');
+
+        toast.success("STAFF MEMBER HAS BEEN ADDED SUCCESSFULLY!");
+        setName("");
+        setPhoneNumber("");
         setIsValidPhoneNumber(true);
         await handleSubmit();
       } catch (error) {
-        console.error('Error adding staff:', error);
-        const errorMsg = error.response && error.response.data ? error.response.data.msg : 'Failed to add staff member.';
+        console.error("Error adding staff:", error);
+        const errorMsg =
+          error.response && error.response.data
+            ? error.response.data.msg
+            : "Failed to add staff member.";
         toast.error(errorMsg);
       }
     }
   };
 
   const handleRemoveStaff = async () => {
-    if (name.trim() === '' || phoneNumber.trim() === '') {
-      toast.error('Please fill out both Name and Phone Number.');
+    if (name.trim() === "" || phoneNumber.trim() === "") {
+      toast.error("Please fill out both Name and Phone Number.");
     } else if (!selectedArea) {
-      toast.error('Please select an area.');
+      toast.error("Please select an area.");
     } else {
       try {
-        console.log('Removing staff:', { name, phoneNumber, selectedArea });
-        await axios.delete('http://localhost:4000/api/users', {
-          data: { name, mobileNumber: phoneNumber, areas: [selectedArea] }
+        console.log("Removing staff:", { name, phoneNumber, selectedArea });
+        await axios.delete("http://localhost:4000/api/users", {
+          data: { name, mobileNumber: phoneNumber, areas: [selectedArea] },
         });
-        toast.success('STAFF MEMBER HAS BEEN REMOVED SUCCESSFULLY!');
-        setName('');
-        setPhoneNumber('');
+        toast.success("STAFF MEMBER HAS BEEN REMOVED SUCCESSFULLY!");
+        setName("");
+        setPhoneNumber("");
         setIsValidPhoneNumber(true);
         await handleSubmit();
       } catch (error) {
-        console.error('Error removing staff:', error);
-        const errorMsg = error.response && error.response.data ? error.response.data.msg : 'Failed to remove staff member.';
+        console.error("Error removing staff:", error);
+        const errorMsg =
+          error.response && error.response.data
+            ? error.response.data.msg
+            : "Failed to remove staff member.";
         toast.error(errorMsg);
       }
     }
@@ -101,29 +116,28 @@ const StaffManagement = () => {
     if (e) {
       e.preventDefault();
     }
-    
+
     if (!selectedArea) {
-      toast.error('Please select an area.');
+      toast.error("Please select an area.");
       return;
     }
 
     try {
-      console.log('Fetching users for area:', selectedArea);
-      const response = await axios.get('http://localhost:4000/api/users', {
-        params: { area: selectedArea }
+      console.log("Fetching users for area:", selectedArea);
+      const response = await axios.get("http://localhost:4000/api/users", {
+        params: { area: selectedArea },
       });
       setUsers(response.data);
-      toast.success('Users fetched successfully!');
-      
+      toast.success("Users fetched successfully!");
+
       // Navigate to new URL with selected area as query parameter and state
       navigate(`/StaffMembers`, { state: { users: response.data } });
-      
     } catch (error) {
-      console.error('Error fetching users:', error);
+      console.error("Error fetching users:", error);
       if (error.response && error.response.status === 404) {
-        toast.error('No users found in that area.');
+        toast.error("No users found in that area.");
       } else {
-        toast.error('Failed to fetch users.');
+        toast.error("Failed to fetch users.");
       }
     }
   };
@@ -139,16 +153,20 @@ const StaffManagement = () => {
             <select
               className="selectoption"
               style={{
-                backgroundColor: '#EBEBEB',
-                width: '150px',
-                border: 'none',
+                backgroundColor: "#EBEBEB",
+                width: "150px",
+                border: "none",
               }}
               value={selectedArea}
               onChange={handleAreaChange}
             >
-              <option value="" disabled>Select Area</option>
+              <option value="" disabled>
+                Select Area
+              </option>
               {areaNames.map((area, index) => (
-                <option key={index} value={area}>{area}</option>
+                <option key={index} value={area}>
+                  {area}
+                </option>
               ))}
             </select>
             <input
@@ -156,31 +174,47 @@ const StaffManagement = () => {
               value="SELECT"
               className="select"
               style={{
-                backgroundColor: '#009ADC',
-                color: '#fff',
-                textAlign: 'center',
-                margin: '20px',
-                width: '150px',
-                border: 'none',
-                fontWeight: 'bold',
+                backgroundColor: "#009ADC",
+                color: "#fff",
+                textAlign: "center",
+                margin: "20px",
+                width: "150px",
+                border: "none",
+                fontWeight: "bold",
               }}
             />
           </form>
         </div>
-        
+
         <br />
         <br />
         <div className="userlist">
-          <div className='staffmembers'>
-          <h2>STAFF MEMBERS UNDER <span className='nameareaofselectarea'>{selectedArea}</span> POLICE STATION</h2>
+          <div className="staffmembers">
+            <h2>
+              STAFF MEMBERS UNDER{" "}
+              <span className="nameareaofselectarea">{selectedArea}</span>{" "}
+              POLICE STATION
+            </h2>
           </div>
           <div className="fetched-user">
-
-          <ol>
-            {users.map((user, index) => (
-              <li key={index}>{user.name} - {user.mobileNumber}</li>
-            ))}
-          </ol>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Mobile Number</th>
+                  <th>Station</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user, index) => (
+                  <tr key={index}>
+                    <td>{user.name}</td>
+                    <td>{user.mobileNumber}</td>
+                    <td>{selectedArea}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
