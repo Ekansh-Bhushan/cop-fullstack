@@ -20,9 +20,9 @@ function App() {
   // Sample police data to pass to the Profile compon  };
   const isOnline = useOnlineStatus();
 
-  if (!isOnline) {
-    return <NoInternet />;
-  }
+  // if (!isOnline) {
+  //   return <NoInternet />;
+  // }
 
   return (
     <Router>
