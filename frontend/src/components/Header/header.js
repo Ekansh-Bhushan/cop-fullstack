@@ -51,7 +51,7 @@ function Header() {
 
       {showMenu && (
         <div className="dropdown-menu">
-          <NavLink to="/Profile">Profile</NavLink>
+          
           <button onClick={handleLogout}>Logout</button>
         </div>
       )}
