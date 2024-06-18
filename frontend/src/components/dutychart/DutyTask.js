@@ -12,12 +12,25 @@ const DutyTask = () => {
   const [selectedStation, setSelectedStation] = useState('');
   const [tasks, setTasks] = useState([]);
   const [selectedDate, setSelectedDate] = useState('');
+  const [minDate, setMinDate] = useState('');
+  const [maxDate, setMaxDate] = useState('');
   const [isDateValid, setIsDateValid] = useState(true);
 
   useEffect(() => {
-    const today = new Date().toISOString().split('T')[0];
-    setSelectedDate(today);
-  }, []);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/'); // Redirect to login page if not authenticated
+    }
+    const today = new Date();
+    const oneMonthLater = new Date(today);
+    oneMonthLater.setMonth(today.getMonth() + 1);
+
+    const formatDate = (date) => date.toISOString().split('T')[0];
+
+    setSelectedDate(formatDate(today));
+    setMinDate(formatDate(today));
+    setMaxDate(formatDate(oneMonthLater));
+  }, [navigate]);
 
   const areaNames = [
     "Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area",
@@ -43,6 +56,11 @@ const DutyTask = () => {
     } else {
       setTasks([]);
     }
+  };
+
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setSelectedDate(newDate);
   };
 
   const handleCheckboxChange = (taskId) => {
@@ -97,7 +115,7 @@ const DutyTask = () => {
         });
       }
     } else {
-      alert("Please fill start and end times for necessary tasks.");
+      toast.warn("Please fill start and end times for necessary tasks.");
     }
   };
 
@@ -156,9 +174,11 @@ const DutyTask = () => {
             ))}
           </select>
           <input className='dateinput'
-            type="text"
+            type="date"
             value={selectedDate}
-            readOnly
+            min={minDate}
+            max={maxDate}
+            onChange={handleDateChange}
             style={{ marginLeft: '10px', padding: '10px', fontSize: '16px', borderRadius: '5px', borderColor: '#ccc', backgroundColor: '#e9e9e9' }}
           />
           <button type="submit" className="select-button" onClick={handleSubmit}>SUBMIT</button>
@@ -167,7 +187,7 @@ const DutyTask = () => {
       <div>
         {renderTasks()}
       </div>
-      <ToastContainer /> {/* Place ToastContainer here */}
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar/>
     </>
   );
 };
