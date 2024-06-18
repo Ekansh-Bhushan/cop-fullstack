@@ -12,6 +12,7 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 50px;
+    display: flex;
     flex-direction: row;
     margin-top: 7vw;
   }
