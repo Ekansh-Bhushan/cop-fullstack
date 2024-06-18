@@ -146,7 +146,7 @@ const StaffManagement = () => {
     <>
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
-      <div className="staff">
+      {/* <div className="staff">
         
         <div className="select_station">
           <h3>SELECT POLICE STATION</h3>
@@ -232,15 +232,63 @@ const StaffManagement = () => {
           </div>
         </div>
         
-        {/* <div className="userlist">
-          <h2>USERS IN SELECTED AREA</h2>
-          <ul>
-            {users.map((user, index) => (
-              <li key={index}>{user.name} - {user.mobileNumber}</li>
-            ))}
-          </ul>
-        </div> */}
-      </div>
+        
+      </div> */
+      }
+
+<div className="select_station">
+          <h3>SELECT POLICE STATION</h3>
+          <form onSubmit={handleSubmit}>
+            <select
+              className="selectoption"
+              style={{
+                backgroundColor: "#EBEBEB",
+                width: "150px",
+                border: "none",
+              }}
+              value={selectedArea}
+              onChange={handleAreaChange}
+            >
+              <option value="" disabled>
+                Select Area
+              </option>
+              {areaNames.map((area, index) => (
+                <option key={index} value={area}>
+                  {area}
+                </option>
+              ))}
+            </select>
+            <input
+              type="submit"
+              value="SELECT"
+              className="select"
+              style={{
+                backgroundColor: "#009ADC",
+                color: "#fff",
+                textAlign: "center",
+                margin: "20px",
+                width: "150px",
+                border: "none",
+                fontWeight: "bold",
+              }}
+              
+            />
+          </form>
+        </div>
+        <div className="staffmember">
+            <h2>
+             ADD/REMOVE STAFF 
+            </h2>
+            <div className='nameinput'>
+           <form>
+            NAME
+            <input type='text' placeholder='enter your name' className='input'></input>
+            PH NO.
+            <input type='text' placeholder='enter ph.no.' className='input'></input>
+           </form>
+          </div>
+          </div>
+          
     </>
   );
 };
