@@ -71,6 +71,10 @@ function Header() {
           <NavLink exact to="/StaffMembers" className="h1" activeClassName="active">
             STAFF MEMBERS
           </NavLink>
+          <a href="/" onClick={handleLogout} className="h1">
+            LOGOUT
+          </a>
+
         </div>
       )}
     </div>

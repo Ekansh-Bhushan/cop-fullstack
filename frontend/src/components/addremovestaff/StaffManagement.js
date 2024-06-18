@@ -176,7 +176,7 @@ const StaffManagement = () => {
                 color: '#fff',
                 textAlign: 'center',
                 margin : '20px',
-                width: '120px',
+                width: '70px',
                 border: 'none',
                 fontWeight : 'bold' ,
               }}
