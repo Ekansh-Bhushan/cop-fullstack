@@ -53,6 +53,7 @@ app.post("/api/login", async (req, res) => {
         .json({ message: "Invalid mobile number or password" });
     }
 
+    
     // Generate JWT token
     // Modify backend /api/login endpoint response to include user information
     const token = jwt.sign(
