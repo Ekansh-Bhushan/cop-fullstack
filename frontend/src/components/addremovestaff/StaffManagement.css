@@ -237,7 +237,8 @@
   border-radius: 17px;
 }
 .input {
-  width: 200px;
+  width: 400px;
+  height: 20px;
   border-color: #b7e2e7;
   border-radius: 9px;
 }
