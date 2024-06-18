@@ -13,7 +13,6 @@ const DutyTask = () => {
   const [isDateValid, setIsDateValid] = useState(true);
 
   useEffect(() => {
-    // Set the selected date to today's date
     const today = new Date().toISOString().split('T')[0];
     setSelectedDate(today);
   }, []);
@@ -30,7 +29,12 @@ const DutyTask = () => {
     if (station) {
       try {
         const response = await axios.get(`http://localhost:4000/api/usersForTask?area=${station}`);
-        setTasks(response.data);
+        const tasksData = response.data.map(task => ({
+          ...task,
+          startTime: task.startTime || '',
+          endTime: task.endTime || '',
+        }));
+        setTasks(tasksData);
       } catch (error) {
         console.error("Error fetching users for task:", error);
       }
@@ -47,12 +51,10 @@ const DutyTask = () => {
   };
 
   const handleTimeChange = (taskId, type, value) => {
-    if (/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(value) || value === '') {
-      const updatedTasks = tasks.map(task =>
-        task._id === taskId ? { ...task, [type]: value } : task
-      );
-      setTasks(updatedTasks);
-    }
+    const updatedTasks = tasks.map(task =>
+      task._id === taskId ? { ...task, [type]: value + ':00' } : task
+    );
+    setTasks(updatedTasks);
   };
 
   const handleSubmit = async (e) => {
@@ -62,22 +64,28 @@ const DutyTask = () => {
 
     if (tasksToSubmit.length > 0) {
       try {
-        const tasksData = tasksToSubmit.map(({ name, mobileNumber, isChecked, startTime, endTime }) => ({
-          name,
-          phoneNumber: mobileNumber,
-          date: selectedDate,
-          isChecked,
-          ...(isChecked ? { startTime, endTime } : {}),
-        }));
+        // Send each task as a separate request
+        for (const task of tasksToSubmit) {
+          const taskData = {
+            name: task.name,
+            phoneNumber: task.mobileNumber,
+            date: selectedDate,
+            isChecked: task.isChecked,
+            startTime: task.startTime,
+            endTime: task.endTime
+          };
 
-        const url = 'http://localhost:4000/api/assignDuty';
-        const response = await axios.post(url, tasksData);
+          console.log('Sending request to backend:', taskData);
 
-        console.log('Response from server:', response.data);
+          const response = await axios.post('http://localhost:4000/api/assignDuty', taskData);
+
+          console.log('Response from server:', response.data);
+        }
+
         alert('Duty assigned successfully!');
       } catch (error) {
-        console.error('Error assigning duty:', error);
-        alert('Failed to assign duty. Please try again later.');
+        console.error('Error assigning duty:', error.response ? error.response.data : error.message);
+        alert(`Failed to assign duty. Please try again later. Error: ${error.response ? error.response.data : error.message}`);
       }
     } else {
       alert("Please fill start and end times for necessary tasks.");
@@ -106,21 +114,19 @@ const DutyTask = () => {
           <>
             <label>START TIME</label>
             <input
-              type="text"
+              type="time"
               className="inputclass"
-              value={task.startTime}
+              value={task.startTime.slice(0, 5)}
               onChange={(e) => handleTimeChange(task._id, 'startTime', e.target.value)}
               style={{ borderRadius: '30px', borderColor: '#b7e2e7' }}
-              placeholder="HH:MM"
             />
             <label>END TIME</label>
             <input
-              type="text"
+              type="time"
               className="inputclass"
-              value={task.endTime}
+              value={task.endTime.slice(0, 5)}
               onChange={(e) => handleTimeChange(task._id, 'endTime', e.target.value)}
               style={{ borderRadius: '30px', borderColor: '#b7e2e7' }}
-              placeholder="HH:MM"
             />
           </>
         )}
