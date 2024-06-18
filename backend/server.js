@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config(); // Load environment variables first
-
+const cron = require('node-cron');
 const express = require("express");
 
 const bodyParser = require("body-parser");
@@ -26,6 +26,48 @@ connectDB();
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/crime-data", crimeDataRoutes);
+// Schedule a cron job to run every minute
+cron.schedule('* * * * *', async () => { // Runs every minute
+  try {
+    const currentTime = new Date().getTime();
+    const tasks = await Task.find({ isChecked: true });
+
+    for (const task of tasks) {
+      const user = await User.findOne({ mobileNumber: task.phoneNumber });
+
+      if (user) {
+        const taskStartTime = new Date(`${task.date}T${task.startTime}`).getTime();
+        const taskEndTime = new Date(`${task.date}T${task.endTime}`).getTime();
+
+        if (currentTime >= taskStartTime && currentTime <= taskEndTime) {
+          user.active = true;
+        } else {
+          user.active = false;
+        }
+
+        await user.save();
+      }
+    }
+  } catch (error) {
+    console.error('Error updating user active status:', error.message);
+  }
+});
+app.get("/api/user-status/:phoneNumber", async (req, res) => {
+  const { phoneNumber } = req.params;
+
+  try {
+    const user = await User.findOne({ mobileNumber: phoneNumber });
+
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    res.json({ active: user.active });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 app.post("/api/login", async (req, res) => {
   const { mobileNumber, password } = req.body;
@@ -53,7 +95,7 @@ app.post("/api/login", async (req, res) => {
         .json({ message: "Invalid mobile number or password" });
     }
 
-    
+
     // Generate JWT token
     // Modify backend /api/login endpoint response to include user information
     const token = jwt.sign(
@@ -303,10 +345,10 @@ app.get('/api/usersForTask', async (req, res) => {
 });
    
 app.post('/api/assignDuty', async (req, res) => {
-  const { name, phoneNumber, isChecked, startTime, endTime } = req.body;
+  const { name, phoneNumber, date, isChecked, startTime, endTime } = req.body;
 
-  if (!name || !phoneNumber || typeof isChecked !== 'boolean') {
-    return res.status(400).json({ msg: "Name, phone number, and isChecked are required" });
+  if (!name || !phoneNumber || !date || typeof isChecked !== 'boolean') {
+    return res.status(400).json({ msg: "Name, phone number, date, and isChecked are required" });
   }
 
   if (isChecked && (!startTime || !endTime)) {
@@ -314,24 +356,63 @@ app.post('/api/assignDuty', async (req, res) => {
   }
 
   try {
-    const newUser = new User({
-      name,
-      phoneNumber,
-      isChecked,
-      startTime: isChecked ? startTime : null,
-      endTime: isChecked ? endTime : null,
-    });
+    // Find the user by phone number
+    let user = await User.findOne({ mobileNumber: phoneNumber });
 
-    await newUser.save();
+    if (!user) {
+      console.log("User not found");
+      return res.status(404).json({ msg: "User not found" });
+    }
 
-    res.json({ msg: "User created and duty assigned successfully", user: newUser });
+    console.log("User found:", user);
+
+    // Update user's isChecked, startTime, and endTime
+    user.isChecked = isChecked;
+    user.startTime = isChecked ? startTime : null;
+    user.endTime = isChecked ? endTime : null;
+
+    // Save the user changes
+    await user.save();
+
+    // Check if there's an existing task for the user on the same date
+    let existingTask = await Task.findOne({ phoneNumber, date });
+
+    if (existingTask) {
+      console.log("Existing task found for user:", existingTask);
+
+      // Update existing task
+      existingTask.name = name;
+      existingTask.startTime = isChecked ? startTime : null;
+      existingTask.endTime = isChecked ? endTime : null;
+      existingTask.isChecked = isChecked;
+      existingTask.station = user.areas[0]; // Example: Assigning the first area of the user to station
+      await existingTask.save();
+    } else {
+      console.log("No existing task found, creating new task");
+
+      // Create a new task
+      const newTask = new Task({
+        name,
+        phoneNumber,
+        date,
+        startTime: isChecked ? startTime : null,
+        endTime: isChecked ? endTime : null,
+        isChecked,
+        station: user.areas[0] // Example: Assigning the first area of the user to station
+      });
+
+      // Save the new task
+      await newTask.save();
+    }
+
+    res.json({ msg: "Duty assigned successfully", user });
   } catch (err) {
-    console.error(err.message);
+    console.error("Error in assignDuty:", err.message);
     res.status(500).send("Server Error");
   }
 });
 
-  
+
 
 const PORT = process.env.PORT || 4000;
 
