@@ -7,24 +7,19 @@ import '../dutychart/dutychart.css';
 const DutyTask = () => {
   const navigate = useNavigate();
   const [selectedStation, setSelectedStation] = useState('');
-  const [tasks, setTasks] = useState([
-    { id: 1, name: "John Doe", phoneNumber: "9876543210", startTime: "", endTime: "", isChecked: false },
-    { id: 2, name: "Jane Smith", phoneNumber: "1234567890", startTime: "", endTime: "", isChecked: false }
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   const areaNames = [
-    "Bawana",
-    "shahbad dairy",
-    "Narela",
-    "Narela Industrial Area",
-    "Alipur",
-    "Samaypur Badli",
-    "Swaroop Nagar",
-    "Bhalswa Dairy"
+    "Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area",
+    "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"
   ];
 
   const handleStationChange = (e) => {
     setSelectedStation(e.target.value);
+  };
+
+  const handleStationSubmit = (e) => {
+    e.preventDefault();
     // Example: Fetch tasks for selectedStation from API or local data
     // For demonstration, here we are setting some dummy tasks
     setTasks([
@@ -41,7 +36,6 @@ const DutyTask = () => {
   };
 
   const handleTimeChange = (taskId, type, value) => {
-    // Validate time format as HH:MM
     if (/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(value) || value === '') {
       const updatedTasks = tasks.map(task =>
         task.id === taskId ? { ...task, [type]: value } : task
@@ -51,11 +45,9 @@ const DutyTask = () => {
   };
 
   const handleSubmit = () => {
-    // Validate that start and end times are filled for necessary tasks
     const tasksToSubmit = tasks.filter(task => task.isChecked && task.startTime && task.endTime);
 
     if (tasksToSubmit.length > 0) {
-      // Here you can send `tasksToSubmit` data to your backend API
       console.log("Tasks to submit:", tasksToSubmit);
       // Send data to backend using fetch or axios
       // fetch('your-backend-endpoint', {
@@ -75,7 +67,6 @@ const DutyTask = () => {
       //   // Handle error scenario, show toast or message
       // });
     } else {
-      // Display a message or toast indicating that at least one task is missing start/end time
       alert("Please fill start and end times for necessary tasks.");
     }
   };
@@ -127,25 +118,22 @@ const DutyTask = () => {
   return (
     <>
       <Header />
-   
-        <br /><br /><br />
-    <div className='selectstations'>
-    <h2>SELECT POLICE STATION</h2>
-    <form action="/action_page.PH.p">
-    <select className="select" >
-
-    <option value="volvo">AREA</option>
-                 <option value="saab">AREA</option>
-                 <option value="opel">AREA</option>
-                 <option value="audi">AREA</option>
-               
-    </select>
-    <input type="submit" value="SUBMIT" className="select" />
-
-    </form>
-
-
-    </div>
+      <div className='selectstations'>
+        <h2>SELECT POLICE STATION</h2>
+        <form onSubmit={handleStationSubmit}>
+          <select className="select" value={selectedStation} onChange={handleStationChange}>
+            <option value="">Select Area</option>
+            {areaNames.map(area => (
+              <option key={area} value={area}>{area}</option>
+            ))}
+          </select>
+          <button type="submit" className="select">SUBMIT</button>
+        </form>
+      </div>
+      <div>
+        {renderTasks()}
+      </div>
+    
     </>
   );
 };
