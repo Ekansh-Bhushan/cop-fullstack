@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Header/header';
 import '../dutychart/dutychart.css';
@@ -80,12 +82,19 @@ const DutyTask = () => {
           const response = await axios.post('http://localhost:4000/api/assignDuty', taskData);
 
           console.log('Response from server:', response.data);
-        }
 
-        alert('Duty assigned successfully!');
+          // Show success toast
+          toast.success('Duty assigned successfully!', {
+            position: 'top-center'
+          });
+        }
       } catch (error) {
         console.error('Error assigning duty:', error.response ? error.response.data : error.message);
-        alert(`Failed to assign duty. Please try again later. Error: ${error.response ? error.response.data : error.message}`);
+
+        // Show error toast
+        toast.error(`Failed to assign duty. Please try again later. Error: ${error.response ? error.response.data : error.message}`, {
+          position: 'top-center'
+        });
       }
     } else {
       alert("Please fill start and end times for necessary tasks.");
@@ -158,6 +167,7 @@ const DutyTask = () => {
       <div>
         {renderTasks()}
       </div>
+      <ToastContainer /> {/* Place ToastContainer here */}
     </>
   );
 };
