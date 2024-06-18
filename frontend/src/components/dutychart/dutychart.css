@@ -1,9 +1,9 @@
 .selectstations {
     margin: 20px auto;
     padding: 20px;
-    width: 80%;
+    width: 93%;
     top:50px;
-    max-width: 600px;
+   
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -12,20 +12,33 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 50px;
+    flex-direction: row;
+    margin-top: 7vw;
+  }
+  .select-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adds space between the select and the button */
+    width:80%
   }
   
   .selectstations h2 {
+    font-size: 15px;
     margin: 0;
   }
   
   .select {
     flex: 1;
     margin-left: 10px;
-    padding: 10px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    margin-top: 2px;
+    width:0%
   }
   
   .select option {
@@ -53,6 +66,9 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #fff;
+    width: 95%;
+    margin-left: 20px;
+    margin-right: 20px;
   }
   
   .names h3 {
@@ -84,4 +100,65 @@
     margin-top: 10px;
     margin-bottom: 10px;
   }
+  @media screen and (max-width:600px) {
+    .inputclass{
+      font-size:medium;
+      border: 1px solid black;
+
+    }
+    .select{
+      width:0.0001px
+    }
+    .names label {
+      margin-top: 2px;
+      font-size: medium;
+      left:0
+     
+    }
+    .names {
+      border: 1px solid black;
+      width:80%;
+      align-items: center;
+      justify-content: center;
+      flex:1;
+      margin-left:45px
+      
+    }
+    .selectstations{
+      margin-top:75px;
+      width:75%;
+      height:30px
+    }
+    .select-container{
+      display: flex; /* Ensure the items are displayed in a flex container */
+      align-items: center;
+      gap:2px
+      
+    }
+    .select-button {
+      padding: 10px 0px; /* Adjust padding to make button smaller */
+      font-size:0.01px; /* Match font size with other elements */
+      width:4px
+    }
+  }
+   
+  @media screen and (max-width:768px) {
+    .dateinput{
+      width:20%;
+    }
+  }
+  @media screen and (max-width:440px) {
+    .selectstations {
+      width: 90%; /* Adjust width for smaller screens */
+      margin-right: 0;/* Center the selectstations */
+      margin-left: 50vw;
+      margin-top: 30vw
+    }
   
+    .select-container {
+      width: 70%; /* Adjust width for smaller screens */
+    }
+    .names{
+      margin-left: 60vw;
+    }
+  }

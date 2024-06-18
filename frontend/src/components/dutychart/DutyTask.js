@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import mapImage from '../../assets/MAP.png';
+import axios from 'axios';
+
 import Header from '../Header/header';
 import '../dutychart/dutychart.css';
 
@@ -8,29 +9,39 @@ const DutyTask = () => {
   const navigate = useNavigate();
   const [selectedStation, setSelectedStation] = useState('');
   const [tasks, setTasks] = useState([]);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [isDateValid, setIsDateValid] = useState(true);
+
+  useEffect(() => {
+    // Set the selected date to today's date
+    const today = new Date().toISOString().split('T')[0];
+    setSelectedDate(today);
+  }, []);
 
   const areaNames = [
     "Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area",
     "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"
   ];
 
-  const handleStationChange = (e) => {
-    setSelectedStation(e.target.value);
-  };
+  const handleStationChange = async (e) => {
+    const station = e.target.value;
+    setSelectedStation(station);
 
-  const handleStationSubmit = (e) => {
-    e.preventDefault();
-    // Example: Fetch tasks for selectedStation from API or local data
-    // For demonstration, here we are setting some dummy tasks
-    setTasks([
-      { id: 1, name: "John Doe", phoneNumber: "9876543210", startTime: "", endTime: "", isChecked: false },
-      { id: 2, name: "Jane Smith", phoneNumber: "1234567890", startTime: "", endTime: "", isChecked: false }
-    ]);
+    if (station) {
+      try {
+        const response = await axios.get(`http://localhost:4000/api/usersForTask?area=${station}`);
+        setTasks(response.data);
+      } catch (error) {
+        console.error("Error fetching users for task:", error);
+      }
+    } else {
+      setTasks([]);
+    }
   };
 
   const handleCheckboxChange = (taskId) => {
     const updatedTasks = tasks.map(task =>
-      task.id === taskId ? { ...task, isChecked: !task.isChecked } : task
+      task._id === taskId ? { ...task, isChecked: !task.isChecked } : task
     );
     setTasks(updatedTasks);
   };
@@ -38,54 +49,56 @@ const DutyTask = () => {
   const handleTimeChange = (taskId, type, value) => {
     if (/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(value) || value === '') {
       const updatedTasks = tasks.map(task =>
-        task.id === taskId ? { ...task, [type]: value } : task
+        task._id === taskId ? { ...task, [type]: value } : task
       );
       setTasks(updatedTasks);
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     const tasksToSubmit = tasks.filter(task => task.isChecked && task.startTime && task.endTime);
 
     if (tasksToSubmit.length > 0) {
-      console.log("Tasks to submit:", tasksToSubmit);
-      // Send data to backend using fetch or axios
-      // fetch('your-backend-endpoint', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(tasksToSubmit),
-      // })
-      // .then(response => response.json())
-      // .then(data => {
-      //   console.log('Success:', data);
-      //   // Optionally navigate to a success page or show a success message
-      // })
-      // .catch((error) => {
-      //   console.error('Error:', error);
-      //   // Handle error scenario, show toast or message
-      // });
+      try {
+        const tasksData = tasksToSubmit.map(({ name, mobileNumber, isChecked, startTime, endTime }) => ({
+          name,
+          phoneNumber: mobileNumber,
+          date: selectedDate,
+          isChecked,
+          ...(isChecked ? { startTime, endTime } : {}),
+        }));
+
+        const url = 'http://localhost:4000/api/assignDuty';
+        const response = await axios.post(url, tasksData);
+
+        console.log('Response from server:', response.data);
+        alert('Duty assigned successfully!');
+      } catch (error) {
+        console.error('Error assigning duty:', error);
+        alert('Failed to assign duty. Please try again later.');
+      }
     } else {
       alert("Please fill start and end times for necessary tasks.");
     }
   };
 
   const renderTasks = () => {
-    return tasks.map(task => (
-      <div className="names" key={task.id}>
-        <h3 style={{ border: 'solid', borderColor: '#b7e2e7', borderRadius: '30px', width: '100px', textAlign: 'center', position: 'relative', bottom: '15px' }}>
-          {task.id}.
+    return tasks.map((task, index) => (
+      <div className="names" key={task._id}>
+        <h3 style={{ border: 'solid', borderColor: '#b7e2e7', borderRadius: '30px', width: '80px', height: '20px', textAlign: 'center', position: 'relative', bottom: '15px' }}>
+          {index + 1}.
         </h3>
         <label>NAME</label>
         <input type="text" className="inputclass" value={task.name} readOnly style={{ borderRadius: '30px', borderColor: '#b7e2e7' }} />
         <label>PH. NO.</label>
-        <input type="text" className="inputclass" value={task.phoneNumber} readOnly style={{ borderRadius: '30px', borderColor: '#b7e2e7' }} />
+        <input type="text" className="inputclass" value={task.mobileNumber} readOnly style={{ borderRadius: '30px', borderColor: '#b7e2e7' }} />
         <label>
           <input
             type="checkbox"
             checked={task.isChecked}
-            onChange={() => handleCheckboxChange(task.id)}
+            onChange={() => handleCheckboxChange(task._id)}
           />
           &nbsp; Enter Time
         </label>
@@ -96,7 +109,7 @@ const DutyTask = () => {
               type="text"
               className="inputclass"
               value={task.startTime}
-              onChange={(e) => handleTimeChange(task.id, 'startTime', e.target.value)}
+              onChange={(e) => handleTimeChange(task._id, 'startTime', e.target.value)}
               style={{ borderRadius: '30px', borderColor: '#b7e2e7' }}
               placeholder="HH:MM"
             />
@@ -105,7 +118,7 @@ const DutyTask = () => {
               type="text"
               className="inputclass"
               value={task.endTime}
-              onChange={(e) => handleTimeChange(task.id, 'endTime', e.target.value)}
+              onChange={(e) => handleTimeChange(task._id, 'endTime', e.target.value)}
               style={{ borderRadius: '30px', borderColor: '#b7e2e7' }}
               placeholder="HH:MM"
             />
@@ -120,20 +133,25 @@ const DutyTask = () => {
       <Header />
       <div className='selectstations'>
         <h2>SELECT POLICE STATION</h2>
-        <form onSubmit={handleStationSubmit}>
+        <div className="select-container">
           <select className="select" value={selectedStation} onChange={handleStationChange}>
-            <option value="">Select Area</option>
+            <option value="">Area</option>
             {areaNames.map(area => (
               <option key={area} value={area}>{area}</option>
             ))}
           </select>
-          <button type="submit" className="select">SUBMIT</button>
-        </form>
+          <input className='dateinput'
+            type="text"
+            value={selectedDate}
+            readOnly
+            style={{ marginLeft: '10px', padding: '10px', fontSize: '16px', borderRadius: '5px', borderColor: '#ccc', backgroundColor: '#e9e9e9' }}
+          />
+          <button type="submit" className="select-button" onClick={handleSubmit}>SUBMIT</button>
+        </div>
       </div>
       <div>
         {renderTasks()}
       </div>
-    
     </>
   );
 };
