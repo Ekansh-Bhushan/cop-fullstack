@@ -127,7 +127,7 @@ const StaffManagement = () => {
         params: { area: selectedArea }
       });
       setUsers(response.data);
-      toast.success('Users fetched successfully!');
+      // toast.success('Users fetched successfully!');
       
       // Navigate to new URL with selected area as query parameter
       navigate(`/StaffManagement?area=${encodeURIComponent(selectedArea)}`);
@@ -147,58 +147,10 @@ const StaffManagement = () => {
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
       {/* <div className="staff">
-        
-        <div className="select_station">
-          <h3>SELECT POLICE STATION</h3>
-          <form onSubmit={handleSubmit}>
-            <select
-              className="selectoption"
-              style={{
-                backgroundColor: '#EBEBEB',
-                width: '120px',
-                border: 'none',
-                
-              }}
-              value={selectedArea}
-              onChange={handleAreaChange}
-            >
-              <option value="" disabled>Select Area</option>
-              {areaNames.map((area, index) => (
-                <option key={index} value={area}>{area}</option>
-              ))}
-            </select>
-            <input
-              type="submit"
-              value="SELECT"
-              className="select"
-              style={{
-                backgroundColor: '#009ADC',
-                color: '#fff',
-                textAlign: 'center',
-                margin : '20px',
-                width: '70px',
-                border: 'none',
-                fontWeight : 'bold' ,
-              }}
-            />
-          </form>
-        </div>
-        
         <div className="tasks">
           <h2>ADD / REMOVE STAFF</h2>
           <div className="details">
-            <div className='name'>
-
-              <label>NAME</label>
-              <input
-                type="text"
-                className="input_class"
-                placeholder="Enter the Name"
-                value={name}
-                onChange={handleNameChange}
-                style={{ borderRadius: '30px', borderColor: '#b7e2e7'  }}
-                />
-            </div>
+            
             <div className='detail'>
 
               <label>PH. NO.</label>
@@ -283,18 +235,26 @@ const StaffManagement = () => {
            <form>
            <div class="form-group">
                 <label for="name">NAME</label>
-                <input type='text' id='name' placeholder='enter your name' className='input'/>
+                <input type='text' id='name' placeholder='enter your name' className='input' value={name}
+                onChange={handleNameChange}/>
             </div>
             <div class="form-group">
                 <label for="phno">PH NO.</label>
 
-                <input type='text' id='phno' placeholder='enter ph.no.' className='input'/>
+                <input type='text' id='phno' placeholder='enter ph.no.' className='input' value={phoneNumber}
+                onChange={handlePhoneNumberChange}/>
+                
             </div>
+            {!isValidPhoneNumber && (
+              <p style={{ color: 'red', fontSize: '12px', marginTop: '5px' }}>
+                Please enter a valid 10-digit phone number.
+              </p>
+            )}
            </form>
           </div>
           <div className='buttons'>
-<button className='buttonADD'>ADD</button>
-<button className='buttonREMOVE'>REMOVE</button>
+<button className='buttonADD' onClick={handleAddStaff} disabled={name.trim() === '' || phoneNumber.trim() === '' || !selectedArea}>ADD</button>
+<button className='buttonREMOVE' onClick={handleRemoveStaff} disabled={name.trim() === '' || phoneNumber.trim() === '' || !selectedArea}>REMOVE</button>
           </div>
           </div>
           
