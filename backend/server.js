@@ -146,6 +146,18 @@ app.get("/api/total-users", async (req, res) => {
   }
 });
 
+app.get("/api/activeUser", async (req, res) => {
+  try {
+    const activeUsers = await User.find({ active: true }, 'name mobileNumber areas'); // Fetch only name, phone number, and areas of active users
+
+    res.json(activeUsers);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
 // GET route to fetch users by area
 app.get("/api/users", async (req, res) => {
   const { area } = req.query;
