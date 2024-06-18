@@ -90,7 +90,7 @@
   gap: 15px;
   /* margin: 20px; */
 }
-.button {
+.buttonADD,.buttonREMOVE {
   background-color: #009adc;
 
   height: 50px;
@@ -100,7 +100,15 @@
   color: white;
   margin: 20px 10px 20px 10px;
   font-weight: bold;
-  
+  background-color: "#009ADC";
+  color: "#fff";
+  text-align
+  : "center";
+  margin: "20px";
+  width: "150px";
+  border: "none";
+  font-Weight: "bold";
+  width: 200px;
 }
 @media screen and (max: 500px){
   .select_station {
@@ -189,9 +197,6 @@
 
 
 @media (min-width: 992px) {
-  .select_station {
-     
-  }
   .tasks {
     
  
@@ -205,8 +210,7 @@
 }
 
 @media (min: 1190px) {
-  .select_station {  
-  }
+  
   .input_class {
    
     height: 25px;
@@ -223,17 +227,32 @@
 
 .staffmember{
   background-color: white;
-  height: 164px;
+  height: 220px;
   position: relative;
+  opacity: 0.8;
+
   margin-left: -366px;
   margin-right: -357px;
   border: solid;
   border-radius: 17px;
 }
-.input{
-width: 200px;
+.input {
+  width: 200px;
+  border-color: #b7e2e7;
+  border-radius: 9px;
 }
-.nameinput{
+
+.nameinput {
   display: flex;
-  border: solid;
+  justify-content: space-between;
+  padding: 10px;
+  width: 86%;
+  
+}
+
+.nameinput form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 }

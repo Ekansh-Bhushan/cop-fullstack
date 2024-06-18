@@ -281,13 +281,23 @@ const StaffManagement = () => {
             </h2>
             <div className='nameinput'>
            <form>
-            NAME
-            <input type='text' placeholder='enter your name' className='input'></input>
-            PH NO.
-            <input type='text' placeholder='enter ph.no.' className='input'></input>
+           <div class="form-group">
+                <label for="name">NAME</label>
+                <input type='text' id='name' placeholder='enter your name' className='input'/>
+            </div>
+            <div class="form-group">
+                <label for="phno">PH NO.</label>
+
+                <input type='text' id='phno' placeholder='enter ph.no.' className='input'/>
+            </div>
            </form>
           </div>
+          <div className='buttons'>
+<button className='buttonADD'>ADD</button>
+<button className='buttonREMOVE'>REMOVE</button>
           </div>
+          </div>
+          
           
     </>
   );
