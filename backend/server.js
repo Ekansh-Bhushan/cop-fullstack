@@ -359,6 +359,8 @@ app.get('/api/usersForTask', async (req, res) => {
 app.post('/api/assignDuty', async (req, res) => {
   const { name, phoneNumber, date, isChecked, startTime, endTime } = req.body;
 
+  console.log('Received request:', req.body);
+
   if (!name || !phoneNumber || !date || typeof isChecked !== 'boolean') {
     return res.status(400).json({ msg: "Name, phone number, date, and isChecked are required" });
   }
@@ -397,7 +399,7 @@ app.post('/api/assignDuty', async (req, res) => {
       existingTask.startTime = isChecked ? startTime : null;
       existingTask.endTime = isChecked ? endTime : null;
       existingTask.isChecked = isChecked;
-      existingTask.station = user.areas[0]; // Example: Assigning the first area of the user to station
+      existingTask.station = user.areas[0];
       await existingTask.save();
     } else {
       console.log("No existing task found, creating new task");
@@ -410,7 +412,7 @@ app.post('/api/assignDuty', async (req, res) => {
         startTime: isChecked ? startTime : null,
         endTime: isChecked ? endTime : null,
         isChecked,
-        station: user.areas[0] // Example: Assigning the first area of the user to station
+        station: user.areas[0]
       });
 
       // Save the new task
@@ -420,12 +422,9 @@ app.post('/api/assignDuty', async (req, res) => {
     res.json({ msg: "Duty assigned successfully", user });
   } catch (err) {
     console.error("Error in assignDuty:", err.message);
-    res.status(500).send("Server Error");
+    res.status(500).json({ msg: "Server Error", error: err.message });
   }
 });
-
-
-
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
