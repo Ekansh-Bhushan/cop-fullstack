@@ -7,7 +7,7 @@
 }
 .selectstation {
   border: solid;
-  width: 60%; /* Reduce the width */
+/* Reduce the */
   margin-left: 0; /* Attach to the left wall */
   background: #fff;
   display: flex;
@@ -18,7 +18,7 @@
   padding: 1rem; /* Optional: Add some padding for spacing within the element */
 }
 .select_station{
-  width: 1044px;
+
   margin-left: 140px;
   position: relative;
   left: -306px;
@@ -41,7 +41,7 @@
 
 }
 .selectoption {
-  width: 10px;
+
   height: 35px;
   border: solid;
   /* background-color: #fff; */
@@ -54,7 +54,7 @@
 }
 .tasks {
   border: solid;
-  width: 50%;
+
   position: relative;
   background: #fff;
   opacity: 0.8;
@@ -72,30 +72,27 @@
 .name{
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 45% ;
+
   gap: 10px ;
 }
 .detail{
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 50% ;
   gap: 10px ;
 }
 .input_class {
-  width : 70% ;
   height: 25px;
   padding : 4px ;
   margin-left: 10px;
 }
 .buttons {
-  width: 50%;
   display: flex;
   gap: 15px;
   /* margin: 20px; */
 }
 .button {
   background-color: #009adc;
-  width: 180px;
+
   height: 50px;
   border: none;
   border-radius: 10px;
@@ -105,14 +102,13 @@
   font-weight: bold;
   
 }
-@media screen and (max-width: 500px){
+@media screen and (max: 500px){
   .select_station {
-    width: 95%;
     height : 90px
        
   }
   .selectoption {
-    /* width: 100px; */
+    /*: 100px; */
     height: 35px;
     border: solid;
     /* background-color: #fff; */
@@ -129,22 +125,18 @@
     gap: 10px;
     
   } 
-  .tasks {
-    
-    width: 90%;
+  .tasks{
     
     padding : 10px ;
   }
-  .input_class {
-    width : 60% ;
+  .input_class{
     height: 20px;
     
   }
 }
 
-@media (min-width: 500px) {
-  .select_station {
-    width: 90%;
+@media (min: 500px) {
+  .select_station{
     margin-left: auto;
     margin-right: auto;
        
@@ -156,20 +148,20 @@
   
   .tasks {
     
-    width: 90%;
+  
     
     padding : 10px ;
   }
   .input_class {
-    width : 55% ;
+   
     height: 20px;
     
   }
 }
 
-@media (min-width: 600px) {
+@media (min: 600px) {
   .select_station {
-    width: 95%;
+  
        
   }
   h3 {
@@ -178,67 +170,70 @@
    
   .tasks {
     
-    width: 95%;
+
     
     padding : 10px ;
   }
   .input_class {
-    width : 62% ;
+  
     height: 20px;
     
   }
 }
 
-@media (min-width: 768px) {
-  .select_station {
-    width: 90%;
-       
-  }
-  .tasks {
-    
-    width: 90%;
-    
-    /* padding : 10px ; */
-  }
-  .input_class {
-    width : 62% ;
-    height: 20px;
+@media (min: 768px) {
+  
+  
     
   }
-}
+
 
 @media (min-width: 992px) {
   .select_station {
-    width: 90%;   
+     
   }
   .tasks {
     
-    width: 90%;
-    
+ 
     padding : 10px ;
   }
   .input_class {
-    width : 65% ;
+ 
     height: 25px;
     
   }
 }
 
-@media (min-width: 1190px) {
-  .select_station {
-    width: 95%;   
+@media (min: 1190px) {
+  .select_station {  
   }
   .input_class {
-    width : 65% ;
+   
     height: 25px;
     padding : 4px ;
     
   }
   .tasks {
     
-    width: 95%;
+
     
     padding : 10px ;
   }
 }
 
+.staffmember{
+  background-color: white;
+  height: 164px;
+  position: relative;
+  margin-left: -366px;
+  margin-right: -357px;
+  border: solid;
+  border-radius: 17px;
+}
+.input{
+width: 200px;
+}
+.nameinput{
+  display: flex;
+  border: solid;
+}

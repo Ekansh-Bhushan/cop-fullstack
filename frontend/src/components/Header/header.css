@@ -5,14 +5,13 @@
     gap: 20px; /* Adjust the gap as needed */
     font-family: 'Montserrat', sans-serif;
     font-size: small;
-    justify-content: space-between;
-    padding: 10px 20px;
+
+   
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
     box-sizing: border-box; 
-    padding: 0 5% !important;
     backdrop-filter: blur(2px);
 
 }
@@ -55,15 +54,8 @@
     background-color: #e9ecef;
   }
   
-.nav {
-    display: flex;
-    align-items: center;
-  }
   
-  .h1 {
-    margin: 0 15px;
-    position: relative;
-  }
+  
   
   .h1.selected::after {
     content: '';
@@ -76,10 +68,7 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .nav {
-    display: flex;
-    align-items: center;
-  }
+ 
   
   .h1 {
     margin: 0 15px;
@@ -106,11 +95,7 @@
     font-weight: bold;
 }
 
-.nav img {
-    width: 80px;
-    height: 64px;
-    margin-top: 11px;
-}
+
 
 @media screen and (max-width: 768px) {
     .nav {
@@ -119,7 +104,7 @@
         justify-content: center; /* Center items horizontally */
         gap: 10px; /* Add spacing between items */
         padding: 10px; /* Adjust padding for spacing */
-        width: 100%;
+        width: 20%;
        
     }
 
@@ -129,10 +114,7 @@
         font-weight: bold;
     }
 
-    .nav img {
-        width: 50px; /* Adjust image size for smaller screens */
-        margin-bottom: 5px; /* Add spacing between image and text */
-    }
+    
 }
 
 .leftbox{
@@ -164,10 +146,7 @@ Top:
 Left:
 1000px;
 }
-.images{
-    width: 320px;
-    height: 255px;
-}
+
 .profile{
 
     position: absolute;
@@ -191,19 +170,8 @@ Left:
     top:135px;
     padding-left: 20px; 
 }
-.userclass{
-    position: relative;
-    top: 100px;
-}
-.nav {
-  display: flex;
-  align-items: center;
-}
 
-.h1 {
-  margin: 0 15px;
-  position: relative;
-}
+
 
 .h1.selected::after {
   content: '';
