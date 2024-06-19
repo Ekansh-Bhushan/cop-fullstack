@@ -60,7 +60,7 @@ function Crime() {
     };
 
     try {
-      const response = await fetch("http://localhost:4000/api/crimes", {
+      const response = await fetch("http://195.35.56.134:4000/api/crimes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

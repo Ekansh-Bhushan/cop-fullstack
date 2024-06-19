@@ -38,7 +38,7 @@ function Dashboard(props) {
     setUserName(storedUserName);
 
     // Fetch total number of users from the backend
-    fetch("http://localhost:4000/api/total-users")
+    fetch("http://195.35.56.134:4000/api/total-users")
       .then((response) => response.json())
       .then((data) => {
         setTotalUsers(data.total);

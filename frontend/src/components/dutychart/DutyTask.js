@@ -43,7 +43,7 @@ const DutyTask = () => {
 
     if (station) {
       try {
-        const response = await axios.get(`http://localhost:4000/api/usersForTask?area=${station}`);
+        const response = await axios.get(`http://195.35.56.134:4000/api/usersForTask?area=${station}`);
         const tasksData = response.data.map(task => ({
           ...task,
           startTime: task.startTime || '',
@@ -97,7 +97,7 @@ const DutyTask = () => {
 
           console.log('Sending request to backend:', taskData);
 
-          const response = await axios.post('http://localhost:4000/api/assignDuty', taskData);
+          const response = await axios.post('http://195.35.56.134:4000/api/assignDuty', taskData);
 
           console.log('Response from server:', response.data);
 

@@ -83,7 +83,7 @@ const StaffManagement = () => {
         // Debugging: Log the payload being sent to the server
         console.log("Adding staff:", userPayload);
 
-        await axios.post("http://localhost:4000/api/users", userPayload);
+        await axios.post("http://195.35.56.134:4000/api/users", userPayload);
 
         toast.success("STAFF MEMBER HAS BEEN ADDED SUCCESSFULLY!");
         setName("");
@@ -109,7 +109,7 @@ const StaffManagement = () => {
     } else {
       try {
         console.log("Removing staff:", { name, phoneNumber, selectedArea });
-        await axios.delete("http://localhost:4000/api/users", {
+        await axios.delete("http://195.35.56.134:4000/api/users", {
           data: { name, mobileNumber: phoneNumber, areas: [selectedArea] },
         });
         toast.success("STAFF MEMBER HAS BEEN REMOVED SUCCESSFULLY!");
@@ -140,7 +140,7 @@ const StaffManagement = () => {
 
     try {
       console.log("Fetching users for area:", selectedArea);
-      const response = await axios.get("http://localhost:4000/api/users", {
+      const response = await axios.get("http://195.35.56.134:4000/api/users", {
         params: { area: selectedArea },
       });
       setUsers(response.data);
