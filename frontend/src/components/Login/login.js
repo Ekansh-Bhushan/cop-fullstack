@@ -6,6 +6,7 @@ import logo from '../../assets/Logo.png';
 import policeLogo from '../../assets/policeLogo.png';
 import './login.css';
 import axios from 'axios';
+import { API_URL } from '../config/config';
 
 function Login() {
   const [passwordInputType, toggleIcon] = usePasswordToggle();
@@ -35,7 +36,7 @@ function Login() {
     e.preventDefault();
     console.log('Submitting with:', mobileNumber, password);
     try {
-      const response = await axios.post('http://195.35.56.134:5000/api/login', {
+      const response = await axios.post(`${API_URL}/api/login`, {
         mobileNumber,
         password
       });

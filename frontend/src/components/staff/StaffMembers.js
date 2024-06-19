@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "../Header/header";
 import "./dutytask.css";
 import "./staffMembers.css";
+import { API_URL } from '../config/config';
 const StaffManagement = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [name, setName] = useState("");
@@ -93,7 +94,7 @@ const StaffManagement = () => {
     } else {
       try {
         console.log("Removing staff:", { name, phoneNumber, selectedArea });
-        await axios.delete("http://195.35.56.134:5000/api/users", {
+        await axios.delete(`${API_URL}/api/users`, {
           data: { name, mobileNumber: phoneNumber, areas: [selectedArea] },
         });
         toast.success("STAFF MEMBER HAS BEEN REMOVED SUCCESSFULLY!");
@@ -124,7 +125,7 @@ const StaffManagement = () => {
 
     try {
       console.log("Fetching users for area:", selectedArea);
-      const response = await axios.get("http://195.35.56.134:5000/api/users", {
+      const response = await axios.get(`${API_URL}/api/users`, {
         params: { area: selectedArea },
       });
       setUsers(response.data);

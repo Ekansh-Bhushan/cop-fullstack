@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./crime.css";
 import SearchCrime from "./SearchCrime";
 import Header from "../Header/header";
+import { API_URL } from '../config/config';
 
 function Crime() {
   const [lat, setLatitude] = useState("");
@@ -60,7 +61,7 @@ function Crime() {
     };
 
     try {
-      const response = await fetch("http://195.35.56.134:5000/api/crimes", {
+      const response = await fetch(`${API_URL}/api/crimes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
