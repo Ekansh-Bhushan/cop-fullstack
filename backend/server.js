@@ -15,14 +15,19 @@ const app = express();
 const cors = require("cors");
 
 const crimeDataRoutes = require("./routes/crimeDataRoutes");
-// Use CORS middleware
-app.use(cors());
+// Use CORS middlewar
+// app.use(cors({
+//     origin: 'https://delhicop.netlify.app/',
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//     optionsSuccessStatus: 204
+// }));
 
 // Connect to the database
 
 connectDB();
 
-// Middleware
+// Middleware]
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/crime-data", crimeDataRoutes);

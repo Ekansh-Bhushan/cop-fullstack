@@ -11,7 +11,7 @@ const SearchCrime = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/crime-data/filter/${area}/${date}`
+        `http://195.35.56.134:4000/crime-data/filter/${area}/${date}`
       );
       const data = await response.json();
       setCrimes(data);
