@@ -28,7 +28,25 @@ const crimeDataRoutes = require("./routes/crimeDataRoutes");
 connectDB();
 
 // Middleware]
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://dpcop.delhicop.in/',
+  'http://www.dpcop.delhicop.in/',
+  'http://195.35.56.134:5000',
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
+app.use('*', cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/crime-data", crimeDataRoutes);
 // Schedule a cron job to run every minute
@@ -430,7 +448,7 @@ app.post('/api/assignDuty', async (req, res) => {
     res.status(500).json({ msg: "Server Error", error: err.message });
   }
 });
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

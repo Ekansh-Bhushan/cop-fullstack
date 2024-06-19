@@ -33,7 +33,7 @@ const BarChart = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://195.35.56.134:4000/crime-data/by-year/${selectedYear}`
+          `http://195.35.56.134:5000/crime-data/by-year/${selectedYear}`
         );
         const data = await response.json();
         setCrimeData(data);

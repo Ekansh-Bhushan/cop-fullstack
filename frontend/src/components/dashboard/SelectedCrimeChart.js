@@ -38,7 +38,7 @@ const SelectedCrimeBarChart = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://195.35.56.134:4000/crime-data/by/${selectedArea}/${selectedCrime}`
+          `http://195.35.56.134:5000/crime-data/by/${selectedArea}/${selectedCrime}`
         );
         const data = await response.json();
         setCrimeData(data);
