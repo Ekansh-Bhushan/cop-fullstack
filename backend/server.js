@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config(); // Load environment variables first
 const cron = require('node-cron');
 const express = require("express");
-
+const path = require('path');
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs"); // Import bcryptjs
 const jwt = require("jsonwebtoken");
@@ -29,11 +29,16 @@ connectDB();
 
 // Middleware]
 const allowedOrigins = [
-  'http://localhost:3000',
+  'http://localhost:5000',
   'http://delhicop.in/',
   'http://www.delhicop.in/',
-  'http://195.35.56.134:5000',
+
 ];
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+});
 
 const corsOptions = {
   origin: (origin, callback) => {
