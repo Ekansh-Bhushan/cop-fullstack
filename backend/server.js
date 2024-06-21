@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config(); // Load environment variables first
 const cron = require("node-cron");
 const express = require("express");
-
+const path = require("path");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs"); // Import bcryptjs
 const jwt = require("jsonwebtoken");
@@ -15,17 +15,9 @@ const app = express();
 const cors = require("cors");
 
 const crimeDataRoutes = require("./routes/crimeDataRoutes");
-// Use CORS middlewar
-// app.use(cors({
-//     origin: 'https://delhicop.netlify.app/',
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true,
-//     optionsSuccessStatus: 204
-// }));
-
-// Connect to the database
 
 connectDB();
+app.use(cors()); // Open CORS for all origins
 
 // Middleware]
 const allowedOrigins = [

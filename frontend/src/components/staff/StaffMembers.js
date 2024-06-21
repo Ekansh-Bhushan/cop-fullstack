@@ -26,15 +26,15 @@ const StaffManagement = () => {
     "Bhalswa Dairy",
   ];
 
-  useEffect(() => {
-    // Check for the authentication token
-    const token = localStorage.getItem("token");
-    if (!token) {
-      toast.error("Please login first!");
-      navigate("/"); // Redirect to login if token is not present
-      return;
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   // Check for the authentication token
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     toast.error("Please login first!");
+  //     navigate("/"); // Redirect to login if token is not present
+  //     return;
+  //   }
+  // }, [navigate]);
 
   const handleNameChange = (e) => {
     const value = e.target.value;
