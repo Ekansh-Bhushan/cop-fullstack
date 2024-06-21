@@ -33,7 +33,8 @@ const allowedOrigins = [
   "http://dpcop.delhicop.in/",
   "http://www.dpcop.delhicop.in/",
   "http://195.35.56.134:5000",
-  "https://dpfrontend.onrender.com",
+  "https://delhicop.in",
+  "https://www.delhicop.in",
 ];
 
 const corsOptions = {
