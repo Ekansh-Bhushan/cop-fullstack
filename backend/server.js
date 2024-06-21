@@ -15,43 +15,35 @@ const app = express();
 const cors = require("cors");
 
 const crimeDataRoutes = require("./routes/crimeDataRoutes");
-// Use CORS middlewar
-// app.use(cors({
-//     origin: 'https://delhicop.netlify.app/',
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true,
-//     optionsSuccessStatus: 204
-// }));
-
-// Connect to the database
 
 connectDB();
+app.use(cors()); // Open CORS for all origins
 
 // Middleware]
-const allowedOrigins = [
-  'http://localhost:5000',
-  'http://delhicop.in/',
-  'http://www.delhicop.in/',
+// const allowedOrigins = [
+//   'http://localhost:5000',
+//   'http://delhicop.in/',
+//   'http://www.delhicop.in/',
 
-];
+// ];
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (allowedOrigins.includes(origin) || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true,
+// };
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-});
+// app.use('*', cors(corsOptions));
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-};
+// app.use(express.static(path.join(__dirname, '../frontend/build')));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+// });
 
-app.use('*', cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/crime-data", crimeDataRoutes);
 // Schedule a cron job to run every minute
