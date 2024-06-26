@@ -26,7 +26,11 @@ const allowedOrigins = [
   "http://www.dpcop.delhicop.in/",
   "http://195.35.56.134:5000",
   "https://delhicop.in",
+  "http://93.127.172.217:3000/",
+  "http://93.127.172.217:5000/",
   "https://www.delhicop.in",
+  "http://www.delhicop.in",
+  "http://delhicop.in",
 ];
 
 const corsOptions = {
