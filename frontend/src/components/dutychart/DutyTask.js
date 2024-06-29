@@ -33,8 +33,14 @@ const DutyTask = () => {
   }, [navigate]);
 
   const areaNames = [
-    "Bawana", "Shahbad Dairy", "Narela", "Narela Industrial Area",
-    "Alipur", "Samaypur Badli", "Swaroop Nagar", "Bhalswa Dairy"
+    "Alipur",
+    "Bawana",
+    "Bhalswa Dairy",
+    "Narela",
+    "Narela Industrial Area",
+    "Samaypur Badli",
+    "Shahbad Dairy",
+    "Swaroop Nagar",
   ];
 
   const handleStationChange = async (e) => {

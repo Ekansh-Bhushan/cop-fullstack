@@ -93,14 +93,14 @@ function Crime() {
   };
 
   const areaNames = [
-    "BAWANA",
-    "SHAHBAD DAIRY",
-    "NARELA",
-    "NARELA INDUSTRIAL AREA",
-    "ALIPUR",
-    "SAMAYPUR BADLI",
-    "SWAROOP NAGAR",
-    "BHALSWA DAIRY",
+    "Alipur",
+    "Bawana",
+    "Bhalswa Dairy",
+    "Narela",
+    "Narela Industrial Area",
+    "Samaypur Badli",
+    "Shahbad Dairy",
+    "Swaroop Nagar",
   ];
 
   const crimeTypes = [

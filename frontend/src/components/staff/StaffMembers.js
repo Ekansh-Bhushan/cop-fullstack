@@ -16,14 +16,14 @@ const StaffManagement = () => {
   const [users, setUsers] = useState([]);
 
   const areaNames = [
+    "Alipur",
     "Bawana",
-    "Shahbad Dairy",
+    "Bhalswa Dairy",
     "Narela",
     "Narela Industrial Area",
-    "Alipur",
     "Samaypur Badli",
+    "Shahbad Dairy",
     "Swaroop Nagar",
-    "Bhalswa Dairy",
   ];
 
   // useEffect(() => {
