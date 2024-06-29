@@ -43,12 +43,18 @@ function Crime() {
       setYear(year);
       setMonth(monthName);
     } else {
-      alert("Please select a date from today or earlier.");
+      toast.error("Please select a date from today or earlier.");
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Check latitude and longitude range
+    if (lat < -90 || lat > 90 || long < -90 || long > 90) {
+      toast.error("Latitude and Longitude must be between -90 and 90.");
+      return;
+    }
 
     const crimeDetails = {
       lat,
@@ -70,7 +76,7 @@ function Crime() {
       });
 
       if (response.ok) {
-        alert("Crime details added successfully");
+        toast.success("Crime details added successfully");
         setLatitude("");
         setLongitude("");
         setTypeOfCrime("");
@@ -78,13 +84,14 @@ function Crime() {
         setDate("");
         setMonth("");
       } else {
-        alert("Error adding crime details");
+        toast.error("Error adding crime details");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error adding crime details");
+      toast.error("Error adding crime details");
     }
   };
+
   const areaNames = [
     "BAWANA",
     "SHAHBAD DAIRY",
@@ -95,6 +102,7 @@ function Crime() {
     "SWAROOP NAGAR",
     "BHALSWA DAIRY",
   ];
+
   const crimeTypes = [
     "Burglary",
     "House Theft",
@@ -102,14 +110,16 @@ function Crime() {
     "Snatching",
     "Robbery",
   ];
+
   const handleAreaChange = (e) => {
     const value = e.target.value;
     setBeat(value);
   };
+
   return (
     <>
       <Header />
-      <ToastContainer />
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar/>
       <div className="crime-add-filter-container">
         <form className="crime-form" onSubmit={handleSubmit}>
           <h2>Enter Crime Details</h2>
