@@ -63,7 +63,7 @@ const StaffManagement = () => {
       toast.error("Please select an area.");
     } else {
       try {
-        console.log("Adding staff:", { name, phoneNumber, selectedArea });
+        // console.log("Adding staff:", { name, phoneNumber, selectedArea });
         await axios.post("/api/users", {
           name,
           mobileNumber: phoneNumber,
@@ -93,7 +93,7 @@ const StaffManagement = () => {
       toast.error("Please select an area.");
     } else {
       try {
-        console.log("Removing staff:", { name, phoneNumber, selectedArea });
+        // console.log("Removing staff:", { name, phoneNumber, selectedArea });
         await axios.delete(`${API_URL}/api/users`, {
           data: { name, mobileNumber: phoneNumber, areas: [selectedArea] },
         });
@@ -124,7 +124,7 @@ const StaffManagement = () => {
     }
 
     try {
-      console.log("Fetching users for area:", selectedArea);
+      // console.log("Fetching users for area:", selectedArea);
       const response = await axios.get(`${API_URL}/api/users`, {
         params: { area: selectedArea },
       });

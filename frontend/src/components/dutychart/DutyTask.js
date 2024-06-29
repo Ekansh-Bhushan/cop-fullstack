@@ -101,11 +101,11 @@ const DutyTask = () => {
             endTime: task.endTime
           };
 
-          console.log('Sending request to backend:', taskData);
+          // console.log('Sending request to backend:', taskData);
 
           const response = await axios.post(`${API_URL}/api/assignDuty`, taskData);
 
-          console.log('Response from server:', response.data);
+          // console.log('Response from server:', response.data);
 
           // Show success toast
           toast.success('Duty assigned successfully!', {
