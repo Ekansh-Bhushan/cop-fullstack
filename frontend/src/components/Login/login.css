@@ -45,7 +45,7 @@ body {
   margin-bottom: 10px;
   padding: -10px;
   top: 100px;
-  left: 140px;
+  left: 240px;
   position: relative;
 }
 
@@ -233,21 +233,22 @@ body {
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 900px) {
   .police-logo {
-    height: 60px;
+    height: 82px;
   }
 
   .login-container {
     flex-direction: column;
     padding: 8px;
+    width: 400px;
   }
 
   .logo {
     width: 120px;
     height: 120px;
     top: 50px;
-    left: 60px;
+    left: 240px;
   }
 
   .login-box {
@@ -423,7 +424,7 @@ body {
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 450px) {
     body {
         font-family: 'Arial', sans-serif;
         background: url(../../assets/MAP.png) no-repeat center center fixed;
@@ -475,4 +476,4 @@ body {
     padding: 6px;
   }
 
-} 
+}
