@@ -31,6 +31,10 @@ const allowedOrigins = [
   "https://www.delhicop.in",
   "http://www.delhicop.in",
   "http://delhicop.in",
+  "http://inrizz.com/",
+  "http://www.inrizz.com/",
+  "https://inrizz.com/",
+  "https://www.inrizz.com/"
 ];
 
 const corsOptions = {
