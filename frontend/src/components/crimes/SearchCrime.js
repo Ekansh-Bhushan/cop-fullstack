@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./searchCrime.css";
+import { API_URL } from '../config/config';
 
 const SearchCrime = () => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
@@ -11,7 +12,7 @@ const SearchCrime = () => {
 
     try {
       const response = await fetch(
-        `http://195.35.56.134:4000/crime-data/filter/${area}/${date}`
+        `${API_URL}/crime-data/filter/${area}/${date}`
       );
       const data = await response.json();
       setCrimes(data);

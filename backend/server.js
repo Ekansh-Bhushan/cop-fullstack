@@ -1,8 +1,8 @@
 const dotenv = require("dotenv");
 dotenv.config(); // Load environment variables first
-const cron = require('node-cron');
+const cron = require("node-cron");
 const express = require("express");
-
+const path = require("path");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs"); // Import bcryptjs
 const jwt = require("jsonwebtoken");
@@ -10,29 +10,46 @@ const connectDB = require("./config/db");
 const User = require("./models/User");
 const StaffMember = require("./models/StaffMember");
 const Crime = require("./models/Crime");
-const Task = require("./models/duty")
+const Task = require("./models/duty");
 const app = express();
 const cors = require("cors");
 
 const crimeDataRoutes = require("./routes/crimeDataRoutes");
-// Use CORS middlewar
-// app.use(cors({
-//     origin: 'https://delhicop.netlify.app/',
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true,
-//     optionsSuccessStatus: 204
-// }));
-
-// Connect to the database
 
 connectDB();
+app.use(cors()); // Open CORS for all origins
 
 // Middleware]
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://dpcop.delhicop.in/",
+  "http://www.dpcop.delhicop.in/",
+  "http://195.35.56.134:5000",
+  "https://delhicop.in",
+  "http://93.127.172.217:3000/",
+  "http://93.127.172.217:5000/",
+  "https://www.delhicop.in",
+  "http://www.delhicop.in",
+  "http://delhicop.in",
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+app.use("*", cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/crime-data", crimeDataRoutes);
 // Schedule a cron job to run every minute
-cron.schedule('* * * * *', async () => { // Runs every minute
+cron.schedule("* * * * *", async () => {
+  // Runs every minute
   try {
     const currentTime = new Date().getTime();
     const tasks = await Task.find({ isChecked: true });
@@ -41,7 +58,9 @@ cron.schedule('* * * * *', async () => { // Runs every minute
       const user = await User.findOne({ mobileNumber: task.phoneNumber });
 
       if (user) {
-        const taskStartTime = new Date(`${task.date}T${task.startTime}`).getTime();
+        const taskStartTime = new Date(
+          `${task.date}T${task.startTime}`
+        ).getTime();
         const taskEndTime = new Date(`${task.date}T${task.endTime}`).getTime();
 
         if (currentTime >= taskStartTime && currentTime <= taskEndTime) {
@@ -54,7 +73,7 @@ cron.schedule('* * * * *', async () => { // Runs every minute
       }
     }
   } catch (error) {
-    console.error('Error updating user active status:', error.message);
+    console.error("Error updating user active status:", error.message);
   }
 });
 app.get("/api/user-status/:phoneNumber", async (req, res) => {
@@ -99,7 +118,6 @@ app.post("/api/login", async (req, res) => {
         .status(400)
         .json({ message: "Invalid mobile number or password" });
     }
-
 
     // Generate JWT token
     // Modify backend /api/login endpoint response to include user information
@@ -153,7 +171,10 @@ app.get("/api/total-users", async (req, res) => {
 
 app.get("/api/activeUser", async (req, res) => {
   try {
-    const activeUsers = await User.find({ active: true }, 'name mobileNumber areas'); // Fetch only name, phone number, and areas of active users
+    const activeUsers = await User.find(
+      { active: true },
+      "name mobileNumber areas"
+    ); // Fetch only name, phone number, and areas of active users
 
     res.json(activeUsers);
   } catch (err) {
@@ -161,7 +182,6 @@ app.get("/api/activeUser", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
 
 // GET route to fetch users by area
 app.get("/api/users", async (req, res) => {
@@ -237,7 +257,7 @@ app.post("/api/users", async (req, res) => {
 
 // POST the crime to the dataset
 app.post("/api/crimes", async (req, res) => {
-  const { lat, long, crime,beat, date, month,year } = req.body;
+  const { lat, long, crime, beat, date, month, year } = req.body;
 
   try {
     const newCrime = new Crime({
@@ -247,7 +267,7 @@ app.post("/api/crimes", async (req, res) => {
       beat,
       date,
       month,
-      year
+      year,
     });
 
     await newCrime.save();
@@ -316,21 +336,21 @@ app.delete("/api/users", async (req, res) => {
   }
 });
 
-// Add duty to users 
+// Add duty to users
 // app.get('/api/tasks', async (req, res) => {
 //     const { station } = req.query;
-  
+
 //     if (!station) {
 //       return res.status(400).json({ msg: 'Station is required' });
 //     }
-  
+
 //     try {
 //       const tasks = await Task.find({ station });
-  
+
 //       if (tasks.length === 0) {
 //         return res.status(404).json({ msg: `No tasks found for station '${station}'` });
 //       }
-  
+
 //       res.json(tasks);
 //     } catch (err) {
 //       console.error(err.message);
@@ -340,7 +360,7 @@ app.delete("/api/users", async (req, res) => {
 
 // Dtuy Time
 
-app.get('/api/usersForTask', async (req, res) => {
+app.get("/api/usersForTask", async (req, res) => {
   const { area } = req.query;
   console.log("Fetching users for area:", area);
   if (!area) {
@@ -360,18 +380,22 @@ app.get('/api/usersForTask', async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-   
-app.post('/api/assignDuty', async (req, res) => {
+
+app.post("/api/assignDuty", async (req, res) => {
   const { name, phoneNumber, date, isChecked, startTime, endTime } = req.body;
 
-  console.log('Received request:', req.body);
+  console.log("Received request:", req.body);
 
-  if (!name || !phoneNumber || !date || typeof isChecked !== 'boolean') {
-    return res.status(400).json({ msg: "Name, phone number, date, and isChecked are required" });
+  if (!name || !phoneNumber || !date || typeof isChecked !== "boolean") {
+    return res
+      .status(400)
+      .json({ msg: "Name, phone number, date, and isChecked are required" });
   }
 
   if (isChecked && (!startTime || !endTime)) {
-    return res.status(400).json({ msg: "Start time and end time are required when isChecked is true" });
+    return res.status(400).json({
+      msg: "Start time and end time are required when isChecked is true",
+    });
   }
 
   try {
@@ -417,7 +441,7 @@ app.post('/api/assignDuty', async (req, res) => {
         startTime: isChecked ? startTime : null,
         endTime: isChecked ? endTime : null,
         isChecked,
-        station: user.areas[0]
+        station: user.areas[0],
       });
 
       // Save the new task
@@ -430,7 +454,7 @@ app.post('/api/assignDuty', async (req, res) => {
     res.status(500).json({ msg: "Server Error", error: err.message });
   }
 });
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

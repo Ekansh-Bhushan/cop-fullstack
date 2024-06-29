@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
+
+import { API_URL } from '../config/config';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -38,7 +40,7 @@ const SelectedCrimeBarChart = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://195.35.56.134:4000/crime-data/by/${selectedArea}/${selectedCrime}`
+          `${API_URL}/crime-data/by/${selectedArea}/${selectedCrime}`
         );
         const data = await response.json();
         setCrimeData(data);

@@ -6,6 +6,7 @@ import Headers from "../Header/header";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_URL } from '../config/config';
 
 const areaNames = [
   "Bawana",
@@ -38,7 +39,7 @@ function Dashboard(props) {
     setUserName(storedUserName);
 
     // Fetch total number of users from the backend
-    fetch("http://195.35.56.134:4000/api/total-users")
+    fetch(`${API_URL}/api/total-users`)
       .then((response) => response.json())
       .then((data) => {
         setTotalUsers(data.total);

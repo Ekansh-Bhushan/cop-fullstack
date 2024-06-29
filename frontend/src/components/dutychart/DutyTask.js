@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { API_URL } from '../config/config';
 import Header from '../Header/header';
 import '../dutychart/dutychart.css';
 
@@ -43,7 +43,7 @@ const DutyTask = () => {
 
     if (station) {
       try {
-        const response = await axios.get(`http://195.35.56.134:4000/api/usersForTask?area=${station}`);
+        const response = await axios.get(`${API_URL}/api/usersForTask?area=${station}`);
         const tasksData = response.data.map(task => ({
           ...task,
           startTime: task.startTime || '',
@@ -97,7 +97,7 @@ const DutyTask = () => {
 
           console.log('Sending request to backend:', taskData);
 
-          const response = await axios.post('http://195.35.56.134:4000/api/assignDuty', taskData);
+          const response = await axios.post(`${API_URL}/api/assignDuty`, taskData);
 
           console.log('Response from server:', response.data);
 
