@@ -31,6 +31,7 @@ const allowedOrigins = [
   "https://www.delhicop.in",
   "http://www.delhicop.in",
   "http://delhicop.in",
+  "https://dpfrontend.onrender.com",
 ];
 
 const corsOptions = {
