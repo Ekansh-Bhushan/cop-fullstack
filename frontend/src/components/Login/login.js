@@ -33,14 +33,14 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting with:", mobileNumber, password);
+    // console.log("Submitting with:", mobileNumber, password);
     try {
       const response = await axios.post(`${API_URL}/api/login`, {
         mobileNumber,
         password,
       });
 
-      console.log("Response:", response.data);
+      // console.log("Response:", response.data);
       const { token, user } = response.data; // Assuming the response includes the user's name
 
       if (token && user) {

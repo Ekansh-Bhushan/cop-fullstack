@@ -69,17 +69,17 @@ function Dashboard(props) {
             <h2>Number of users: {totalUsers}</h2>
             <h2>Active: {activeUsers}</h2>
           </div>
-          <div className="dashboard-left-filter">
+          <div className="dashboard-left-filter" onClick={() => navigate("/StaffManagement")}>
             <h2>ADD/REMOVE STAFF</h2>
-            <h3>POLICE STATION SELECTED</h3>
-            <select value={selectedStation} onChange={handleStationChange}>
+            <h3>Add Constable in the Police Station</h3>
+            {/* <select value={selectedStation} onChange={handleStationChange}>
               {areaNames.map((area, index) => (
                 <option key={index} value={area}>
                   {area}
                 </option>
               ))}
-            </select>
-            <button onClick={() => navigate("/StaffManagement")}>Select</button>
+            </select> */}
+            {/* <button onClick={() => navigate("/StaffManagement")}>Select</button> */}
           </div>
           <div
             className="dash-board-dutychart"

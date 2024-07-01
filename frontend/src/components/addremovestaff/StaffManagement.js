@@ -17,14 +17,14 @@ const StaffManagement = () => {
   const [users, setUsers] = useState([]);
 
   const areaNames = [
+    "Alipur",
     "Bawana",
-    "Shahbad Dairy",
+    "Bhalswa Dairy",
     "Narela",
     "Narela Industrial Area",
-    "Alipur",
     "Samaypur Badli",
+    "Shahbad Dairy",
     "Swaroop Nagar",
-    "Bhalswa Dairy",
   ];
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const StaffManagement = () => {
         };
 
         // Debugging: Log the payload being sent to the server
-        console.log("Adding staff:", userPayload);
+        // console.log("Adding staff:", userPayload);
 
         await axios.post(`${API_URL}/api/users`, userPayload);
 
@@ -109,7 +109,7 @@ const StaffManagement = () => {
       toast.error("Please select an area.");
     } else {
       try {
-        console.log("Removing staff:", { name, phoneNumber, selectedArea });
+        // console.log("Removing staff:", { name, phoneNumber, selectedArea });
         await axios.delete(`${API_URL}/api/users`, {
           data: { name, mobileNumber: phoneNumber, areas: [selectedArea] },
         });
@@ -140,7 +140,7 @@ const StaffManagement = () => {
     }
 
     try {
-      console.log("Fetching users for area:", selectedArea);
+      // console.log("Fetching users for area:", selectedArea);
       const response = await axios.get(`${API_URL}/api/users`, {
         params: { area: selectedArea },
       });
@@ -164,14 +164,14 @@ const StaffManagement = () => {
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
 
-      <div className="select_station">
+      <div className="select_copstation">
         <h3>SELECT POLICE STATION</h3>
         <form onSubmit={handleSubmit}>
           <select
             className="selectoption"
             style={{
               backgroundColor: "#EBEBEB",
-              width: "150px",
+              width: "130px",
               border: "none",
             }}
             value={selectedArea}
@@ -195,7 +195,7 @@ const StaffManagement = () => {
               color: "#fff",
               textAlign: "center",
               margin: "20px",
-              width: "150px",
+              width: "130px",
               border: "none",
               fontWeight: "bold",
             }}

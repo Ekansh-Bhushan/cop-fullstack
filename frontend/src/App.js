@@ -5,7 +5,7 @@ import "./App.css";
 
 import StaffManagement from "./components/addremovestaff/StaffManagement.js";
 import StaffMembers from "./components/staff/StaffMembers.js";
-import Final from "./components/Login/login.js";
+import Login from "./components/Login/login.js";
 import DutyTask from "./components/dutychart/DutyTask.js";
 // import LoginScreen from './components/Login/LoginScreen.js';
 import ProfileScreen from "./components/P.js"; // Correct casing
@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Final />} />
+        <Route path="/" element={<Login />} />
         <Route path="/StaffManagement" element={<StaffManagement />} />
         <Route path="/StaffMembers" element={<StaffMembers />} />
         <Route path="/DutyTask" element={<DutyTask />} />

@@ -455,6 +455,19 @@ app.post("/api/assignDuty", async (req, res) => {
     res.status(500).json({ msg: "Server Error", error: err.message });
   }
 });
+
+// New route to fetch mobile numbers of all users
+app.get("/api/users/mobile-numbers", async (req, res) => {
+  try {
+    const users = await User.find({}, "mobileNumber"); // Fetch only mobileNumber field
+    const mobileNumbers = users.map(user => user.mobileNumber); // Extract mobileNumber values
+
+    res.json({ mobileNumbers });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

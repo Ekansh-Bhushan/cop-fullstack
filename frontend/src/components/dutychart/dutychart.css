@@ -1,9 +1,243 @@
 .selectstations {
+  margin: 20px auto;
+  padding: 20px;
+  width: 93%;
+  top: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 15vw;
+}
+
+.select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Adds space between the select and the button */
+  width: 80%;
+}
+
+.selectstations h2 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.select {
+  margin-left: 10px;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 2px;
+  width: 20%;
+}
+
+.select option {
+  padding: 10px;
+}
+
+.selectstations button {
+  padding: 12px 20px;
+  background-color: rgb(51, 51, 166);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.selectstations button:hover {
+  background-color: #45a049;
+}
+
+.names {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 95%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.names h3 {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #b7e2e7;
+  border-radius: 30px;
+  width: 50px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.names label {
+  display: block;
+  margin-top: 10px;
+}
+
+.names .inputclass {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.names input[type="checkbox"] {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Media query for very small screens */
+@media screen and (max-width: 60px) {
+  .inputclass {
+    font-size: medium;
+    border: 1px solid black;
+  }
+  .select {
+    width: 74.0001px;
+  }
+  .names label {
+    margin-top: 2px;
+    font-size: medium;
+    left: 0;
+  }
+  .names {
+    border: 1px solid black;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin-left: 238px;
+  }
+  .selectstations {
+    margin-top: 75px;
+    width: 75%;
+    height: 30px;
+  }
+  .select-container {
+    display: flex; /* Ensure the items are displayed in a flex container */
+    align-items: center;
+    gap: 2px;
+  }
+  .select-button {
+    padding: 10px 0px; /* Adjust padding to make button smaller */
+    font-size: 0.01px; /* Match font size with other elements */
+    width: 110px;
+  }
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 768px) {
+  .dateinput {
+    width: 80%;
+  }
+}
+
+/* Media query for screens with width 390px or less */
+@media screen and (max-width: 390px) {
+  .selectstations {
+    width: 90%; /* Adjust width for smaller screens */
+    margin-right: 0; /* Center the selectstations */
+    margin-left: 50vw;
+    margin-top: 30vw;
+    height: 200px;
+  }
+  .select-container {
+    width: 123%;
+    display: grid;
+  }
+  .names {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 75%;
+    margin-left: 212px;
+    margin-right: 21px;
+  }
+  .select {
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 2px;
+    width: 50%;
+  }
+}
+
+/* Media query for screens with width between 390px and 430px */
+@media screen and (max-width: 430px) and (min-width: 390px) {
+  .selectstations {
+    width: 90%; /* Adjust width for smaller screens */
+    margin-right: 0; /* Center the selectstations */
+    margin-left: 50vw;
+    margin-top: 30vw;
+    height: 200px;
+  }
+  .select-container {
+    width: 123%;
+    display: grid;
+  }
+  .names {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 75%;
+    margin-left: 212px;
+    margin-right: 21px;
+  }
+  .select {
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 2px;
+    width: 50%;
+  }
+}
+
+/* Media query for screens with width between 454px and 390px */
+@media screen and (max-width: 454px) and (min-width: 390px) {
+  .names {
+    position: relative;
+    left: 196px;
+  }
+}
+
+/* Media query for screens with width between 560px and 550px */
+@media (max-width: 560px) and (min-width: 562px) {
+  .names {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    left: 220px;
+    width: 230px;
+  }
+  .selectstations {
     margin: 20px auto;
     padding: 20px;
-    width: 93%;
-    top:50px;
-   
+    width: 96%;
+    top: 50px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -14,53 +248,15 @@
     margin-top: 50px;
     display: flex;
     flex-direction: row;
-    margin-top: 7vw;
+    margin-top: 30vw;
   }
-  .select-container {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Adds space between the select and the button */
-    width:80%
-  }
-  
-  .selectstations h2 {
-    font-size: 15px;
-    margin: 0;
-  }
-  
   .select {
-    flex: 1;
-    margin-left: 10px;
-    padding: 5px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-top: 2px;
-    width:0%
+    width: 90%;
   }
-  
-  .select option {
-    padding: 10px;
-  }
-  
-  .selectstations button {
-    padding: 12px 20px;
-    background-color: rgb(51, 51, 166);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .selectstations button:hover {
-    background-color: #45a049;
-  }
-  
+}
+
+/* Media query for screens with width greater than 392px */
+@media screen and (min-width: 392px) {
   .names {
     margin-top: 20px;
     padding: 10px;
@@ -71,95 +267,4 @@
     margin-left: 20px;
     margin-right: 20px;
   }
-  
-  .names h3 {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #b7e2e7;
-    border-radius: 30px;
-    width: 50px;
-    text-align: center;
-    margin-right: 10px;
-  }
-  
-  .names label {
-    display: block;
-    margin-top: 10px;
-  }
-  
-  .names .inputclass {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .names input[type="checkbox"] {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  @media screen and (max-width:600px) {
-    .inputclass{
-      font-size:medium;
-      border: 1px solid black;
-
-    }
-    .select{
-      width:0.0001px
-    }
-    .names label {
-      margin-top: 2px;
-      font-size: medium;
-      left:0
-     
-    }
-    .names {
-      border: 1px solid black;
-      width:80%;
-      align-items: center;
-      justify-content: center;
-      flex:1;
-      margin-left:45px
-      
-    }
-    .selectstations{
-      margin-top:75px;
-      width:75%;
-      height:30px
-    }
-    .select-container{
-      display: flex; /* Ensure the items are displayed in a flex container */
-      align-items: center;
-      gap:2px
-      
-    }
-    .select-button {
-      padding: 10px 0px; /* Adjust padding to make button smaller */
-      font-size:0.01px; /* Match font size with other elements */
-      width:4px
-    }
-  }
-   
-  @media screen and (max-width:768px) {
-    .dateinput{
-      width:20%;
-    }
-  }
-  @media screen and (max-width:440px) {
-    .selectstations {
-      width: 90%; /* Adjust width for smaller screens */
-      margin-right: 0;/* Center the selectstations */
-      margin-left: 50vw;
-      margin-top: 30vw
-    }
-  
-    .select-container {
-      width: 70%; /* Adjust width for smaller screens */
-    }
-    .names{
-      margin-left: 60vw;
-    }
-  }
+}

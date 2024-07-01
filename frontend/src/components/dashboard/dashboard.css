@@ -33,6 +33,7 @@
 
 .dashboard-left-filter {
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .dashboard-left-filter select {
@@ -69,6 +70,7 @@
     cursor: pointer;
 }
 .dashboard-left-crime-upload {
+    cursor: pointer;
 }
 
 .dashboard-right {
