@@ -180,12 +180,23 @@ app.get("/api/activeUser", async (req, res) => {
       "name mobileNumber areas"
     ); // Fetch only name, phone number, and areas of active users
 
-    res.json(activeUsers);
+    // Fetch the duty times for each active user
+    const usersWithDutyTimes = await Promise.all(activeUsers.map(async (user) => {
+      const duty = await Task.findOne({ phoneNumber: user.mobileNumber, isChecked: true });
+      return {
+        ...user._doc,
+        dutyStartTime: duty ? duty.startTime : null,
+        dutyEndTime: duty ? duty.endTime : null,
+      };
+    }));
+
+    res.json(usersWithDutyTimes);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
+
 
 // GET route to fetch users by area
 app.get("/api/users", async (req, res) => {
