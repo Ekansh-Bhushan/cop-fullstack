@@ -85,8 +85,8 @@
     background-color: white;
     height: 74px;
     position: relative;
-    margin-left: -366px;
-    margin-right: -357px;
+    /* margin-left: -366px;
+    margin-right: -357px; */
     border: solid;
     border-radius: 17px;
 }
@@ -286,6 +286,17 @@ body {
         min-width: 170vw;
         min-height: 300vh;
     }
+    .userlist{
+        
+        height: 50px;
+        
+        margin-left: -36px;
+        margin-right: -27px;
+        
+    }
+    h2{
+        font-size: 1rem;
+    }
 }
 @media only screen and (min-width: 769px) and (max-width: 1200px){
     .task{
@@ -297,16 +308,28 @@ body {
     .nav {
         font-size: small;
     }
+    
 }
 @media only screen and (min-width: 1200px){
     .task{
         width:85%
+    }
+    .userlist{
+        
+        height: 74px;
+        
+        margin-left: -256px;
+        margin-right: -247px;
+        
     }
 }
 @media only screen and (max-width:500px){
     .background{
         min-width: 210vw;
         min-height: 300vh;
+    }
+    h2{
+        font-size: 0.8rem;
     }
 }
 @media only screen and (min-width: 560px) and (max-width: 600px){
@@ -317,11 +340,49 @@ body {
     .nav{
         width: 90%;
     }
+    h2{
+        font-size: 1rem;
+    }
+}
+@media only screen and (min-width: 500px) and (max-width: 600px){
+    h2{
+        font-size: 0.8rem;
+    }
+    .userlist{
+        
+        height: 40px;
+        /* width: 700px; */
+        margin-left: 6px;
+        margin-right: 2px;
+        /*  */
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 940px){
     .background{
         min-width: 120vw;
         min-height: 300vh;
     }
+    h2{
+        font-size: 1.2rem;
+    }
+    .userlist{
+        
+        height: 55px;
+        width: 700px;
+        margin-left: -106px;
+        margin-right: -97px;
+        /*  */
+    }
 
 }
+@media only screen and (min-width: 940px) and (max-width: 1200px){
+    .userlist{
+        
+        height: 74px;
+        
+        margin-left: -206px;
+        margin-right: -197px;
+        
+    }
+}
+

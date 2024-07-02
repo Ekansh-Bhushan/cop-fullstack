@@ -164,14 +164,14 @@ const StaffManagement = () => {
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header />
 
-      <div className="select_station">
+      <div className="select_copstation">
         <h3>SELECT POLICE STATION</h3>
         <form onSubmit={handleSubmit}>
           <select
             className="selectoption"
             style={{
               backgroundColor: "#EBEBEB",
-              width: "150px",
+              width: "130px",
               border: "none",
             }}
             value={selectedArea}
@@ -195,7 +195,7 @@ const StaffManagement = () => {
               color: "#fff",
               textAlign: "center",
               margin: "20px",
-              width: "150px",
+              width: "130px",
               border: "none",
               fontWeight: "bold",
             }}

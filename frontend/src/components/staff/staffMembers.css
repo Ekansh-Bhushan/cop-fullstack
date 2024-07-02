@@ -1,10 +1,13 @@
 /* css for staffmembers */
 .fetched-user {
     background-color: white;
-    width: 100%;
-    margin-right: -400px;
+    /* width: 100%; */
+    /* margin-right: -400px; */
+    /* margin-top: 20px; */
     margin-top: 20px;
     padding: 20px;
+    /* padding: 20px; */
+    
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -44,3 +47,59 @@
     background-color: #ddd;
 }
 
+@media screen and (max: 500px){
+    .fetched-user {
+        margin-left: auto;
+        margin-right: auto;
+        
+        width: 70%;
+    }   
+  }
+  
+  @media (min-width: 500px) {
+    .fetched-user {
+        margin-left: auto;
+        margin-right: auto;
+        
+        width: 75%;
+    }   
+  }
+  
+  @media (min-width: 600px) {
+    .fetched-user {
+        margin-left: auto;
+        margin-right: auto;
+        
+        width:65%;
+    }   
+  }
+  
+  @media (min-width: 768px) {
+    .fetched-user {
+        margin-left: auto;
+        margin-right: auto;
+        
+        width: 70%;
+    }   
+   
+    }
+  
+  
+  @media (min-width: 992px) {
+    .fetched-user {
+        margin-left: auto;
+        margin-right: auto;
+        
+        width: 80%;
+    }
+  }
+  
+  @media (min-width: 1190px) {
+    .fetched-user {
+        
+        width: 90%;
+    }
+  }
+  
+  
+  
