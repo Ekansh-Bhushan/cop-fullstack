@@ -32,6 +32,10 @@ const allowedOrigins = [
   "http://www.delhicop.in",
   "http://delhicop.in",
   "https://dpfrontend.onrender.com",
+  "http://inrizz.com/",
+  "http://www.inrizz.com/",
+  "https://inrizz.com/",
+  "https://www.inrizz.com/",
 ];
 
 const corsOptions = {
@@ -177,7 +181,22 @@ app.get("/api/activeUser", async (req, res) => {
       "name mobileNumber areas"
     ); // Fetch only name, phone number, and areas of active users
 
-    res.json(activeUsers);
+    // Fetch the duty times for each active user
+    const usersWithDutyTimes = await Promise.all(
+      activeUsers.map(async (user) => {
+        const duty = await Task.findOne({
+          phoneNumber: user.mobileNumber,
+          isChecked: true,
+        });
+        return {
+          ...user._doc,
+          dutyStartTime: duty ? duty.startTime : null,
+          dutyEndTime: duty ? duty.endTime : null,
+        };
+      })
+    );
+
+    res.json(usersWithDutyTimes);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -460,7 +479,7 @@ app.post("/api/assignDuty", async (req, res) => {
 app.get("/api/users/mobile-numbers", async (req, res) => {
   try {
     const users = await User.find({}, "mobileNumber"); // Fetch only mobileNumber field
-    const mobileNumbers = users.map(user => user.mobileNumber); // Extract mobileNumber values
+    const mobileNumbers = users.map((user) => user.mobileNumber); // Extract mobileNumber values
 
     res.json({ mobileNumbers });
   } catch (err) {
