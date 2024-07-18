@@ -38,6 +38,8 @@ const getCrimeDataByYear = async (req, res) => {
 const getCrimeDataByAreaAndCrime = async (req, res) => {
   try {
     const area = req.params.area;
+    const formattedArea =
+      area.charAt(0).toUpperCase() + area.slice(1).toLowerCase();
     const crime = req.params.crime;
     const months = [
       "January",
@@ -58,7 +60,7 @@ const getCrimeDataByAreaAndCrime = async (req, res) => {
       for (const month of months) {
         const totalCrimes = await Crime.countDocuments({
           month: month,
-          beat: area,
+          $or: [{ beat: formattedArea }, { beat: formattedArea.toUpperCase() }],
         });
         crimeData.push(totalCrimes);
       }
@@ -68,7 +70,7 @@ const getCrimeDataByAreaAndCrime = async (req, res) => {
     for (const month of months) {
       const totalCrimes = await Crime.countDocuments({
         month: month,
-        beat: area,
+        $or: [{ beat: formattedArea }, { beat: formattedArea.toUpperCase() }],
         crime: crime,
       });
       crimeData.push(totalCrimes);
