@@ -6,13 +6,18 @@ const showCrimeData = async (req, res) => {
   const date = req.params.date;
 
   try {
-    // const formattedDate = moment(date, "DD-MM-YYYY").toDate();
-    const crimeData = await Crime.find({ beat: area, date: date });
+    const formattedArea =
+      area.charAt(0).toUpperCase() + area.slice(1).toLowerCase();
+    const crimeData = await Crime.find({
+      $or: [{ beat: formattedArea }, { beat: formattedArea.toUpperCase() }],
+      date: date,
+    });
     res.send(crimeData);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch crime data." });
   }
 };
+
 module.exports = {
   showCrimeData,
 };
