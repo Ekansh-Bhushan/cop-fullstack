@@ -54,7 +54,7 @@ const getCrimeDataByAreaAndCrime = async (req, res) => {
       "December",
     ];
     const crimeData = [];
-    if (crime == "All") {
+    if (crime == "ALL") {
       for (const month of months) {
         const totalCrimes = await Crime.countDocuments({
           month: month,

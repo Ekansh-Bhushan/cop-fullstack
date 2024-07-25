@@ -31,11 +31,25 @@ const allowedOrigins = [
   "https://www.delhicop.in",
   "http://www.delhicop.in",
   "http://delhicop.in",
+  "https://dpfrontend.onrender.com",
   "http://inrizz.com/",
   "http://www.inrizz.com/",
   "https://inrizz.com/",
-  "https://www.inrizz.com/"
+  "https://www.inrizz.com/",
 ];
+
+// ****************************************
+// Read beat value from crime schema and store them in a variable
+app.get("/api/crime-beats", async (req, res) => {
+  try {
+    const beats = await Crime.find().distinct("beat");
+    res.json({ beats });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+// ****************************************
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -181,14 +195,19 @@ app.get("/api/activeUser", async (req, res) => {
     ); // Fetch only name, phone number, and areas of active users
 
     // Fetch the duty times for each active user
-    const usersWithDutyTimes = await Promise.all(activeUsers.map(async (user) => {
-      const duty = await Task.findOne({ phoneNumber: user.mobileNumber, isChecked: true });
-      return {
-        ...user._doc,
-        dutyStartTime: duty ? duty.startTime : null,
-        dutyEndTime: duty ? duty.endTime : null,
-      };
-    }));
+    const usersWithDutyTimes = await Promise.all(
+      activeUsers.map(async (user) => {
+        const duty = await Task.findOne({
+          phoneNumber: user.mobileNumber,
+          isChecked: true,
+        });
+        return {
+          ...user._doc,
+          dutyStartTime: duty ? duty.startTime : null,
+          dutyEndTime: duty ? duty.endTime : null,
+        };
+      })
+    );
 
     res.json(usersWithDutyTimes);
   } catch (err) {
@@ -196,7 +215,6 @@ app.get("/api/activeUser", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
 
 // GET route to fetch users by area
 app.get("/api/users", async (req, res) => {
@@ -474,10 +492,9 @@ app.post("/api/assignDuty", async (req, res) => {
 app.get("/api/users/mobile-numbers", async (req, res) => {
   try {
     const users = await User.find({}, "mobileNumber"); // Fetch only mobileNumber field
-    const mobileNumbers = users.map(user => user.mobileNumber); // Extract mobileNumber values
-    const totalCount = mobileNumbers.length; // Count the total number of phone numbers
-    console.log(totalCount)
-    res.json({ mobileNumbers, totalCount }); // Include the total count in the response
+    const mobileNumbers = users.map((user) => user.mobileNumber); // Extract mobileNumber values
+
+    res.json({ mobileNumbers });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
