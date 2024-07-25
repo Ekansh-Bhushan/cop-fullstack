@@ -475,13 +475,15 @@ app.get("/api/users/mobile-numbers", async (req, res) => {
   try {
     const users = await User.find({}, "mobileNumber"); // Fetch only mobileNumber field
     const mobileNumbers = users.map(user => user.mobileNumber); // Extract mobileNumber values
-
-    res.json({ mobileNumbers });
+    const totalCount = mobileNumbers.length; // Count the total number of phone numbers
+    console.log(totalCount)
+    res.json({ mobileNumbers, totalCount }); // Include the total count in the response
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
