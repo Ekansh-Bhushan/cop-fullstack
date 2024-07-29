@@ -14,6 +14,7 @@ import Header from "./components/Header/header.js";
 import Crime from "./components/crimes/crime.js";
 import NotFound from "./components/NotFound/notFound.js";
 import useOnlineStatus from "./hooks/useOnlineStatus.js";
+import Landing from "./components/Landing/Landing.jsx";
 // import Profiles from './components/P.js'; // Correct casing
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/StaffManagement" element={<StaffManagement />} />
         <Route path="/StaffMembers" element={<StaffMembers />} />
         <Route path="/DutyTask" element={<DutyTask />} />

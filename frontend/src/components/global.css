@@ -1,3 +1,8 @@
+/* @import "../node_modules/adroit-ui/dist/style.css"; */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
 @import url('https://fonts.googleapis.com/css2?family=Avenir+Next:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
