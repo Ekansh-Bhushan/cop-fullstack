@@ -21,6 +21,8 @@ import Saksham from "../../assets/Saksham.jpg";
 import Rudreshwar from "../../assets/Rudreshwar.jpg";
 import Hemang from "../../assets/Hemang.jpg";
 import Hitesh from "../../assets/Hitesh.jpg";
+import Faeez from "../../assets/Faeez.jpeg";
+import Dhruv from "../../assets/Dhruv.jpg";
 
 function Landing() {
     const [activeIndex1, setActiveIndex1] = React.useState(null);
@@ -328,7 +330,7 @@ no user can access the database in any form.
             </div>
           </div>
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
+            <img src={Faeez} alt="policeLogo" className="team-member-image" />
             <div className="team-member-name ">Mohd Faeez Ahmed</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">
@@ -352,7 +354,7 @@ no user can access the database in any form.
             </div>
           </div>
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
+            <img src={Dhruv} alt="policeLogo" className="team-member-image" />
             <div className="team-member-name ">Dhruv Dawar</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">
