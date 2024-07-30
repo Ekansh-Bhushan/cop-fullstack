@@ -38,6 +38,20 @@ const allowedOrigins = [
   "https://www.inrizz.com/",
 ];
 
+
+
+// const path = require('path');
+
+const _dirname = path.resolve();
+app.use(express.static(path.join(_dirname, '/frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(path.join(_dirname, '/frontend/build/index.html'))
+);
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
+
 // ****************************************
 // Read beat value from crime schema and store them in a variable
 app.get("/api/crime-beats", async (req, res) => {
@@ -502,7 +516,7 @@ app.get("/api/users/mobile-numbers", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 2005;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
