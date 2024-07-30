@@ -14,7 +14,7 @@ return (
             </div>
             <div className='qr-wrapper'>
                 <div className='app-available'>
-                    APP AVAILABLE ON IOS AND ANDROID
+                    APP AVAILABLE ON ANDROID
                 </div>
                 <img src={copQR} className='qr'/>
             </div>
@@ -26,8 +26,8 @@ return (
                 <a href="/#contact" className="link">CONTACT US</a>
                 <a href="/#faqs" className="link">FAQs</a>
                 <a href="/#team" className="link">DEVELOPMENT TEAM</a>
-                <a href="/privacy" className="link">PRIVACY POLICY</a>
-                <a href="/tnc" className="link">TERMS & CONDITIONS</a>
+                <a href="/privacyPolicy" className="link">PRIVACY POLICY</a>
+                <a href="/termsAndConditions" className="link">TERMS & CONDITIONS</a>
             </div>
         </div>
         <div className='footer-rights'>© 2024 Delhi Police. All Rights Reserved </div>

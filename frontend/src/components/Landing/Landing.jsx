@@ -23,6 +23,9 @@ import Hemang from "../../assets/Hemang.jpg";
 import Hitesh from "../../assets/Hitesh.jpg";
 import Faeez from "../../assets/Faeez.jpeg";
 import Dhruv from "../../assets/Dhruv.jpg";
+import harsh from "../../assets/harsh.jpg";
+import Sneha from "../../assets/sneha.jpg";
+import VC from "../../assets/VC.png";
 
 function Landing() {
     const [activeIndex1, setActiveIndex1] = React.useState(null);
@@ -287,16 +290,16 @@ no user can access the database in any form.
         <div className="heading views">INITIATIVE BY</div>
         <div className="team-wrapper">
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
-            <div className="team-member-name ">ACP BAWANA</div>
-            <div className="team-member-role">ACP</div>
-            <div className="team-member-role">DP, OUTER N</div>
+              <img src={Logo} alt="policeLogo" className="team-member-image" />
+              <div className="team-member-name ">JAGUAR 2</div>
+              <div className="team-member-role">DCP</div>
+              <div className="team-member-role">OUTER NORTH DELHI, DELHI POLICE</div>
           </div>
           <div className="team-member">
             <img src={Logo} alt="policeLogo" className="team-member-image" />
-            <div className="team-member-name ">JAGUAR 2</div>
-            <div className="team-member-role">DCP</div>
-            <div className="team-member-role">DP, OUTER N</div>
+            <div className="team-member-name ">ACP BAWANA</div>
+            <div className="team-member-role">ACP</div>
+            <div className="team-member-role">OUTER NORTH DELHI, DELHI POLICE</div>
           </div>
         </div>
       </div>
@@ -304,16 +307,16 @@ no user can access the database in any form.
         <div className="heading views">UNDER THE GUIDANCE OF</div>
         <div className="team-wrapper">
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
-            <div className="team-member-name ">Prof. Raghavendra Gautam</div>
-            <div className="team-member-role"> </div>
-            <div className="team-member-role">DTU</div>
+            <img src={VC} alt="policeLogo" className="team-member-image" />
+            <div className="team-member-name ">Prof. Prateek Sharma</div>
+            <div className="team-member-role">Vice Chancellor</div>
+            <div className="team-member-role">Delhi Technological University</div>
           </div>
           <div className="team-member">
             <img src={Logo} alt="policeLogo" className="team-member-image" />
-            <div className="team-member-name ">Prof. Prateek Sharma</div>
-            <div className="team-member-role">VC</div>
-            <div className="team-member-role">DTU</div>
+            <div className="team-member-name ">Dr. Raghavendra Gautam</div>
+            <div className="team-member-role"> </div>
+            <div className="team-member-role">Delhi Technological University</div>
           </div>
         </div>
       </div>
@@ -326,7 +329,7 @@ no user can access the database in any form.
             <div className="team-member-name ">Ekansh Bhushan</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">
-              Web Developer <br /> App Developer
+            Project Leader <br/>Web Developer <br /> App Developer
             </div>
           </div>
           <div className="team-member">
@@ -354,6 +357,12 @@ no user can access the database in any form.
             </div>
           </div>
           <div className="team-member">
+            <img src={Simran} alt="policeLogo" className="team-member-image" />
+            <div className="team-member-name ">Simran Rojia</div>
+            <div className="team-member-role">WORKED AS</div>
+            <div className="team-member-role">Web Developer</div>
+          </div>
+          <div className="team-member">
             <img src={Dhruv} alt="policeLogo" className="team-member-image" />
             <div className="team-member-name ">Dhruv Dawar</div>
             <div className="team-member-role">WORKED AS</div>
@@ -362,14 +371,8 @@ no user can access the database in any form.
             </div>
           </div>
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
+            <img src={harsh} alt="policeLogo" className="team-member-image" />
             <div className="team-member-name ">Harsh</div>
-            <div className="team-member-role">WORKED AS</div>
-            <div className="team-member-role">Web Developer</div>
-          </div>
-          <div className="team-member">
-            <img src={Simran} alt="policeLogo" className="team-member-image" />
-            <div className="team-member-name ">Simran Rojia</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">Web Developer</div>
           </div>
@@ -389,7 +392,7 @@ no user can access the database in any form.
             <img src={Kartik} alt="policeLogo" className="team-member-image" />
             <div className="team-member-name ">Kartik Bindra</div>
             <div className="team-member-role">WORKED AS</div>
-            <div className="team-member-role">Web Developer</div>
+            <div className="team-member-role">Web Developer <br /> UI/UX Designer </div>
           </div>
           <div className="team-member">
             <img src={Devyansh} alt="policeLogo" className="team-member-image" />
@@ -404,7 +407,7 @@ no user can access the database in any form.
             <div className="team-member-name ">Hitesh Gupta</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">
-              AI-ML Engineer <br /> Web Developer
+              AI-ML Engineer 
             </div>
           </div>
           <div className="team-member">
@@ -420,7 +423,7 @@ no user can access the database in any form.
             <div className="team-member-name ">Mohit Bajpai</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">
-              App Developer <br /> Web Developer
+              App Developer 
             </div>
           </div>
           <div className="team-member">
@@ -428,11 +431,11 @@ no user can access the database in any form.
             <div className="team-member-name ">Rudreshwar Singh</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">
-              Web Developer <br /> App Developer
+              App Developer
             </div>
           </div>
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
+            <img src={Sneha} alt="policeLogo" className="team-member-image" />
             <div className="team-member-name ">Sneha Karna</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">Web Developer</div>

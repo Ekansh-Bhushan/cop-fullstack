@@ -479,6 +479,7 @@ app.post("/api/assignDuty", async (req, res) => {
 
       // Save the new task
       await newTask.save();
+      
     }
 
     res.json({ msg: "Duty assigned successfully", user });
