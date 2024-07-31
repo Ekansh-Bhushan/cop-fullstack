@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./crime.css";
 import SearchCrime from "./SearchCrime";
 import Header from "../Header/header";
-import { API_URL } from '../config/config';
+import { API_URL } from "../config/config";
 
 function Crime() {
   const [lat, setLatitude] = useState("");
@@ -93,22 +93,22 @@ function Crime() {
   };
 
   const areaNames = [
-    "Alipur",
-    "Bawana",
-    "Bhalswa Dairy",
-    "Narela",
-    "Narela Industrial Area",
-    "Samaypur Badli",
-    "Shahbad Dairy",
-    "Swaroop Nagar",
+    "ALIPUR",
+    "BAWANA",
+    "BHALSWA DAIRY",
+    "NARELA",
+    "NARELA INDUSTRIAL AREA",
+    "SAMAYPUR BADLI",
+    "SHAHBAD DAIRY",
+    "SWAROOP NAGAR",
   ];
 
   const crimeTypes = [
-    "Burglary",
-    "House Theft",
-    "M V Theft",
-    "Snatching",
-    "Robbery",
+    "BURGLARY",
+    "HOUSE THEFT",
+    "MV THEFT",
+    "SNATCHING",
+    "ROBBERY",
   ];
 
   const handleAreaChange = (e) => {
@@ -119,7 +119,7 @@ function Crime() {
   return (
     <>
       <Header />
-      <ToastContainer position="top-center" autoClose={3000} hideProgressBar/>
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <div className="crime-add-filter-container">
         <form className="crime-form" onSubmit={handleSubmit}>
           <h2>Enter Crime Details</h2>

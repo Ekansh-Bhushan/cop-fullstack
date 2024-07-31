@@ -54,7 +54,29 @@ const getCrimeDataByAreaAndCrime = async (req, res) => {
       "December",
     ];
     const crimeData = [];
-    if (crime == "ALL") {
+    if (area == "ALL") {
+      if (crime == "ALL" && area == "ALL") {
+        for (const month of months) {
+          const totalCrimes = await Crime.countDocuments({
+            month: month,
+          });
+          crimeData.push(totalCrimes);
+        }
+        res.send(crimeData);
+        return;
+      } else if (crime != "ALL") {
+        for (const month of months) {
+          const totalCrimes = await Crime.countDocuments({
+            month: month,
+            crime: crime,
+          });
+          crimeData.push(totalCrimes);
+        }
+        res.send(crimeData);
+        return;
+      }
+    }
+    if (crime == "ALL" && area != "ALL") {
       for (const month of months) {
         const totalCrimes = await Crime.countDocuments({
           month: month,

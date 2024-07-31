@@ -38,17 +38,24 @@ const allowedOrigins = [
   "https://www.inrizz.com/",
 ];
 
-// ****************************************
-// Read beat value from crime schema and store them in a variable
-app.get("/api/crime-beats", async (req, res) => {
+app.get("/api/crime-attributes", async (req, res) => {
   try {
-    const beats = await Crime.find().distinct("beat");
-    res.json({ beats });
+    const attributes = await Crime.find().distinct("crime");
+    const count = attributes.length;
+    const attributeCounts = {};
+
+    for (const attribute of attributes) {
+      const attributeCount = await Crime.countDocuments({ crime: attribute });
+      attributeCounts[attribute] = attributeCount;
+    }
+
+    res.json({ attributes, count, attributeCounts });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
+
 // ****************************************
 
 const corsOptions = {

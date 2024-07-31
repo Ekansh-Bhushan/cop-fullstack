@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./searchCrime.css";
-import { API_URL } from '../config/config';
+import { API_URL } from "../config/config";
 
 const SearchCrime = () => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
