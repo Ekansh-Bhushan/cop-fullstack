@@ -128,7 +128,7 @@ const DutyTask = () => {
   const renderTasks = () => {
     return tasks.map((task, index) => (
       <div className="names" key={task._id}>
-        <h3 style={{ border: 'solid', borderColor: '#b7e2e7', borderRadius: '30px', width: '80px', height: '20px', textAlign: 'center', position: 'relative', bottom: '15px' }}>
+        <h3 style={{ border: 'solid', borderColor: '#b7e2e7', borderRadius: '30px', width: '80px', height: '30px', textAlign: 'center', position: 'relative', bottom: '15px' }}>
           {index + 1}.
         </h3>
         <label>NAME</label>

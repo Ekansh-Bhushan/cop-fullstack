@@ -1,0 +1,141 @@
+.footer {
+    background-color: #f8f9fa;
+    margin-top: 4em;
+}
+
+.img-wrapper{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    /* display: inline-flex;
+    align-items: center;
+    width: 60%;
+    gap: 4em; */
+    width: 280px;
+}
+
+.flogo {
+    width: 140px;
+    height: 100px;
+    margin: 0 10px;
+}
+.dpflogo {
+    width: 140px;
+    height: 140px;
+    margin: 0 10px;
+}
+
+/* .policelogo{
+    width: 15%;
+    height: 15%;
+    margin: 0 10px;
+} */
+
+.app-available {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.0rem;
+    text-wrap: nowrap;
+    margin: 0 10px;
+    color: #000;
+    text-align: center;
+
+    /* margin-top: 4em; */
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15rem;
+    padding-bottom: 1rem;
+    /* flex-wrap: wrap; */
+    padding-top: 1rem;
+    /* margin-bottom: 1rem; */
+    
+}
+
+.links-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0rem;
+    padding: 20px 0;
+}
+.link{
+    font-family: 'Montserrat', sans-serif;
+    /* font-weight: regular; */
+    font-size: 0.9rem;
+    text-wrap: wrap;
+    color: #000;
+    text-align: center;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-rights {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-wrap: wrap;
+    color: #000;
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #EBEBEB;
+    
+}
+
+.qr {
+    height: 100px;
+    width: 100px;
+}
+
+.qr-wrapper {
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    align-items: center;
+    gap: 1em;
+    padding: 1em 0;
+}
+
+@media screen and (max-width: 500px) {
+    .footer-bottom {
+        gap: 0rem;
+    }
+    .links-wrapper {
+        gap: 0.5rem;
+    }
+    .img-wrapper{
+        width: 200px;
+    }
+    .flogo {
+        width: 100px;
+        height: 70px;
+        margin: 0 10px;
+    }
+    .dpflogo {
+        width: 100px;
+        height: 100px;
+        margin: 0 10px;
+    }
+    .app-available {
+        font-size: 0.8rem;
+    }
+    .link{
+        font-size: 0.8rem;
+    }
+    .footer-rights {
+        font-size: 0.7rem;
+    }
+    .qr {
+        height: 100px;
+        width: 100px;
+    }
+    .qr-wrapper {
+        margin-top: 1rem;
+        flex-direction: column;
+        padding: 0;
+    }
+}

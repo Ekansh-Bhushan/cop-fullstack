@@ -486,6 +486,7 @@ app.post("/api/assignDuty", async (req, res) => {
 
       // Save the new task
       await newTask.save();
+      
     }
 
     res.json({ msg: "Duty assigned successfully", user });
@@ -507,6 +508,7 @@ app.get("/api/users/mobile-numbers", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

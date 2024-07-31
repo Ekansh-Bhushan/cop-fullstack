@@ -14,6 +14,9 @@ import Header from "./components/Header/header.js";
 import Crime from "./components/crimes/crime.js";
 import NotFound from "./components/NotFound/notFound.js";
 import useOnlineStatus from "./hooks/useOnlineStatus.js";
+import Landing from "./components/Landing/Landing.jsx";
+import PrivacyPolicy from "./Misc/Privacy Policy/privacyPolice.jsx";
+import TermsAndConditions from "./Misc/T&C/TermsAndConditions.jsx";
 // import Profiles from './components/P.js'; // Correct casing
 
 function App() {
@@ -27,11 +30,14 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/StaffManagement" element={<StaffManagement />} />
         <Route path="/StaffMembers" element={<StaffMembers />} />
         <Route path="/DutyTask" element={<DutyTask />} />
         <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+        <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         <Route path="/Profile" element={<ProfileScreen />} />{" "}
         {/* Pass police as a prop */}
         <Route path="/homepage" element={<Dashboard />} />{" "}

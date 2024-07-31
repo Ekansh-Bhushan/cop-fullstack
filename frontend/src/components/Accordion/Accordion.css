@@ -1,0 +1,85 @@
+* {
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    background: rgb(94, 89, 91);
+    background: radial-gradient(
+      circle,
+      rgb(255, 247, 250) 0%,
+      rgb(174, 179, 180) 100%
+    );
+  } */
+  
+  /* h1 {
+    text-align: center;
+    margin: 2rem 0 4rem 0;
+  } */
+  
+  .accordion {
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    /* font-weight: bold; */
+    /* max-width: 600px; */
+    margin: 2rem auto;
+    padding-top: 1rem;
+    border-radius: 16px;
+    background-color: #fff;
+    border : 1px solid #00000020;
+    width: 80%;
+  }
+  .opened {
+    color: #08529E;
+  }
+  .plus-minus {
+    font-size: 2rem;
+    font-weight: 300;    
+  }
+  .accordion-item {
+    margin-bottom: 12px;
+  }
+  
+  .accordion-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: #fff;
+    font-weight: bold;
+  }
+  
+  /* .accordion-title:hover {
+    background-color: #12759c;
+  } */
+  
+  .accordion-title,
+  .accordion-content {
+    padding: 1rem;
+  }
+  
+  .accordion-content {
+    font-size: 0.9rem;
+    color: #5f5f5f;
+    /* background-color: #39b9d275; */
+  }
+  
+  @media screen and (max-width: 700px) {
+    /* body {
+      font-size: 18px;
+    } */
+  
+    .accordion {
+      width: 90%;
+    }
+    .accordion-title {
+      font-size: 0.8rem;
+    }
+    .accordion-content {
+      font-size: 0.7rem;
+    }
+  }
