@@ -28,6 +28,9 @@ import Sneha from "../../assets/sneha.jpg";
 import VC from "../../assets/VC.png";
 
 function Landing() {
+  const placeholder = <svg class="h-1/2 w-1/2 text-secondary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#c7c7c7">
+  <path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h1 1 14H20z"></path>
+</svg>;
   const [activeIndex1, setActiveIndex1] = React.useState(null);
   const [activeIndex2, setActiveIndex2] = React.useState(null);
   const [activeIndex3, setActiveIndex3] = React.useState(null);
@@ -295,7 +298,8 @@ function Landing() {
         <div className="heading views">INITIATIVE BY</div>
         <div className="team-wrapper">
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
+            {/* <img src={Logo} alt="policeLogo" className="team-member-image" /> */}
+            <div className="team-member-image">{placeholder}</div>
             <div className="team-member-name ">JAGUAR 2</div>
             <div className="team-member-role">DCP</div>
             <div className="team-member-role">
@@ -303,7 +307,8 @@ function Landing() {
             </div>
           </div>
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
+            {/* <img src={Logo} alt="policeLogo" className="team-member-image" /> */}
+            <div className="team-member-image">{placeholder}</div>
             <div className="team-member-name ">ACP BAWANA</div>
             <div className="team-member-role">ACP</div>
             <div className="team-member-role">
@@ -324,7 +329,8 @@ function Landing() {
             </div>
           </div>
           <div className="team-member">
-            <img src={Logo} alt="policeLogo" className="team-member-image" />
+            {/* <img src={Logo} alt="policeLogo" className="team-member-image" /> */}
+            <div className="team-member-image">{placeholder}</div>
             <div className="team-member-name ">Dr. Raghavendra Gautam</div>
             <div className="team-member-role"> </div>
             <div className="team-member-role">
@@ -335,7 +341,7 @@ function Landing() {
       </div>
       <div className="wrapper">
         <div className="heading views">MEET THE DEVELOPMENT TEAM</div>
-        <div className="team-wrapper">
+        <div className="team-wrapper" id="development-team">
           <div className="team-member">
             <img src={Ekansh} alt="policeLogo" className="team-member-image" />
             <div className="team-member-name ">Ekansh Bhushan</div>

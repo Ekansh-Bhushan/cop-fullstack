@@ -65,9 +65,6 @@ function LandingHeader() {
           <a href="/#team" className="h1" activeClassName="active">
             DEVELOPMENT TEAM
           </a>
-          <NavLink exact to="/login" className="h1" activeClassName="active">
-            LOG IN
-          </NavLink>
 
         </div>
       )}

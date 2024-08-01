@@ -351,14 +351,23 @@ html {
   }
   .team-member-name {
     text-wrap: wrap;
-    font-size: 0.85rem;
+    font-size: 0.80rem;
     margin-top: 1rem;
   }
   .team-member-role {
-    font-size: 0.7rem;
+    text-wrap: wrap;;
+    font-size: 0.55rem;
     margin-top: 0.5rem;
   }
   .team-wrapper {
+    /* width: 100vw; */
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+  #development-team {
     width: 100vw;
     display: flex;
     flex-wrap: nowrap;
@@ -463,4 +472,5 @@ html {
         font-size: 1.5rem;
         margin-top: 0;
     }
+
 }
