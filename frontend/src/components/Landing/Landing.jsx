@@ -364,7 +364,7 @@ function Landing() {
             <div className="team-member-name ">Ritik Pal</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">
-              Project Leader <br />
+              {/* Project Leader <br /> */}
               Web Developer <br /> App Developer
             </div>
           </div>
@@ -373,7 +373,7 @@ function Landing() {
             <div className="team-member-name ">Gaurav Pandey</div>
             <div className="team-member-role">WORKED AS</div>
             <div className="team-member-role">
-              Project Leader <br />
+              {/* Project Leader <br /> */}
               App Developer <br /> Web Developer
             </div>
           </div>
