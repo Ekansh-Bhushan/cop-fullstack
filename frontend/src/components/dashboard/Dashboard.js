@@ -6,7 +6,8 @@ import Headers from "../Header/header";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { API_URL } from '../config/config';
+import { API_URL } from "../config/config";
+import LineChart from "./CrimeChart";
 
 const areaNames = [
   "Bawana",
@@ -69,7 +70,10 @@ function Dashboard(props) {
             <h2>Number of users: {totalUsers}</h2>
             <h2>Active: {activeUsers}</h2>
           </div>
-          <div className="dashboard-left-filter" onClick={() => navigate("/StaffManagement")}>
+          <div
+            className="dashboard-left-filter"
+            onClick={() => navigate("/StaffManagement")}
+          >
             <h2>ADD/REMOVE STAFF</h2>
             <h3>Add Constable in the Police Station</h3>
             {/* <select value={selectedStation} onChange={handleStationChange}>
@@ -102,13 +106,13 @@ function Dashboard(props) {
           </div>
         </div>
         <div className="dashboard-right">
-          <div className="dashboard-right-top">
-            <CrimeChart />
-          </div>
           <div className="dashboard-right-bottom">
             <SelectedCrimeBarChart />
           </div>
         </div>
+      </div>
+      <div className="dashboard-lineChart">
+        <LineChart />
       </div>
     </>
   );

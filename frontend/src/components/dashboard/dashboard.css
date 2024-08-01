@@ -74,29 +74,26 @@
 }
 
 .dashboard-right {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin-top: 120px;
     box-sizing: border-box;
+    width: 100%;
+    margin-top: 5%;
+
 }
 .dashboard-right>div {
     background-color: white;
     border:1px solid rgba(75, 192, 192, 0.5);
-    padding: 10px;
+    padding: 5px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
-.dashboard-right-top {
-    margin-bottom: 20px;
-    box-sizing: border-box;
+
+
+.crimechart>canvas{
+    width: 64vw;
 }
-
-
-.crimechart{
-    display: flex;
-    /* max-width: 55vw; */
+.crimechart-right{
+    display:flex ;
 }
 .crimechart-right>label{
     display: flex;
@@ -110,10 +107,70 @@
     font-size: 16px;
     background-color: white;
     color: #333;
-    min-width: 100px;
+    min-width: 140px;
     outline: none;
     max-width: 120px;
 }
+
+.dashboard-lineChart{
+background-color: white;
+display: flex;
+width:fit-content;
+margin-left: auto;
+margin-right: auto;
+padding: 10px;
+margin-top: 20px;
+margin-bottom: 20px;
+border:1px solid rgba(75, 192, 192, 0.5);
+padding: 5px;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+.chart-main{
+    display: flex;
+    width: 100%;
+    width: 95vw;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.crimechart-line{
+    display:flex;
+    flex-direction: row-reverse;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.crimechart-line>canvas{
+    width: 50vw !important;
+}
+.chart-polar>canvas{
+    width: 34vw !important ;
+}
+.crimechart-line-right>label{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+
+}
+.crimechart-right-line>label>select{
+    padding:10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    color: #333;
+    min-width: 140px;
+    outline: none;
+    max-width: 120px;
+}   
+
+
+
+
+
+
+
+
 
 @media (max-width: 1000px) {
     .dashboard{
@@ -132,7 +189,25 @@
     .crimechart{
         flex-wrap:wrap;
     }
-
+    .chart-main{
+        display: flex;
+        width: 98%;
+        flex-direction: column;
+    }
+    .crimechart-line{
+        display:flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        width: 91vw;
+    }
+    .crimechart-line>canvas{
+        width: 95%!important;
+        margin-bottom: 100px;
+        margin-top: 20px;
+    }
+    .chart-polar>canvas{
+        width: 95% !important ;
+    }
 }   
 @media (max-width: 480px) {
     .dashboard{

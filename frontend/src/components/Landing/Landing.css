@@ -44,6 +44,11 @@ html {
   /* font-weight: bold; */
 
   /* margin-top: 4em; */
+  background-color: rgb(250, 250, 250);
+  padding: 20px;
+  border-radius: 10px;
+  border:2px solid rgba(75, 192, 192, 0.5);
+
 }
 .wrapper-bottom {
   font-family: "Montserrat", sans-serif;
@@ -109,7 +114,7 @@ html {
   border-radius: 1rem;
   background-color: #f1f3f5;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid #009adc;
+      border:2px solid rgba(75, 192, 192, 0.5);
 }
 .feature {
   width: 500px;
@@ -123,7 +128,7 @@ html {
   border-radius: 1rem;
   background-color: #f1f3f5;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid #009adc;
+      border:2px solid rgba(75, 192, 192, 0.5);
 }
 
 .feature-list {
@@ -332,7 +337,7 @@ html {
     border-radius: 1rem;
     background-color: #f1f3f5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 2px solid #009adc;
+        border:2px solid rgba(75, 192, 192, 0.5);
     /* width: fit-content; */
     /* white-space: wrap; */
     /* margin: auto; */
@@ -397,7 +402,7 @@ html {
     border-radius: 1rem;
     background-color: #f1f3f5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 2px solid #009adc;
+        border:2px solid rgba(75, 192, 192, 0.5);
   }
   .features-wrapper {
     width: 100vw;

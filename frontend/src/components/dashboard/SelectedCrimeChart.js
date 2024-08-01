@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 
-import { API_URL } from '../config/config';
+import { API_URL } from "../config/config";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -25,7 +25,7 @@ ChartJS.register(
 
 const SelectedCrimeBarChart = () => {
   const [selectedArea, setSelectedArea] = useState("BAWANA");
-  const [selectedCrime, setSelectedCrime] = useState("Burglary");
+  const [selectedCrime, setSelectedCrime] = useState("BURGLARY");
   const [crimeData, setCrimeData] = useState([]);
 
   const handleAreaChange = (event) => {
@@ -93,27 +93,28 @@ const SelectedCrimeBarChart = () => {
         <label>
           <h3>Select Area</h3>
           <select value={selectedArea} onChange={handleAreaChange}>
-            <option value="SAMAYPUR BADLI">SAMAYPUR BADLI</option>
-            <option value="NARELA">NARELA</option>
+            <option value="ALIPUR">ALIPUR</option>
             <option value="BAWANA">BAWANA</option>
-            <option value="SHAHBAD DAIRY">SHAHBAD DAIRY</option>
             <option value="BHALSWA DAIRY">BHALSWA DAIRY</option>
+            <option value="NARELA">NARELA</option>
             <option value="NARELA INDUSTRIAL AREA">
               NARELA INDUSTRIAL AREA
             </option>
-            <option value="SWARUP NAGAR">SWARUP NAGAR</option>
-            <option value="SWARUP NAGAR">ALIPUR</option>
+            <option value="SAMAYPUR BADLI">SAMAYPUR BADLI</option>
+            <option value="SHAHBAD DAIRY">SHAHBAD DAIRY</option>
+            <option value="SWAROOP NAGAR">SWAROOP NAGAR</option>
+            <option value="ALL">ALL AREAS</option>
           </select>
         </label>
         <label>
           <h3>Select Crime</h3>
           <select value={selectedCrime} onChange={handleCrimeChange}>
-            <option value="Burglary">Burglary</option>
-            <option value="House Theft">House Theft</option>
-            <option value="M V Theft">MV Theft</option>
-            <option value="Snatching">Snatching</option>
-            <option value="Robbery">Robbery</option>
-            <option value="All">ALL Crime</option>
+            <option value="BURGLARY">BURGLARY</option>
+            <option value="HOUSE THEFT">HOUSE THEFT</option>
+            <option value="MV THEFT">MV THEFT</option>
+            <option value="ROBBERY">ROBBERY</option>
+            <option value="SNATCHING">SNATCHING</option>
+            <option value="ALL">ALL CRIMES</option>
           </select>
         </label>
       </div>
