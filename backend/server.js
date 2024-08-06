@@ -69,11 +69,7 @@ const corsOptions = {
   credentials: true,
 };
 
-// const _dirname = path.resolve();
-// app.use(express.static(path.join(_dirname, '/frontend/build')));
-// app.get('*', (req, res) =>
-//   res.sendFile(path.join(_dirname, '/frontend/build/index.html'))
-// );
+
 
 app.use("*", cors(corsOptions));
 app.use(bodyParser.json());
@@ -515,6 +511,12 @@ app.get("/api/users/mobile-numbers", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+const _dirname = path.resolve();
+app.use(express.static(path.join(_dirname, '/frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(path.join(_dirname, '/frontend/build/index.html'))
+);
 
 const PORT = process.env.PORT || 2005;
 
