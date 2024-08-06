@@ -107,6 +107,7 @@ cron.schedule("* * * * *", async () => {
     console.error("Error updating user active status:", error.message);
   }
 });
+
 app.get("/api/user-status/:phoneNumber", async (req, res) => {
   const { phoneNumber } = req.params;
 
