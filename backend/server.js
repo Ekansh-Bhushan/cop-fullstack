@@ -69,11 +69,11 @@ const corsOptions = {
   credentials: true,
 };
 
-const _dirname = path.resolve();
-app.use(express.static(path.join(_dirname, '/frontend/build')));
-app.get('*', (req, res) =>
-  res.sendFile(path.join(_dirname, '/frontend/build/index.html'))
-);
+// const _dirname = path.resolve();
+// app.use(express.static(path.join(_dirname, '/frontend/build')));
+// app.get('*', (req, res) =>
+//   res.sendFile(path.join(_dirname, '/frontend/build/index.html'))
+// );
 
 app.use("*", cors(corsOptions));
 app.use(bodyParser.json());
