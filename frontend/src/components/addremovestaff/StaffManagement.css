@@ -1,9 +1,8 @@
 /*staffmanagement*/
 
-.staff{
+.staff {
   overflow-y: hidden;
   overflow-x: hidden;
-  
 }
 .selectstation {
   border: solid;
@@ -12,20 +11,18 @@
   display: flex;
   justify-content: space-evenly;
   border-radius: 8px;
-  border-color: #B7E2E7;
+  border-color: #b7e2e7;
   opacity: 0.8;
   padding: 1rem; /* Optional: Add some padding for spacing within the element */
 }
 
-.select_station{
-
+.select_station {
   margin-left: 140px;
   position: relative;
   left: -306px;
 }
 
 .select_station {
-
   border: solid;
   background: #fff;
 
@@ -35,11 +32,9 @@
   border-radius: 12px;
   border-color: #b7e2e7;
   opacity: 0.8;
-  margin : 120px 0px 30px  ;
-
+  margin: 120px 0px 30px;
 }
 .select_copstation {
-
   border: solid;
   background: #fff;
 
@@ -49,11 +44,9 @@
   border-radius: 12px;
   border-color: #b7e2e7;
   opacity: 0.8;
-  margin : 120px 0px 30px  ;
-
+  margin: 120px 0px 30px;
 }
 .selectoption {
-
   height: 35px;
   border: solid;
   border-radius: 5px;
@@ -69,7 +62,7 @@
   position: relative;
   background: #fff;
   opacity: 0.8;
-  margin :20px 20px  ;
+  margin: 20px 20px;
   border-color: #b7e2e7;
   padding-left: 24px;
   border-radius: 10px;
@@ -77,63 +70,62 @@
 .details {
   display: flex;
   gap: 20px;
-  
 }
-.name{
+.name {
   margin-top: 10px;
   margin-bottom: 10px;
 
-  gap: 10px ;
+  gap: 10px;
 }
-.detail{
+.detail {
   margin-top: 10px;
   margin-bottom: 10px;
-  gap: 10px ;
+  gap: 10px;
 }
 .input_class {
   height: 25px;
-  padding : 4px ;
+  padding: 4px;
   margin-left: 10px;
 }
 .buttons {
   display: flex;
   gap: 15px;
 }
-.buttonADD,.buttonREMOVE {
+.buttonADD,
+.buttonREMOVE {
   background-color: #009adc;
-
   height: 50px;
   border: none;
   border-radius: 10px;
   text-align: center;
   color: white;
-  margin: 20px 10px 20px 10px;
+  margin: 20px 10px;
   font-weight: bold;
-  background-color: "#009ADC";
-  color: "#fff";
-  text-align
-  : "center";
-  margin: "20px";
-  width: "150px";
-  border: "none";
-  font-Weight: "bold";
   width: 200px;
+  cursor: pointer;
 }
-.staffmember{
+
+.buttonADD:hover,
+.buttonREMOVE:hover {
+  background-color: #007bbd;
+  transition: background-color 0.3s ease;
+}
+
+.staffmember {
   background-color: white;
   height: 220px;
   position: relative;
   opacity: 0.8;
-  padding : 10px ;
+  padding: 10px;
   border: solid;
   border-radius: 17px;
 }
 
-.input{
+.input {
   width: 66%;
-  height: 20px;
+  height: 30px;
   margin-left: 10px;
-  border-color: #b7e2e7;
+  border-color: #c0e4e7;
   border-radius: 9px;
 }
 
@@ -142,27 +134,24 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  
 }
-.form-group_name{
+.form-group_name {
   margin-left: 20px;
   gap: 20px;
   width: 45%;
 }
-.form-group_phone{
-  
+.form-group_phone {
   width: 45%;
 }
 .nameinput form {
   display: flex;
   width: 100%;
-  gap:10px;
+  gap: 10px;
   align-items: center;
 }
-@media screen and (max: 500px){
+@media screen and (max: 500px) {
   .select_station {
-    height : 90px
-       
+    height: 90px;
   }
   .selectoption {
     /*: 100px; */
@@ -173,37 +162,32 @@
     text-align: center;
     font-weight: bold;
   }
-  
+
   h3 {
     font-size: small;
   }
   .details {
     display: flex;
     gap: 10px;
-    
-  } 
-  .tasks{
-    
-    padding : 10px ;
   }
-  .input_class{
+  .tasks {
+    padding: 10px;
+  }
+  .input_class {
     height: 20px;
-    
   }
 }
 
 @media (min-width: 500px) {
-  .select_station{
+  .select_station {
     margin-left: auto;
     margin-right: auto;
-       
-}
-.selectoption{
-  width: 20px ;
-}
+  }
+  .selectoption {
+    width: 20px;
+  }
 
-
-  .select_copstation{
+  .select_copstation {
     position: relative;
     left: -0px;
     /* right: 20px; */
@@ -212,22 +196,17 @@
   h3 {
     font-size: smaller;
   }
-  
+
   .tasks {
-    
-  
-    
-    padding : 10px ;
+    padding: 10px;
   }
   .input_class {
-   
     height: 20px;
-    
   }
 }
 
 @media (min-width: 600px) {
-  .select_copstation{
+  .select_copstation {
     position: relative;
     left: -10px;
     /* right: 20px; */
@@ -236,80 +215,61 @@
   h3 {
     font-size: medium;
   }
-   
-  .tasks {
-    
 
-    
-    padding : 10px ;
+  .tasks {
+    padding: 10px;
   }
   .input_class {
-  
     height: 20px;
-    
   }
 }
 
 @media (min-width: 768px) {
-  
-  .staffmember{
+  .staffmember {
     margin-left: -106px;
     margin-right: -97px;
   }
-  .select_copstation{
+  .select_copstation {
     position: relative;
     left: -30px;
     /* right: 20px; */
     width: 110%;
   }
-  
- 
-  }
-
+}
 
 @media (min-width: 992px) {
   .tasks {
-    
- 
-    padding : 10px ;
+    padding: 10px;
   }
-  .select_copstation{
+  .select_copstation {
     position: relative;
     left: -40px;
     width: 110%;
   }
-  .staffmember{
+  .staffmember {
     margin-left: -106px;
     margin-right: -97px;
   }
   .input_class {
- 
     height: 25px;
-    
   }
 }
 
 @media (min: 1190px) {
-  .staffmember{
+  .staffmember {
     margin-left: -106px;
     margin-right: -97px;
   }
   .input_class {
-   
     height: 25px;
-    padding : 4px ;
-    
+    padding: 4px;
   }
-  .select_copstation{
+  .select_copstation {
     position: relative;
     left: -40px;
     width: 110%;
   }
   .tasks {
-    
-
-    
-    padding : 10px ;
+    padding: 10px;
   }
 }
-

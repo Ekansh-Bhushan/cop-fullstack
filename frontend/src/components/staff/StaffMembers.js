@@ -14,6 +14,16 @@ const StaffManagement = () => {
   const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(true);
   const [selectedArea, setSelectedArea] = useState("");
   const [users, setUsers] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
+
+const handleMouseEnter = () => {
+  setIsHovered(true);
+};
+
+const handleMouseLeave = () => {
+  setIsHovered(false);
+};
+
 
   const areaNames = [
     "Alipur",
@@ -26,15 +36,15 @@ const StaffManagement = () => {
     "Swaroop Nagar",
   ];
 
-  // useEffect(() => {
-  //   // Check for the authentication token
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     toast.error("Please login first!");
-  //     navigate("/"); // Redirect to login if token is not present
-  //     return;
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Please login first!");
+      navigate("/login"); 
+      return;
+    }
+  }, [navigate]);
 
   const handleNameChange = (e) => {
     const value = e.target.value;
@@ -171,19 +181,23 @@ const StaffManagement = () => {
               ))}
             </select>
             <input
-              type="submit"
-              value="SELECT"
-              className="select"
-              style={{
-                backgroundColor: "#009ADC",
-                color: "#fff",
-                textAlign: "center",
-                margin: "20px",
-                width: "130px",
-                border: "none",
-                fontWeight: "bold",
-              }}
-            />
+  type="submit"
+  value="SELECT"
+  className="select"
+  style={{
+    backgroundColor: isHovered ? "#007bbd" : "#009ADC", // Change color on hover
+    color: "#fff",
+    textAlign: "center",
+    margin: "20px",
+    width: "130px",
+    border: "none",
+    fontWeight: "bold",
+    transition: "background-color 0.3s ease" // Smooth transition
+  }}
+  onMouseEnter={handleMouseEnter}
+  onMouseLeave={handleMouseLeave}
+/>
+
           </form>
         </div>
 

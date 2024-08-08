@@ -298,21 +298,11 @@ function Landing() {
         <div className="heading views">INITIATIVE BY</div>
         <div className="team-wrapper">
           <div className="team-member">
-            {/* <img src={Logo} alt="policeLogo" className="team-member-image" /> */}
             <div className="team-member-image">{placeholder}</div>
-            <div className="team-member-name ">JAGUAR 2</div>
+            <div className="team-member-name ">Sh Ravi Kumar Singh IPS</div>
             <div className="team-member-role">DCP</div>
             <div className="team-member-role">
-              OUTER NORTH DELHI, DELHI POLICE
-            </div>
-          </div>
-          <div className="team-member">
-            {/* <img src={Logo} alt="policeLogo" className="team-member-image" /> */}
-            <div className="team-member-image">{placeholder}</div>
-            <div className="team-member-name ">ACP BAWANA</div>
-            <div className="team-member-role">ACP</div>
-            <div className="team-member-role">
-              OUTER NORTH DELHI, DELHI POLICE
+            Outer North District, Delhi
             </div>
           </div>
         </div>
@@ -329,7 +319,6 @@ function Landing() {
             </div>
           </div>
           <div className="team-member">
-            {/* <img src={Logo} alt="policeLogo" className="team-member-image" /> */}
             <div className="team-member-image">{placeholder}</div>
             <div className="team-member-name ">Dr. Raghavendra Gautam</div>
             <div className="team-member-role"> </div>

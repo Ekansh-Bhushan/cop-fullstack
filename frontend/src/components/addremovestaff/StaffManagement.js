@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "../Header/header";
 import mapImage from "../../assets/MAP.png";
 import "../addremovestaff/StaffManagement.css";
-import { API_URL } from '../config/config';
+import { API_URL } from "../config/config";
 
 const StaffManagement = () => {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -15,6 +15,15 @@ const StaffManagement = () => {
   const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(true);
   const [selectedArea, setSelectedArea] = useState("");
   const [users, setUsers] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const areaNames = [
     "Alipur",
@@ -64,12 +73,10 @@ const StaffManagement = () => {
   };
 
   const handleAddStaff = async () => {
-    if (name.trim() === "" || phoneNumber.trim() === "") {
-      toast.error("Please fill out both Name and Phone Number.");
+    if (name.trim() === "" || phoneNumber.trim() === "" || !selectedArea) {
+      toast.error("Please fill out all fields.");
     } else if (!isValidPhoneNumber) {
       toast.error("Please enter a valid 10-digit Phone Number.");
-    } else if (!selectedArea) {
-      toast.error("Please select an area.");
     } else {
       try {
         const password = generateRandomPassword();
@@ -103,10 +110,8 @@ const StaffManagement = () => {
   };
 
   const handleRemoveStaff = async () => {
-    if (name.trim() === "" || phoneNumber.trim() === "") {
-      toast.error("Please fill out both Name and Phone Number.");
-    } else if (!selectedArea) {
-      toast.error("Please select an area.");
+    if (name.trim() === "" || phoneNumber.trim() === "" || !selectedArea) {
+      toast.error("Please fill out all fields.");
     } else {
       try {
         // console.log("Removing staff:", { name, phoneNumber, selectedArea });
@@ -191,14 +196,17 @@ const StaffManagement = () => {
             value="SELECT"
             className="select"
             style={{
-              backgroundColor: "#009ADC",
+              backgroundColor: isHovered ? "#007bbd" : "#009ADC", // Change color on hover
               color: "#fff",
               textAlign: "center",
               margin: "20px",
               width: "130px",
               border: "none",
               fontWeight: "bold",
+              transition: "background-color 0.3s ease", // Smooth transition
             }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           />
         </form>
       </div>
@@ -211,11 +219,12 @@ const StaffManagement = () => {
               <input
                 type="text"
                 id="name"
-                placeholder="enter your name"
+                placeholder="Enter your Name"
                 className="input"
                 value={name}
                 onChange={handleNameChange}
               />
+              
             </div>
             <div class="form-group">
               <label for="phno">PH NO.</label>
@@ -223,7 +232,7 @@ const StaffManagement = () => {
               <input
                 type="text"
                 id="phno"
-                placeholder="enter ph.no."
+                placeholder="Enter Phone Number"
                 className="input"
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
