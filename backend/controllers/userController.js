@@ -1,6 +1,7 @@
 // const Crime = require("../models/Crime");
 const { get } = require("mongoose");
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 const getUsers = async (req, res) => {
     const { area } = req.query;
@@ -71,9 +72,7 @@ const addUser = async (req, res) => {
   console.log("Received request body:", req.body);
 
   if (!name || !mobileNumber || !areas || areas.length === 0) {
-    return res
-      .status(400)
-      .json({ msg: "Please provide name, mobile number, and area" });
+    return res.status(400).json({ msg: "Please provide name, mobile number, and area" });
   }
 
   try {
@@ -84,30 +83,31 @@ const addUser = async (req, res) => {
     console.log("Checking if user exists:", { mobileNumber, area });
 
     if (existingUser) {
-      return res
-        .status(400)
-        .json({ msg: "User already exists in the specified areas" });
+      return res.status(400).json({ msg: "User already exists in the specified areas" });
     }
 
     // Create a new user with hashed password
-    const hashedPassword = bcrypt.hashSync(password, 8);
+    // const hashedPassword = await bcrypt.hash(password, 8);
 
     const newUser = new User({
-      name,
-      mobileNumber,
-      password, // Use the provided password
+      name : name,
+      mobileNumber : mobileNumber,
+      password : password,
       role: "user",
-      areas,
+      areas : areas,
     });
 
     // Debugging: Log the new user object before saving
     console.log("Creating new user:", newUser);
-
     await newUser.save();
+
     res.json({ msg: "User added successfully" });
   } catch (err) {
-    console.error("Server Error:", err.message);
-    res.status(500).send("Server Error");
+    console.error("Server Error:", err);
+    if (err.code === 11000) {
+      return res.status(400).json({ msg: "Mobile number already exists" });
+    }
+    res.status(500).send("Server Error", err);
   }
   
 };
