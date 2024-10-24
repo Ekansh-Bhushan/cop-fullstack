@@ -74,9 +74,10 @@ const corsOptions = {
 app.use("*", cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/crime-data", crimeDataRoutes);
+
 // Schedule a cron job to run every minute
 cron.schedule("* * * * *", async () => {
-  // Runs every minute
+  // Runs every minute for checking the 
   try {
     const currentTime = new Date().getTime();
     const tasks = await Task.find({ isChecked: true });
@@ -113,7 +114,6 @@ app.get("/api/user-status/:phoneNumber", async (req, res) => {
     if (!user) {
       return res.status(404).json({ msg: "User not found" });
     }
-
     res.json({ active: user.active });
   } catch (err) {
     console.error(err.message);
