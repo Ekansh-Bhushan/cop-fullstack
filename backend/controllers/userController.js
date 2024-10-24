@@ -2,7 +2,6 @@
 const { get } = require("mongoose");
 const bcrypt = require("bcryptjs"); 
 const User = require("../models/User");
-const bcrypt = require("bcryptjs");
 
 const getUsers = async (req, res) => {
     const { area } = req.query;
