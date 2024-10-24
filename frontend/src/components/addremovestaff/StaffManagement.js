@@ -89,7 +89,7 @@ const StaffManagement = () => {
         };
 
         // Debugging: Log the payload being sent to the server
-        // console.log("Adding staff:", userPayload);
+        console.log("Adding staff:", userPayload);
 
         await axios.post(`${API_URL}/api/users`, userPayload);
 
